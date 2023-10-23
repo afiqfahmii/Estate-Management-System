@@ -15,7 +15,7 @@ The Faraid System is an open-source project aimed at providing a digital platfor
 
 - **User-Friendly Interface:** An intuitive and user-friendly web-based interface to input and manage information related to estates and heirs.
 
-- **Inheritance Calculations:** Automatic calculation of inheritance shares based on Islamic inheritance laws, considering relationships and other factors.
+- **User Module:** To manage the user information.
 
 - **Wasiat Management:** Option to create and manage wills (wasiat) to specify the distribution of assets beyond Faraid requirements.
 
