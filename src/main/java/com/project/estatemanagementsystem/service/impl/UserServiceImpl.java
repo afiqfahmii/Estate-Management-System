@@ -7,9 +7,11 @@ import java.util.stream.Collectors;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import com.example.registrationlogindemo.repository.RoleRepository;
-import com.example.registrationlogindemo.repository.UserRepository;
 import com.project.estatemanagementsystem.dto.UserDto;
+import com.project.estatemanagementsystem.entity.Role;
+import com.project.estatemanagementsystem.entity.User;
+import com.project.estatemanagementsystem.repository.RoleRepository;
+import com.project.estatemanagementsystem.repository.UserRepository;
 import com.project.estatemanagementsystem.service.UserService;
 
 @Service
