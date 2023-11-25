@@ -14,6 +14,54 @@ body {
   color: #444444;
 }
 
+.ff-default .ff-el-form-check label.ff-el-form-check-label {
+  cursor: pointer;
+  margin-bottom: 7px;
+}
+
+label {
+  display: inline-block;
+  line-height: 1;
+  vertical-align: middle;
+}
+
+.fluentform .ff-el-group.ff_list_buttons .ff-el-form-check input {
+  display: none;
+  margin: 0;
+  opacity: 0;
+  outline: none;
+  position: absolute;
+  z-index: -1;
+}
+
+.elementor-kit-25419 input:not([type="button"]):not([type="submit"]), .elementor-kit-25419 textarea, .elementor-kit-25419 .elementor-field-textual {
+  color: var(--e-global-color-secondary);
+  background-color: var(--e-global-color-905970a);
+}
+
+.fluentform .ff-el-form-check-label .ff-el-form-check-input {
+  position: relative;
+  top: -2px;
+  vertical-align: middle;
+}
+
+.fluentform input[type=radio] {
+  -webkit-appearance: radio;
+}
+
+.fluentform input[type=checkbox], .fluentform input[type=radio] {
+  display: inline-block;
+  margin: 0;
+}
+
+input[type="radio"] {
+  margin: 0 2px 0 20px;
+}
+
+.fluentform * {
+  box-sizing: border-box;
+}
+
 a {
   color: #ef6603;
   text-decoration: none;
