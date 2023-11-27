@@ -24,9 +24,9 @@ public class AuthController {
         this.userService = userService;
     }
 
-    @GetMapping("index")
+    @GetMapping("home")
     public String home(){
-        return "index";
+        return "home";
     }
 
     @GetMapping("/login")
@@ -59,10 +59,17 @@ public class AuthController {
         return "redirect:/register?success";
     }
 
-    @GetMapping("/users")
+    @GetMapping("/admin")
     public String listRegisteredUsers(Model model){
         List<UserDto> users = userService.findAllUsers();
         model.addAttribute("users", users);
+        return "admin";
+    }
+
+    @GetMapping("users")
+    public String userPage(){
         return "users";
     }
+
+
 }
