@@ -2,6 +2,8 @@ package com.project.estatemanagementsystem.controller;
 
 import java.util.List;
 
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -24,7 +26,7 @@ public class AuthController {
         this.userService = userService;
     }
 
-    @GetMapping("home")
+    @GetMapping("/")
     public String home(){
         return "home";
     }
@@ -66,10 +68,17 @@ public class AuthController {
         return "admin";
     }
 
-    @GetMapping("users")
-    public String userPage(){
-        return "users";
+    @GetMapping("/users")
+public String home(Model model) {
+    Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+
+    if (authentication.isAuthenticated()) {
+        String username = authentication.getName();
+        model.addAttribute("username", username);
     }
+
+    return "users";
+}
 
 
 }
