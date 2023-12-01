@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
   <meta charset="utf-8">
@@ -158,9 +158,9 @@
   <!-- create wasiat -->
   <br><br><br><br>
   <!-- first form -->
-  <form id="firstForm" onsubmit="return showNextForm('firstForm', 'secondForm')">
+  <form id="firstForm" method="post" action="/form" th:object="${formData}" onsubmit="return showNextForm('firstForm', 'secondForm')">
     <label for="gender">Gender:</label>
-    <select id="gender" name="gender" onchange="showForm()">
+    <select id="gender" name="gender" onchange="showForm()" th:field="*{gender}" required>
       <option>pilih</option>
       <option value="lelaki">Lelaki</option>
       <option value="perempuan">Perempuan</option>
@@ -170,7 +170,7 @@
       <!-- "isteri" form elements go here -->
       <br><br>
       <label for="isteri">Isteri</label>
-      <select id="isteri" name="isteri" onchange="anakForm(this)">
+      <select id="isteri" name="isteri" onchange="anakForm(this)" th:field="*{isteri}" required>
         <option>pilih</option>
         <option value="tiada">tiada</option>
         <option value="1">1</option>
@@ -184,7 +184,7 @@
       <!-- "suami" form elements go here -->
       <br>
       <label for="suami">Suami</label>
-      <select id="suami" name="suami" onchange="anakForm(this)">
+      <select id="suami" name="suami" onchange="anakForm(this)" th:field="*{suami}" required>
         <option>pilih</option>
         <option value="tiada">Tiada</option>
         <option value="ada">Ada</option>
@@ -195,7 +195,7 @@
       <div class="inline-selects">
         <div>
           <label for="anakLelaki">Anak Lelaki</label>
-          <select id="anakLelaki" name="anakLelaki">
+          <select id="anakLelaki" name="anakLelaki" th:field="*{anakLelaki}" required>
             <option>pilih</option>
             <option value="tiada">tiada</option>
             <option value="1">1</option>
@@ -215,7 +215,7 @@
 
         <div>
           <label for="anakPerempuan">Anak Perempuan</label>
-          <select id="anakPerempuan" name="anakPerempuan">
+          <select id="anakPerempuan" name="anakPerempuan" th:field="*{anakPerempuan}" required>
             <option>pilih</option>
             <option value="tiada">tiada</option>
             <option value="1">1</option>
@@ -235,7 +235,7 @@
 
         <div>
           <label for="anakAngkat">Anak Angkat</label>
-          <select id="anakAngkat" name="anakAngkat">
+          <select id="anakAngkat" name="anakAngkat" th:field="*{anakAngkat}" required>
             <option>pilih</option>
             <option value="tiada">tiada</option>
             <option value="1">1</option>
@@ -257,7 +257,7 @@
       <div>
         <br>
         <label for="confirmation">Adakah ada anak-anak diatas yang masih dibawah umur atau OKU?</label>
-        <select id="confirmation" name="confirmation">
+        <select id="confirmation" name="confirmation" th:field="*{confirmation}" required>
           <option>pilih</option>
           <option value="ada">ada</option>
           <option value="tiada">tiada</option>
@@ -270,25 +270,25 @@
   <!-- end first form -->
 
   <!-- second form -->
-  <form id="secondForm" class="hidden" onsubmit="return showNextForm('secondForm', 'maklumat')">
+  <form id="secondForm" class="hidden" action="/form" method="post" th:object="${formData}" >
 
     <div>
       <label for="perbelanjaan">Berapakah jumlah perbelanjaan untuk keluarga setiap bulan</label><br>
-      <input type="number" id="perbelanjaan" name="perbelanjaan"><br><br>
+      <input type="number" id="perbelanjaan" name="perbelanjaan" th:field="*{perbelanjaan}" required><br><br>
     </div>
 
     <div>
       <label for="anggaran">Berapakah anggaran nilai harta anda </label>
-      <select id="anggaran" name="anggaran">
+      <select id="anggaran" name="anggaran" th:field="*{anggaran}" required>
         <option>pilih</option>
         <option value="kurang">Kurang dari RM2 juta</option>
-        <option value=";ebih">Lebih dari RM2 juta</option>
+        <option value="lebih">Lebih dari RM2 juta</option>
       </select><br><br>
     </div>
 
     <div>
       <label for="hibah">Adakah anda bercadang untuk membuat Hibah?</label>
-      <select id="hibah" name="hibah">
+      <select id="hibah" name="hibah" th:field="*{hibah}" required>
         <option>pilih</option>
         <option value="ya">Ya</option>
         <option value="tidak">Tidak</option>
@@ -296,13 +296,15 @@
     </div>
 
     <!-- <button type="submit">Kembali</button> -->
-    <button type="submit">Seterusnya</button>
+    <button type="submit">done</button>
   </form>
+
+  <!-- onsubmit="return showNextForm('secondForm', 'maklumat')" -->
 
   <!-- end second form -->
 
   <!-- third form -->
-  <form id="maklumat" class="hidden" onsubmit="return showNextForm('maklumat', 'lastForm')">
+  <!-- <form id="maklumat" class="hidden" onsubmit="return showNextForm('maklumat', 'lastForm')">
     <h4>
       <b>Surat Wasiat</b>
     </h4><br>
@@ -329,15 +331,15 @@
     <p>Perlu menyediakan dana untuk perbelanjaan bulanan keluarga dan kos urus pusaka sebelum harta pusaka dapat dicairkan.</p>
 
     <button type="submit">Seterusnya</button>
-  </form>
+  </form> -->
 
   <!-- end third form -->
 
   <!-- Last Form -->
-  <form id="lastForm" class="hidden">
+  <!-- <form id="lastForm" class="hidden">
 
 
-  </form>
+  </form> -->
 
   <!-- End Last Form -->
 
