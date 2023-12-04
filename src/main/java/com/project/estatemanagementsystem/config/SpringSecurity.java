@@ -28,15 +28,17 @@ public class SpringSecurity {
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-
         http.csrf(csrf -> csrf.disable())
                 .authorizeRequests((authorize) ->
                         authorize.requestMatchers("/register/**", "/index", "/css/**", "/img/**", "/js/**", "/vendor/**", "/scss/**").permitAll()
                                 .requestMatchers("/home").permitAll()
                                 .requestMatchers("/users").hasRole("PEWARIS")
-                                .requestMatchers("/admin").hasRole("ADMIN")
-                                .requestMatchers( "/home", "/css/**", "/img/**", "/js/**", "/vendor/**", "/scss/**").permitAll()
-
+                                .requestMatchers("/admin/**").hasRole("ADMIN")
+                                .requestMatchers("/css/**", "/img/**", "/js/**", "/vendor/**", "/scss/**").permitAll()
+                                .requestMatchers("/wasiat/create").hasAnyRole("PEWARIS","ADMIN")
+                                .requestMatchers("/admin/list").hasAnyRole("PEWARIS","ADMIN")
+                                .requestMatchers("/wasiat/update/**").hasAnyRole("PEWARIS","ADMIN")
+                                .requestMatchers("/admin/delete/**").hasRole("ADMIN")
 
                 ).formLogin(
                         form -> form

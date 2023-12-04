@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Wasiat</title>
+</head>
+<body>
+
+<h2>Create Wasiat</h2>
+
+<form action="/wasiat/create" method="post" th:object="${wasiat}">
+    <label for="content">Wasiat Content:</label>
+    <textarea id="content" name="content" rows="4" cols="50" th:field="*{content}"></textarea>
+
+    <input type="hidden" th:field="*{user}" th:value="${wasiat.user}" />
+
+    <button type="submit">Submit</button>
+</form>
+
+</body>
+</html>

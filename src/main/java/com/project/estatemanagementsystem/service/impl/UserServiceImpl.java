@@ -4,6 +4,8 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -51,6 +53,7 @@ public class UserServiceImpl implements UserService {
         return userRepository.findByEmail(email);
     }
 
+
     @Override
     public List<UserDto> findAllUsers() {
         List<User> users = userRepository.findAll();
@@ -72,4 +75,22 @@ public class UserServiceImpl implements UserService {
         role.setName("ROLE_PEWARIS");
         return roleRepository.save(role);
     }
+
+    @Override
+    public User getCurrentUser() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (authentication != null && authentication.isAuthenticated()) {
+            return findByEmail(authentication.getName());
+        }
+        // Handle the case where no user is authenticated (return null or throw an exception)
+        return null;
+    }
+
+//?newly added
+    @Override
+    public User findUserById(Long userId) {
+        return userRepository.findById(userId).orElse(null);
+    }
+
+    
 }

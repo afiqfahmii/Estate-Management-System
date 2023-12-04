@@ -2,6 +2,8 @@ package com.project.estatemanagementsystem.controller;
 
 import java.util.List;
 
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -19,13 +21,16 @@ import jakarta.validation.Valid;
 public class AuthController {
 
     private UserService userService;
+    
+    
 
     public AuthController(UserService userService) {
         this.userService = userService;
     }
 
-    @GetMapping("home")
-    public String home(){
+
+    @GetMapping("/")
+    public String home() {
         return "home";
     }
 
@@ -36,7 +41,7 @@ public class AuthController {
 
     // handler method to handle user registration request
     @GetMapping("register")
-    public String showRegistrationForm(Model model){
+    public String showRegistrationForm(Model model) {
         UserDto user = new UserDto();
         model.addAttribute("user", user);
         return "register";
@@ -45,8 +50,8 @@ public class AuthController {
     // handler method to handle register user form submit request
     @PostMapping("/register/save")
     public String registration(@Valid @ModelAttribute("user") UserDto user,
-                               BindingResult result,
-                               Model model){
+            BindingResult result,
+            Model model) {
         User existing = userService.findByEmail(user.getEmail());
         if (existing != null) {
             result.rejectValue("email", null, "There is already an account registered with that email");
@@ -60,16 +65,25 @@ public class AuthController {
     }
 
     @GetMapping("/admin")
-    public String listRegisteredUsers(Model model){
+    public String listRegisteredUsers(Model model) {
         List<UserDto> users = userService.findAllUsers();
         model.addAttribute("users", users);
         return "admin";
     }
 
-    @GetMapping("users")
-    public String userPage(){
+    @GetMapping("/users")
+    public String home(Model model) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+
+        if (authentication.isAuthenticated()) {
+            String username = authentication.getName();
+            model.addAttribute("username", username);
+        }
         return "users";
     }
 
+
+
+    
 
 }
