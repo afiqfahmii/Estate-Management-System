@@ -32,24 +32,30 @@
 </nav>
 <div class="container">
     <div class="row">
-        <h1> Registered Users and Wasiats </h1>
+        <h1> Wasiat List </h1>
     </div>
     <table class="table table-striped table-bordered table-hover">
         <thead class="table-dark">
             <tr>
-                <th>First Name</th>
-                <th>Last Name</th>
-                <th>Email</th>
+                <th>ID</th>
+                <th>User Name</th>
+                <th>Content</th>
                 <th>Action</th>
             </tr>
         </thead>
         <tbody>
             <!-- Iterate through users -->
-            <tr th:each="user: ${users}">
-                <td th:text="${user.firstName}"></td>
-                <td th:text="${user.lastName}"></td>
-                <td th:text="${user.email}"></td>
-                <td><a th:href="@{/admin/delete/{id}(id=${user.id})}" onclick="return confirm('Are you sure you want to delete this user?')">Delete</a></td>
+            <tr th:each="wasiat : ${wasiatList}">
+                <td th:text="${wasiat.user.id}"></td>
+                <td th:text="${wasiat.user.name}"></td>
+                <td th:text="${wasiat.content}"></td>
+                <td>
+                    <a th:href="@{/admin/edit/{userId}(userId=${wasiat.user.id})}" class="btn btn-secondary">Edit</a>
+
+                    |
+                    <a th:href="@{/admin/delete/{userId}(userId=${wasiat.user.id})}" class="btn btn-danger" onclick="return confirm('Are you sure?')">Delete</a>
+                        
+                </td>   
             </tr>
          
         </tbody>

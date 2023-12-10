@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wasiat List</title>
+</head>
+<body>
+
+<h2>Wasiat List</h2>
+
+<table border="1">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>User</th>
+        <th>Content</th>
+        <th>Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="wasiat : ${wasiatList}">
+        <td th:text="${wasiat.id}"></td>
+        <td th:text="${wasiat.user.name}"></td>
+        <td th:text="${wasiat.content}"></td>
+        <td>
+            <a th:href="@{/wasiat/update/{id}(id=${wasiat.id})}">Update</a> |
+            <a th:href="@{/wasiat/delete/{id}(id=${wasiat.id})}" onclick="return confirm('Are you sure?')">Delete</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+</body>
+</html>
