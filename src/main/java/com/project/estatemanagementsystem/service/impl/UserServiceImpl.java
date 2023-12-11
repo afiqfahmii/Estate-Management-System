@@ -36,6 +36,13 @@ public class UserServiceImpl implements UserService {
         User user = new User();
         user.setName(userDto.getFirstName() + " " + userDto.getLastName());
         user.setEmail(userDto.getEmail());
+        user.setIDNum(userDto.getIDNum());
+        user.setIDType(userDto.getIDType());
+        user.setGender(userDto.getGender());
+        user.setDob(userDto.getDob());
+        user.setAddress(userDto.getAddress());
+        user.setPostcode(userDto.getPostcode());
+        user.setStatecode(userDto.getStatecode());
 
         user.setPassword(passwordEncoder.encode(userDto.getPassword()));
         Role role = roleRepository.findByName("ROLE_PEWARIS");
@@ -65,6 +72,13 @@ public class UserServiceImpl implements UserService {
         userDto.setFirstName(name[0]);
         userDto.setLastName(name[1]);
         userDto.setEmail(user.getEmail());
+        userDto.setIDNum(user.getIDNum());
+        userDto.setIDType(user.getIDType());
+        userDto.setGender(user.getGender()); 
+        userDto.setDob(user.getDob());
+        userDto.setAddress(user.getAddress());
+        userDto.setPostcode(user.getPostcode());
+        userDto.setStatecode(user.getStatecode());
         return userDto;
     }
 
