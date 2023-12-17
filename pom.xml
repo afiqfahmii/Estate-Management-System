@@ -6,7 +6,11 @@
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>3.1.5</version>
+<<<<<<< Updated upstream
 		<relativePath/> <!-- lookup parent from repository -->
+=======
+		<relativePath /> <!-- lookup parent from repository -->
+>>>>>>> Stashed changes
 	</parent>
 	<groupId>com.project</groupId>
 	<artifactId>estate-management-system</artifactId>
