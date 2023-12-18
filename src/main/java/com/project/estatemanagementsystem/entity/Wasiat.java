@@ -19,6 +19,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @Entity
 @Table(name="wasiat")
+
 public class Wasiat
 {
     @Id
@@ -26,7 +27,6 @@ public class Wasiat
     private Long id;
 
     @Column(nullable=false)
-    private String content;
     private String gender;
 
     private String isteri;

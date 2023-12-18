@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import com.project.estatemanagementsystem.entity.User;
+// import com.project.estatemanagementsystem.dto.WasiatDto;
 import com.project.estatemanagementsystem.entity.Wasiat;
 
 @Repository

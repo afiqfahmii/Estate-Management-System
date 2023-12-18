@@ -62,51 +62,6 @@
                         </p>
                     </div>
                     <div class="form-group mb-3">
-                        <label class="form-label">Identification Number</label>
-                        <input class="form-control"
-                               id="IDNum"
-                               name="IDNum"
-                               placeholder="Enter ID Number"
-                               th:field="*{IDNum}"
-                               type="text"
-                        />
-                        <p th:errors="*{lastName}" class="text-danger"
-                           th:if="${#fields.hasErrors('lastName')}">
-                        </p>
-                    </div>
-                    <div class="form-group mb-3">
-                        <label class="form-label" for="IDType">Identification Type</label>
-                        <select class="form-control" id="IDType" name="IDType" th:field="*{IDType}">
-                            <option value="">Choose</option>
-                            <option value="New IC">New IC</option>
-                            <option value="Old IC">Old IC</option>
-                            <option value="Police Number">Police Number</option>
-                            <option value="Army Number">Army Number</option>
-                            <option value="Passport">Passport</option>
-                        </select>
-                        <p th:errors="*{IDType}" class="text-danger" th:if="${#fields.hasErrors('IDType')}"></p>
-                    </div>
-                    <div class="form-group mb-3">
-                        <label class="form-label" for="gender">Gender</label>
-                        <select class="form-control" id="gender" name="gender" th:field="*{gender}">
-                            <option value="">Choose</option>
-                            <option value="Old IC">Male</option>
-                            <option value="Police Number">Female</option>
-                        </select>
-                        <p th:errors="*{gender}" class="text-danger" th:if="${#fields.hasErrors('gender')}"></p>
-                    </div>
-                    <div class="form-group mb-3">
-                        <label class="form-label" for="dob">Date of Birth</label>
-                        <input class="form-control"
-                               id="dob"
-                               name="dob"
-                               th:field="*{dob}"
-                               type="date"
-                        />
-                        <p th:errors="*{dob}" class="text-danger" th:if="${#fields.hasErrors('dob')}"></p>
-                    </div>
-                    
-                    <div class="form-group mb-3">
                         <label class="form-label">Email</label>
                         <input class="form-control"
                                id="email"
@@ -119,57 +74,6 @@
                            th:if="${#fields.hasErrors('email')}">
                         </p>
                     </div>
-
-                    <div class="form-group mb-3">
-                        <label class="form-label">Address</label>
-                        <input class="form-control"
-                               id="address"
-                               name="address"
-                               placeholder="Enter address"
-                               th:field="*{address}"
-                               type="text"
-                        />
-                        <p th:errors="*{address}" class="text-danger"
-                           th:if="${#fields.hasErrors('address')}">
-                        </p>
-                    </div>
-
-                    <div class="form-group mb-3">
-                        <label class="form-label" for="postcode">Postcode</label>
-                        <input class="form-control"
-                               id="postcode"
-                               name="postcode"
-                               placeholder="Enter postcode"
-                               th:field="*{postcode}"
-                               type="text"
-                        />
-                        <p th:errors="*{postcode}" class="text-danger"
-                           th:if="${#fields.hasErrors('postcode')}">
-                        </p>
-                    </div>
-
-                    <div class="form-group mb-3">
-                        <label class="form-label" for="statecode">State Code</label>
-                        <select class="form-control" id="statecode" name="statecode" th:field="*{statecode}">
-                            <option value="">Choose</option>
-                            <option value="Perak">Perak</option>
-                            <option value="Pulau Pinang">Pulau Pinang</option>
-                            <option value="Perlis">Perlis</option>
-                            <option value="Pahang">Pahang</option>
-                            <option value="Selangor">Selangor</option>
-                            <option value="Melaka">Melaka</option>
-                            <option value="Negeri Sembilan">Negeri Sembilan</option>
-                            <option value="Kelantan">Kelantan</option>
-                            <option value="Kedah">Kedah</option>
-                            <option value="Terengganu">Terengganu</option>
-                            <option value="Johor">Johor</option>
-                            <option value="Kuala Lumpur">Kuala Lumpur</option>
-                            <option value="Putrajaya">Putrajaya</option>
-                            <option value="Labuan">Labuan</option>
-                        </select>
-                        <p th:errors="*{statecode}" class="text-danger" th:if="${#fields.hasErrors('statecode')}"></p>
-                    </div>
-
                     <div class="form-group mb-3">
                         <label class="form-label">Password</label>
                         <input class="form-control"
@@ -183,8 +87,6 @@
                            th:if="${#fields.hasErrors('password')}">
                         </p>
                     </div>
-
-                    
 
                     <div class="form-group mb-3">
                         <button class="btn btn-primary" type="submit">Register</button>
