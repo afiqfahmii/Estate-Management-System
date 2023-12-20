@@ -43,8 +43,8 @@ public class WasiatController {
 
     @PostMapping("/wasiat/create")
     public String createWasiat(@ModelAttribute("wasiat") WasiatDto wasiatDto) {
-        wasiatService.saveWasiat(wasiatDto.getUser(), wasiatDto.getGender(), wasiatDto.getIsteri(), wasiatDto.getSuami(), wasiatDto.getAnakLelaki(), wasiatDto.getAnakPerempuan(), wasiatDto.getAnakAngkat(), wasiatDto.getConfirmation(), wasiatDto.getPerbelanjaan(), wasiatDto.getAnggaran(), wasiatDto.getHibah());
-        return "users";
+        wasiatService.saveWasiat(wasiatDto.getUser(), wasiatDto.getContent(), wasiatDto.getGender(), wasiatDto.getIsteri(), wasiatDto.getSuami(), wasiatDto.getAnakLelaki(), wasiatDto.getAnakPerempuan(), wasiatDto.getAnakAngkat(), wasiatDto.getConfirmation(), wasiatDto.getPerbelanjaan(), wasiatDto.getAnggaran(), wasiatDto.getHibah());
+        return "createWasiat";
     }
 
     @GetMapping("/wasiat/list")
@@ -85,7 +85,7 @@ public class WasiatController {
     // @GetMapping("/wasiat/admin/list/{userId}")
     // public String listUserWasiatForAdmin(@PathVariable Long userId, Model model) {
     //     User user = userService.findUserById(userId);
-    //     List<WasiatDto> wasiatList = wasiatService.getWasiatByUser(user);
+    //     List<Wasiat> wasiatList = wasiatService.getWasiatByUser(user);
     //     model.addAttribute("user", user);
     //     model.addAttribute("wasiatList", wasiatList);
     //     return "adminwasiat";
@@ -121,7 +121,7 @@ public class WasiatController {
     }
 
     @PostMapping("/admin/update")
-    public String updateWasiat(@ModelAttribute WasiatDto wasiat) {
+    public String updateWasiat(@ModelAttribute Wasiat wasiat) {
         wasiatService.updateWasiat(wasiat);
         return "redirect:/admin/list";
     }

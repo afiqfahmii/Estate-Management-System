@@ -2,246 +2,61 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
-  <meta charset="UTF-8">
-  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-
-  <title>EMS</title>
-  <!-- Latest compiled and minified CSS -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css"
-    integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-  <link th:href="@{/css/style.css}" rel="stylesheet">
-  <meta content="" name="description">
-  <meta content="" name="keywords">
-
-  <!-- Favicons -->
-  <link th:href="@{/static/img/favicon.png}" rel="icon">
-
-
-  <!-- Google Fonts -->
-  <link
-    th:href="@{https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i}"
-    rel="stylesheet">
-
-  <!-- Vendor CSS Files -->
-  <link th:href="@{/vendor/animate.css/animate.min.css}" rel="stylesheet">
-  <link th:href="@{/vendor/aos/aos.css}" rel="stylesheet">
-  <link th:href="@{/vendor/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
-  <link th:href="@{/vendor/bootstrap-icons/bootstrap-icons.css}" rel="stylesheet">
-  <link th:href="@{/vendor/boxicons/css/boxicons.min.css}" rel="stylesheet">
-  <link th:href="@{/vendor/glightbox/css/glightbox.min.css}" rel="stylesheet">
-  <link th:href="@{/vendor/remixicon/remixicon.css}" rel="stylesheet">
-  <link th:href="@{/vendor/swiper/swiper-bundle.min.css}" rel="stylesheet">
-
-  <style>
-    body {
-      font-family: 'Arial', sans-serif;
-      background-color: #f4f4f4;
-      margin: 0;
-      padding: 0;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      flex-direction: column;
-    }
-
-    form {
-      background-color: #fff;
-      border-radius: 8px;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-      padding: 80px;
-      width: 400px;
-      margin-bottom: 100px;
-      margin-top: 350px;
-    }
-
-    label {
-      display: block;
-      margin-bottom: 8px;
-    }
-
-    input,
-    textarea {
-      width: 100%;
-      padding: 8px;
-      margin-bottom: 16px;
-      box-sizing: border-box;
-    }
-
-    button,
-    select {
-      margin-top: 8px;
-      margin-bottom: 10px;
-      padding: 8px;
-      width: 100%;
-      box-sizing: border-box;
-    }
-
-    .green-button:hover {
-      background-color: #45a049;
-    }
-
-    .blue-button:hover {
-      background-color: #3498db;
-      color: #fff;
-      padding: 10px 20px;
-      border: none;
-      cursor: pointer;
-    }
-
-    .grey-button:hover {
-      background-color: #757575;
-      color: #fff;
-      padding: 10px 20px;
-      border: none;
-      cursor: pointer;
-    }
-
-    .hidden {
-      display: none;
-    }
-
-    .form-group {
-      margin-bottom: 15px;
-    }
-
-    .button-container button {
-      margin-bottom: 100px;
-    }
-
-    .button-container {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-end;
-      margin-top: 20px;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Wasiat</title>
 </head>
 
-
 <body>
-  <!-- ======= Header ======= -->
-  <header id="header" class="fixed-top d-flex align-items-center ">
-    <div class="container d-flex align-items-center justify-content-between">
 
-      <div class="logo">
-        <h1><a href="index.html">Selecao</a></h1>
-        <!-- Uncomment below if you prefer to use an image logo -->
-        <!-- <a href="index.html"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
-      </div>
+    <h2>Create Wasiat</h2>
 
-      <nav id="navbar" class="navbar">
-        <ul>
-          <li><a class="nav-link scrollto active" href="#hero">Laman Utama</a></li>
-          <li><a class="nav-link scrollto" href="#about">Tentang Kami</a></li>
-          <li><a class="nav-link scrollto" href="#services">Servis</a></li>
-          <li><a class="nav-link scrollto " href="#portfolio">Portfolio</a></li>
-          <li><a class="nav-link scrollto" href="#pricing">Pricing</a></li>
-          <li><a class="nav-link scrollto" href="#team">Ahli Kumpulan</a></li>
-          <li class="dropdown"><a href="#"><span>Drop Down</span> <i class="bi bi-chevron-down"></i></a>
-            <ul>
-              <li><a href="#">Drop Down 1</a></li>
-              <li class="dropdown"><a href="#"><span>Deep Drop Down</span> <i class="bi bi-chevron-right"></i></a>
-                <ul>
-                  <li><a href="#">Deep Drop Down 1</a></li>
-                  <li><a href="#">Deep Drop Down 2</a></li>
-                  <li><a href="#">Deep Drop Down 3</a></li>
-                  <li><a href="#">Deep Drop Down 4</a></li>
-                  <li><a href="#">Deep Drop Down 5</a></li>
-                </ul>
-              </li>
-              <li><a href="#">Drop Down 2</a></li>
-              <li><a href="#">Drop Down 3</a></li>
-              <li><a href="#">Drop Down 4</a></li>
-            </ul>
-          </li>
-          <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
-        </ul>
-        <nav id="navbar-login" class="navbar-login">
-          <ul>
-            <li><a class="nav-link scrollto" href="login.html">Log Masuk</a></li>
-            <li><a class="nav-link scrollto" href="#pricing">Daftar Sekarang!</a></li>
-          </ul>
-        </nav>
-        <i class="bi bi-list mobile-nav-toggle"></i>
-      </nav><!-- .navbar -->
+    <form action="/wasiat/create" method="post" th:object="${wasiat}">
+        <label for="content">Wasiat Content:</label>
+        <textarea id="content" name="content" rows="4" cols="50" th:field="*{content}"></textarea>
+        <!-- <input type="hidden" th:field="*{user}" th:value="${wasiat.user}" /> -->
+        <br>
+        <label for="gender">Gender:</label>
+        <select id="gender" name="gender" th:field="*{gender}">
+            <!-- onchange="showForm()"-->
+            <option value="">pilih</option>
+            <option value="lelaki">Lelaki</option>
+            <option value="perempuan">Perempuan</option>
+        </select>
 
-    </div>
-  </header><!-- End Header -->
-
-  <h2>Create Wasiat</h2>
-
-  <form action="/wasiat/create" method="post" th:object="${wasiat}">
-    <br>
-    <div id="firstForm">
-      <label for="gender">Gender:</label>
-      <select id="gender" name="gender" th:field="*{gender}" onchange="showForm()" > <!-- -->
-        <!--onchange="showForm(this)"-->
-        <option value="">pilih</option>
-        <option value="lelaki">Lelaki</option>
-        <option value="perempuan">Perempuan</option>
-      </select>
-
-      <div id="isteriNum" class="hidden">
+        <!-- <div id="isteriNum" class="hidden"> -->
         <!-- "isteri" form elements go here -->
         <br><br>
         <label for="isteri">Isteri</label>
         <select id="isteri" name="isteri" th:field="*{isteri}">
-          <!--onchange="anakForm(this)"-->
-          <option value="">pilih</option>
-          <option value="tiada">tiada</option>
-          <option value="1">1</option>
-          <option value="2">2</option>
-          <option value="3">3</option>
-          <option value="4">4</option>
+            <!--onchange="anakForm(this)"-->
+            <option value="">pilih</option>
+            <option value="tiada">tiada</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
         </select>
-      </div>
+        </div>
 
-      <div id="suamiNum" class="hidden">
+        <!-- <div id="suamiNum" class="hidden"> -->
         <!-- "suami" form elements go here -->
         <br>
         <label for="suami">Suami</label>
         <select id="suami" name="suami" th:field="*{suami}">
-          <option value="">pilih</option>
-          <option value="tiada">Tiada</option>
-          <option value="ada">Ada</option>
+            <!-- onchange="anakForm(this)" -->
+            <option value="">pilih</option>
+            <option value="tiada">Tiada</option>
+            <option value="ada">Ada</option>
         </select>
-      </div> <br>
-      <div class="button-container">
-        <button type="button" class="blue-button" onclick="showNextForm('firstForm', 'anakPunya')">Seterusnya</button>
-      </div>
-    </div>
+        <!-- </div><br> -->
+        <!-- </div> -->
 
-    <div class="hidden" id="anakPunya">
-      <div class="inline-selects">
-        <div class="form-group" id="anakLelakiContainer">
-          <label for="anakLelaki">Anak Lelaki</label>
-          <select id="anakLelaki" name="anakLelaki" th:field="*{anakLelaki}">
-            <option value="" >pilih</option>
-            <option value="tiada">tiada</option>
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-            <option value="6">6</option>
-            <option value="7">7</option>
-            <option value="8">8</option>
-            <option value="9">9</option>
-            <option value="10">10</option>
-            <option value="11">11</option>
-            <option value="12">12</option>
-          </select>
-          <div class="button-container">
-            <button type="button" class="blue-button"
-              onclick="showNextForm('anakLelakiContainer', 'anakPerempuanContainer')">Seterusnya</button>
-            <button type="button" class="grey-button" onclick="showPrevForm('firstForm', 'anakPunya')">Kembali</button>
-          </div>
-        </div>
-
-        <div id="anakPerempuanContainer">
-          <label for="anakPerempuan">Anak Perempuan</label>
-          <select id="anakPerempuan" name="anakPerempuan" th:field="*{anakPerempuan}">
+        <!-- <div class="hidden" id="anakPunya"> -->
+        <!-- <div class="inline-selects"> -->
+        <!-- <div> -->
+        <label for="anakLelaki">Anak Lelaki</label>
+        <select id="anakLelaki" name="anakLelaki" th:field="*{anakLelaki}">
             <option value="">pilih</option>
             <option value="tiada">tiada</option>
             <option value="1">1</option>
@@ -256,18 +71,12 @@
             <option value="10">10</option>
             <option value="11">11</option>
             <option value="12">12</option>
-          </select>
-          <div class="button-container">
-            <button type="button" class="blue-button"
-              onclick="showNextForm('anakPerempuanContainer', 'anakAngkatContainer')">Seterusnya</button>
-            <button type="button" class="grey-button"
-              onclick="showPrevForm('anakLelakiContainer', 'anakPerempuanContainer')">Kembali</button>
-          </div>
-        </div>
+        </select>
+        <!-- </div> -->
 
-        <div id="anakAngkatContainer">
-          <label for="anakAngkat">Anak Angkat</label>
-          <select id="anakAngkat" name="anakAngkat" th:field="*{anakAngkat}">
+        <!-- <div> -->
+        <label for="anakPerempuan">Anak Perempuan</label>
+        <select id="anakPerempuan" name="anakPerempuan" th:field="*{anakPerempuan}">
             <option value="">pilih</option>
             <option value="tiada">tiada</option>
             <option value="1">1</option>
@@ -282,176 +91,71 @@
             <option value="10">10</option>
             <option value="11">11</option>
             <option value="12">12</option>
-          </select>
-          <div class="button-container">
-            <button type="button" class="blue-button"
-              onclick="showNextForm('anakAngkatContainer', 'okuContainer')">Seterusnya</button>
-            <button type="button" class="grey-button"
-              onclick="showPrevForm('anakPerempuanContainer', 'anakAngkatContainer')">Kembali</button>
-          </div>
-        </div>
-      </div>
+        </select>
+        <!-- </div> -->
 
-      <div id="okuContainer">
+        <!-- <div> -->
+        <label for="anakAngkat">Anak Angkat</label>
+        <select id="anakAngkat" name="anakAngkat" th:field="*{anakAngkat}">
+            <option value="">pilih</option>
+            <option value="tiada">tiada</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
+            <option value="11">11</option>
+            <option value="12">12</option>
+        </select>
+        <!-- </div> -->
+        <!-- </div> -->
+
+
+        <!-- second form -->
+        <!-- <form id="secondForm" class="hidden" action="/wasiat/create/save" method="post" th:object="${wasiat}" > -->
+        <!-- <div> -->
         <br>
         <label for="confirmation">Adakah ada anak-anak diatas yang masih dibawah umur atau OKU?</label>
         <select id="confirmation" name="confirmation" th:field="*{confirmation}">
-          <option value="">pilih</option>
-          <option value="ada">ada</option>
-          <option value="tiada">tiada</option>
+            <option value="">pilih</option>
+            <option value="ada">ada</option>
+            <option value="tiada">tiada</option>
         </select>
-        <div class="button-container">
-          <button type="button" class="blue-button"
-            onclick="showNextForm('okuContainer', 'thirdForm')">Seterusnya</button>
-          <button type="button" class="grey-button"
-            onclick="showPrevForm('anakAngkatContainer', 'okuContainer')">Kembali</button>
-        </div>
-      </div>
-    </div>
+        <!-- </div> -->
+        <!-- </div> -->
 
-    <div class="hidden" id="thirdForm">
-    <div>
-      <label for="perbelanjaan">Berapakah jumlah perbelanjaan untuk keluarga setiap bulan</label><br>
-      <input type="number" id="perbelanjaan" name="perbelanjaan" th:field="*{perbelanjaan}" oninput="checkFormCompleteness()"><br><br>
-    </div>
+        <!-- <div> -->
+        <label for="perbelanjaan">Berapakah jumlah perbelanjaan untuk keluarga setiap bulan</label><br>
+        <input type="number" id="perbelanjaan" name="perbelanjaan" th:field="*{perbelanjaan}"><br><br>
+        <!-- </div> -->
 
-    <div>
-      <label for="anggaran">Berapakah anggaran nilai harta anda </label>
-      <select id="anggaran" name="anggaran" th:field="*{anggaran}" oninput="checkFormCompleteness()">
-        <option value="">pilih</option>
-        <option value="kurang">Kurang dari RM2 juta</option>
-        <option value="lebih">Lebih dari RM2 juta</option>
-      </select><br><br>
-    </div>
+        <!-- <div> -->
+        <label for="anggaran">Berapakah anggaran nilai harta anda </label>
+        <select id="anggaran" name="anggaran" th:field="*{anggaran}">
+            <option value="">pilih</option>
+            <option value="kurang">Kurang dari RM2 juta</option>
+            <option value="lebih">Lebih dari RM2 juta</option>
+        </select><br><br>
+        <!-- </div> -->
 
-    <div>
-      <label for="hibah">Adakah anda bercadang untuk membuat Hibah?</label>
-      <select id="hibah" name="hibah" th:field="*{hibah}" oninput="checkFormCompleteness()">
-        <option value="">pilih</option>
-        <option value="ya">Ya</option>
-        <option value="tidak">Tidak</option>
-      </select>
-    </div>
-    <button type="button" class="grey-button button-container"
-                onclick="showPrevForm('okuContainer', 'thirdForm')">Kembali</button>
-    </div>
+        <!-- <div> -->
+        <label for="hibah">Adakah anda bercadang untuk membuat Hibah?</label>
+        <select id="hibah" name="hibah" th:field="*{hibah}" required>
+            <option value="">pilih</option>
+            <option value="ya">Ya</option>
+            <option value="tidak">Tidak</option>
+        </select>
+        <!-- </div> -->
 
-    <input type="hidden" th:field="*{user}" th:value="${wasiat.user}" />
+        <input type="hidden" th:field="*{user}" th:value="${wasiat.user}" />
 
-    <button type="submit" id="submitButton" class="hidden green-button">Submit</button>
-  </form>
-
-  <script>
-    function showForm() {
-      var genderSelect = document.getElementById("gender");
-      var isteriForm = document.getElementById("isteriNum");
-      var suamiForm = document.getElementById("suamiNum");
-
-      // Reset the visibility for both forms
-      isteriForm.classList.add("hidden");
-      suamiForm.classList.add("hidden");
-
-      if (genderSelect.value === "lelaki") {
-        // Show the isteriNum form
-        isteriForm.classList.remove("hidden");
-      } else if (genderSelect.value === "perempuan") {
-        // Show the suamiNum form
-        suamiForm.classList.remove("hidden");
-      }
-    }
-
-    function showNextForm(prev, next) {
-      var prevForm = document.getElementById(prev);
-      var nextForm = document.getElementById(next);
-
-      // Hide the prevForm
-      prevForm.classList.add("hidden");
-
-      // Display the next form
-      nextForm.classList.remove("hidden");
-
-      //fix problem for showing anakLelaki only
-      if (next === 'anakPunya') {
-        document.getElementById('anakPerempuanContainer').classList.add('hidden');
-        document.getElementById('anakAngkatContainer').classList.add('hidden');
-        document.getElementById('okuContainer').classList.add('hidden');
-      }
-    }
-
-    function showPrevForm(prev, next) {
-      var prevForm = document.getElementById(prev);
-      var nextForm = document.getElementById(next);
-
-      // Hide the prevForm
-      nextForm.classList.add("hidden");
-
-      // Display the next form
-      prevForm.classList.remove("hidden");
-
-      //fix problem for showing anakLelaki only
-      // if (next === 'anakPunya') {
-      //     document.getElementById('anakPerempuanContainer').classList.add('hidden');
-      //     document.getElementById('anakAngkatContainer').classList.add('hidden');
-      //     document.getElementById('okuContainer').classList.add('hidden');
-      // }
-    }
-
-    function checkFormCompleteness() {
-            // Get values of the input elements
-            var perbelanjaan = document.getElementById('perbelanjaan').value;
-            var anggaran = document.getElementById('anggaran').value;
-            var hibah = document.getElementById('hibah').value;
-
-            // Check if all required fields are filled
-            if (perbelanjaan !== '' && anggaran !== '' && hibah !== '') {
-                // If yes, show the submit button
-                document.getElementById('submitButton').classList.remove('hidden');
-            } else {
-                // If not, hide the submit button
-                document.getElementById('submitButton').classList.add('hidden');
-            }
-        }
-
-  </script>
-
-  <!-- ======= Footer ======= -->
-  <footer id="footer">
-    <div class="container">
-      <h3>Selecao</h3>
-      <p>Et aut eum quis fuga eos sunt ipsa nihil. Labore corporis magni eligendi fuga maxime saepe commodi placeat.</p>
-      <div class="social-links">
-        <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
-        <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
-        <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
-        <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
-        <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
-      </div>
-      <div class="copyright">
-        &copy; Copyright <strong><span>Selecao</span></strong>. All Rights Reserved
-      </div>
-      <div class="credits">
-        <!-- All the links in the footer should remain intact. -->
-        <!-- You can delete the links only if you purchased the pro version. -->
-        <!-- Licensing information: https://bootstrapmade.com/license/ -->
-        <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/selecao-bootstrap-template/ -->
-        Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
-      </div>
-    </div>
-  </footer><!-- End Footer -->
-
-  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
-      class="bi bi-arrow-up-short"></i></a>
-
-  <!-- Vendor JS Files -->
-  <script src="assets/vendor/aos/aos.js"></script>
-  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
-  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
-  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
-  <script src="assets/vendor/php-email-form/validate.js"></script>
-
-  <!-- Template Main JS File -->
-  <script src="assets/js/main.js"></script>
+        <button type="submit">Submit</button>
+    </form>
 
 </body>
 

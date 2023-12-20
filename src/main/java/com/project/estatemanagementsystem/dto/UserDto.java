@@ -23,4 +23,18 @@ public class UserDto
     private String email;
     @NotEmpty(message = "Password should not be empty")
     private String password;
+
+    private String IDType;
+
+    private String IDNum;
+
+    private String gender;
+
+    private String dob;
+
+    private String address;
+
+    private String postcode;
+
+    private String statecode;
 }

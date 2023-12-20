@@ -7,7 +7,6 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import jakarta.persistence.Column;
 
 @Getter
 @Setter
@@ -18,8 +17,8 @@ public class WasiatDto {
     private Long id;
     private User user;
 
-    @Column(nullable=false)
     @NotEmpty(message = "Content should not be empty")
+    private String content;
 
     private String gender;
     private String isteri;
@@ -31,5 +30,4 @@ public class WasiatDto {
     private String perbelanjaan;
     private String anggaran;
     private String hibah;
-
 }

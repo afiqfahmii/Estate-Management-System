@@ -50,10 +50,11 @@
                 <td th:text="${wasiat.user.name}"></td>
                 <td th:text="${wasiat.content}"></td>
                 <td>
-                    <a th:href="@{/admin/edit/{userId}(userId=${wasiat.user.id})}">Edit</a>
-                    |
-                    <a th:href="@{/admin/delete/{userId}(userId=${wasiat.user.id})}" onclick="return confirm('Are you sure?')">Delete</a>
+                    <a th:href="@{/admin/edit/{userId}(userId=${wasiat.user.id})}" class="btn btn-secondary">Edit</a>
 
+                    |
+                    <a th:href="@{/admin/delete/{userId}(userId=${wasiat.user.id})}" class="btn btn-danger" onclick="return confirm('Are you sure?')">Delete</a>
+                        
                 </td>   
             </tr>
          
