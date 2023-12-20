@@ -26,7 +26,6 @@ public class Wasiat
     private Long id;
 
     @Column(nullable=false)
-    private String content;
     private String gender;
 
     private String isteri;

@@ -32,10 +32,9 @@ public class WasiatServiceImpl implements WasiatService {
     }
 
     @Override
-    public Wasiat saveWasiat(User user, String content, String gender, String isteri, String suami, String anakLelaki, String anakPerempuan, String anakAngkat, String confirmation, String perbelanjaan, String anggaran, String hibah) {
+    public Wasiat saveWasiat(User user, String gender, String isteri, String suami, String anakLelaki, String anakPerempuan, String anakAngkat, String confirmation, String perbelanjaan, String anggaran, String hibah) {
         Wasiat wasiat = new Wasiat();
         wasiat.setUser(user);
-        wasiat.setContent(content);
         wasiat.setGender(gender);
         wasiat.setIsteri(isteri);
         wasiat.setSuami(suami);
@@ -64,7 +63,7 @@ public void updateWasiat(Long id, String content) {
 
         // Null check for content
         if (content != null) {
-            existingWasiat.setContent(content);
+            // existingWasiat.setContent(content);
             wasiatRepository.save(existingWasiat);
             System.out.println("Wasiat updated successfully.");
         } else {
@@ -93,7 +92,7 @@ public List<WasiatDto> getAllWasiat() {
 private WasiatDto convertEntityToDto(Wasiat wasiat) {
     WasiatDto wasiatDto = new WasiatDto();
     wasiatDto.setUser(wasiat.getUser());
-    wasiatDto.setContent(wasiat.getContent());
+    // wasiatDto.setContent(wasiat.getContent());
     // You can map other properties if needed
     return wasiatDto;
 }
@@ -121,7 +120,7 @@ private WasiatDto convertEntityToDto(Wasiat wasiat) {
         if (existingWasiat.isPresent()) {
             // Update the existing Wasiat with the new data
             Wasiat updatedWasiat = existingWasiat.get();
-            updatedWasiat.setContent(wasiat.getContent());
+            // updatedWasiat.setContent(wasiat.getContent());
             updatedWasiat.setGender(wasiat.getGender());
             updatedWasiat.setSuami(wasiat.getSuami());
             updatedWasiat.setIsteri(wasiat.getIsteri());

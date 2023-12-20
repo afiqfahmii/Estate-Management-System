@@ -18,7 +18,6 @@ public class WasiatDto {
     private User user;
 
     @NotEmpty(message = "Content should not be empty")
-    private String content;
 
     private String gender;
     private String isteri;
