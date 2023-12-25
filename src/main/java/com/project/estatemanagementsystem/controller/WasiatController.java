@@ -42,9 +42,11 @@ public class WasiatController {
     }
 
     @PostMapping("/wasiat/create")
-    public String createWasiat(@ModelAttribute("wasiat") WasiatDto wasiatDto) {
-        wasiatService.saveWasiat(wasiatDto.getUser(), wasiatDto.getGender(), wasiatDto.getIsteri(), wasiatDto.getSuami(), wasiatDto.getAnakLelaki(), wasiatDto.getAnakPerempuan(), wasiatDto.getAnakAngkat(), wasiatDto.getConfirmation(), wasiatDto.getPerbelanjaan(), wasiatDto.getAnggaran(), wasiatDto.getHibah());
-        return "users";
+    public String createWasiat(@ModelAttribute("wasiat") Wasiat wasiat) {
+        
+        wasiatService.saveWasiat(wasiat);
+
+        return "createWasiat";
     }
 
     @GetMapping("/wasiat/list")

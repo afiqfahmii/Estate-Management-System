@@ -32,20 +32,7 @@ public class WasiatServiceImpl implements WasiatService {
     }
 
     @Override
-    public Wasiat saveWasiat(User user, String gender, String isteri, String suami, String anakLelaki, String anakPerempuan, String anakAngkat, String confirmation, String perbelanjaan, String anggaran, String hibah) {
-        Wasiat wasiat = new Wasiat();
-        wasiat.setUser(user);
-        wasiat.setGender(gender);
-        wasiat.setIsteri(isteri);
-        wasiat.setSuami(suami);
-        wasiat.setAnakLelaki(anakLelaki);
-        wasiat.setAnakPerempuan(anakPerempuan);
-        wasiat.setAnakAngkat(anakAngkat);
-        wasiat.setConfirmation(confirmation);
-        wasiat.setPerbelanjaan(perbelanjaan);
-        wasiat.setAnggaran(anggaran);
-        wasiat.setHibah(hibah);
-        // You can set other properties like timestamp if needed
+    public Wasiat saveWasiat(Wasiat wasiat) {
         return wasiatRepository.save(wasiat);
     }
 
@@ -128,7 +115,7 @@ private WasiatDto convertEntityToDto(Wasiat wasiat) {
             updatedWasiat.setAnakLelaki(wasiat.getAnakLelaki());
             updatedWasiat.setAnakPerempuan(wasiat.getAnakPerempuan());
             updatedWasiat.setAnggaran(wasiat.getAnggaran());
-            updatedWasiat.setConfirmation(wasiat.getConfirmation());
+            // updatedWasiat.setConfirmation(wasiat.getConfirmation());
             updatedWasiat.setPerbelanjaan(wasiat.getPerbelanjaan());
             updatedWasiat.setHibah(wasiat.getHibah());
             // Update other fields as needed

@@ -11,11 +11,14 @@ import lombok.Setter;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
+// @Entity
 @Embeddable
-public class AnakLelaki {
+public class SuamiDetail {
+
     @Column(name = "name")
     private String name;
 
-    @Column(name = "id_number")
-    private String idNumber;
+    @Column(name = "ic")
+    private String ic;
+
 }
