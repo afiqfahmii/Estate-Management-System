@@ -82,14 +82,6 @@ public class WasiatController {
 
     // ? ADMIN --------------------------------------------------------------------
 
-    // @GetMapping("/wasiat/admin/list/{userId}")
-    // public String listUserWasiatForAdmin(@PathVariable Long userId, Model model) {
-    //     User user = userService.findUserById(userId);
-    //     List<Wasiat> wasiatList = wasiatService.getWasiatByUser(user);
-    //     model.addAttribute("user", user);
-    //     model.addAttribute("wasiatList", wasiatList);
-    //     return "adminwasiat";
-    // }
 
     @GetMapping("/admin/list")
     public String listAllWasiat(Model model) {
