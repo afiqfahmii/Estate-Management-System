@@ -45,7 +45,7 @@ public class Wasiat
 
     @ElementCollection(fetch = FetchType.EAGER)
     @CollectionTable(name = "anak_lelaki_detail", joinColumns = @JoinColumn(name = "wasiat_id"))
-    private List<AnakLelakiDetail> anakLelakiNames = new ArrayList<>();
+    private List<AnakLelakiDetail> anakLelakiDetails = new ArrayList<>();
 
     @ElementCollection(fetch = FetchType.EAGER)
     @CollectionTable(name = "anak_perempuan_detail", joinColumns = @JoinColumn(name = "wasiat_id"))
