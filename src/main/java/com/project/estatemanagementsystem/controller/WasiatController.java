@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import com.project.estatemanagementsystem.dto.WasiatDto;
 import com.project.estatemanagementsystem.entity.User;
 import com.project.estatemanagementsystem.entity.Wasiat;
-import com.project.estatemanagementsystem.repository.WasiatRepository;
 import com.project.estatemanagementsystem.service.UserService;
 import com.project.estatemanagementsystem.service.WasiatService;
 
@@ -21,12 +20,11 @@ public class WasiatController {
 
     private final UserService userService;
     private final WasiatService wasiatService;
-    private final WasiatRepository repository;
+    
 
-    public WasiatController(UserService userService, WasiatService wasiatService, WasiatRepository repository) {
+    public WasiatController(UserService userService, WasiatService wasiatService) {
         this.userService = userService;
         this.wasiatService = wasiatService;
-        this.repository = repository;
     }
 
     @GetMapping("/wasiat/create")
