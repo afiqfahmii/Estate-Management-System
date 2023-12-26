@@ -108,7 +108,7 @@ public class WasiatServiceImpl implements WasiatService {
             updatedWasiat.setAnakLelaki(wasiat.getAnakLelaki());
             updatedWasiat.setAnakPerempuan(wasiat.getAnakPerempuan());
             updatedWasiat.setAnggaran(wasiat.getAnggaran());
-            updatedWasiat.setConfirmation(wasiat.getConfirmation());
+            // updatedWasiat.setConfirmation(wasiat.getConfirmation());
             updatedWasiat.setPerbelanjaan(wasiat.getPerbelanjaan());
             updatedWasiat.setHibah(wasiat.getHibah());
             updatedWasiat.setAnakLelakiNames(wasiat.getAnakLelakiNames());

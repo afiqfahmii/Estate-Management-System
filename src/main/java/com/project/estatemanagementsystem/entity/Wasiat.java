@@ -4,6 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import jakarta.persistence.CollectionTable;
+import java.util.ArrayList;
+import java.util.List;
+
+import jakarta.persistence.CollectionTable;
 import jakarta.persistence.Column;
 import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
@@ -39,15 +43,35 @@ public class Wasiat
     private String anakLelaki;
     private String anakPerempuan;
     private String anakAngkat;
-    private String confirmation;
     private String perbelanjaan;
     private String anggaran;
     private String hibah;
 
     @ElementCollection(fetch = FetchType.EAGER)
+<<<<<<< HEAD
     @CollectionTable(name = "anak_lelaki_names", joinColumns = @JoinColumn(name = "wasiat_id"))
     private List<AnakLelaki> anakLelakiNames = new ArrayList<>();
     
+=======
+    @CollectionTable(name = "anak_lelaki_detail", joinColumns = @JoinColumn(name = "wasiat_id"))
+    private List<AnakLelakiDetail> anakLelakiDetails = new ArrayList<>();
+
+    @ElementCollection(fetch = FetchType.EAGER)
+    @CollectionTable(name = "anak_perempuan_detail", joinColumns = @JoinColumn(name = "wasiat_id"))
+    private List<AnakPerempuanDetail> anakPerempuanDetails = new ArrayList<>();
+
+    @ElementCollection(fetch = FetchType.EAGER)
+    @CollectionTable(name = "anak_angkat_detail", joinColumns = @JoinColumn(name = "wasiat_id"))
+    private List<AnakAngkatDetail> anakAngkatDetails = new ArrayList<>();
+
+    @ElementCollection(fetch = FetchType.EAGER)
+    @CollectionTable(name = "isteri_detail", joinColumns = @JoinColumn(name = "wasiat_id"))
+    private List<IsteriDetail> isteriDetails = new ArrayList<>();
+
+    @ElementCollection(fetch = FetchType.EAGER)
+    @CollectionTable(name = "suami_detail", joinColumns = @JoinColumn(name = "wasiat_id"))
+    private List<SuamiDetail> suamiDetails = new ArrayList<>();
+>>>>>>> 19a348d706a57805bf7c0bf18050188ee2c395e9
 
     @ManyToOne
     @JoinColumn(name="USER_ID", referencedColumnName="ID")
