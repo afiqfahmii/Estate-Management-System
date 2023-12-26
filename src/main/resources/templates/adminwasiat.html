@@ -48,7 +48,7 @@
             <tr th:each="wasiat : ${wasiatList}">
                 <td th:text="${wasiat.user.id}"></td>
                 <td th:text="${wasiat.user.name}"></td>
-                <td th:text="${wasiat.content}"></td>
+                <td th:text="${wasiat.user.email}"></td>
                 <td>
                     <a th:href="@{/admin/edit/{userId}(userId=${wasiat.user.id})}" class="btn btn-secondary">Edit</a>
 
