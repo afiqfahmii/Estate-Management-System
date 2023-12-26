@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.project.estatemanagementsystem.dto.WasiatDto;
+import com.project.estatemanagementsystem.entity.AnakLelaki;
 import com.project.estatemanagementsystem.entity.User;
 import com.project.estatemanagementsystem.entity.Wasiat;
 import com.project.estatemanagementsystem.repository.WasiatRepository;
@@ -21,7 +22,6 @@ public class WasiatServiceImpl implements WasiatService {
 
     private final WasiatRepository wasiatRepository;
 
-
     public WasiatServiceImpl(WasiatRepository wasiatRepository) {
         this.wasiatRepository = wasiatRepository;
     }
@@ -32,20 +32,7 @@ public class WasiatServiceImpl implements WasiatService {
     }
 
     @Override
-    public Wasiat saveWasiat(User user, String gender, String isteri, String suami, String anakLelaki, String anakPerempuan, String anakAngkat, String confirmation, String perbelanjaan, String anggaran, String hibah) {
-        Wasiat wasiat = new Wasiat();
-        wasiat.setUser(user);
-        wasiat.setGender(gender);
-        wasiat.setIsteri(isteri);
-        wasiat.setSuami(suami);
-        wasiat.setAnakLelaki(anakLelaki);
-        wasiat.setAnakPerempuan(anakPerempuan);
-        wasiat.setAnakAngkat(anakAngkat);
-        wasiat.setConfirmation(confirmation);
-        wasiat.setPerbelanjaan(perbelanjaan);
-        wasiat.setAnggaran(anggaran);
-        wasiat.setHibah(hibah);
-        // You can set other properties like timestamp if needed
+    public Wasiat saveWasiat(Wasiat wasiat) {
         return wasiatRepository.save(wasiat);
     }
 
@@ -54,56 +41,51 @@ public class WasiatServiceImpl implements WasiatService {
         return wasiatRepository.findById(id).orElse(null);
     }
 
-@Override
-@Transactional  // Ensure that the method is transactional
-public void updateWasiat(Long id, String content) {
-    try {
-        Wasiat existingWasiat = wasiatRepository.findById(id)
-            .orElseThrow(() -> new EntityNotFoundException("Wasiat not found for update."));
+    @Override
+    @Transactional
+    public void updateWasiat(Long id, String content) {
+        try {
+            Wasiat existingWasiat = wasiatRepository.findById(id)
+                    .orElseThrow(() -> new EntityNotFoundException("Wasiat not found for update."));
 
-        // Null check for content
-        if (content != null) {
-            // existingWasiat.setContent(content);
-            wasiatRepository.save(existingWasiat);
-            System.out.println("Wasiat updated successfully.");
-        } else {
-            System.out.println("Content cannot be null for update.");
+            if (content != null) {
+                wasiatRepository.save(existingWasiat);
+                System.out.println("Wasiat updated successfully.");
+            } else {
+                System.out.println("Content cannot be null for update.");
+            }
+        } catch (EntityNotFoundException e) {
+            e.printStackTrace();
         }
-    } catch (EntityNotFoundException e) {
-        // Handle the exception (log, throw, or take appropriate action)
-        e.printStackTrace();
     }
-}
 
     @Override
     public void deleteWasiat(Long id) {
         wasiatRepository.deleteById(id);
     }
 
-//? Admin-------------------------------------------------------------------
+    // ? Admin-------------------------------------------------------------------
 
-  @Override
-public List<WasiatDto> getAllWasiat() {
-    List<Wasiat> wasiatList = wasiatRepository.findAll();
-    return wasiatList.stream().map((wasiat) -> convertEntityToDto(wasiat))
-            .collect(Collectors.toList());
-}
+    @Override
+    public List<WasiatDto> getAllWasiat() {
+        List<Wasiat> wasiatList = wasiatRepository.findAll();
+        return wasiatList.stream().map((wasiat) -> convertEntityToDto(wasiat))
+                .collect(Collectors.toList());
+    }
 
-private WasiatDto convertEntityToDto(Wasiat wasiat) {
-    WasiatDto wasiatDto = new WasiatDto();
-    wasiatDto.setUser(wasiat.getUser());
-    // wasiatDto.setContent(wasiat.getContent());
-    // You can map other properties if needed
-    return wasiatDto;
-}
+    private WasiatDto convertEntityToDto(Wasiat wasiat) {
+        WasiatDto wasiatDto = new WasiatDto();
+        wasiatDto.setUser(wasiat.getUser());
 
-@Override
+        return wasiatDto;
+    }
+
+    @Override
     public void deleteUserWasiat(Long userId) {
         wasiatRepository.deleteByUserId(userId);
     }
 
-
-    //?edit
+    // ?edit
     @Override
     public Wasiat getWasiatByUserId(Long userId) {
         return wasiatRepository.findByUserId(userId);
@@ -111,16 +93,14 @@ private WasiatDto convertEntityToDto(Wasiat wasiat) {
 
     @Override
     public void updateWasiat(Wasiat wasiat) {
-        // Assuming your Wasiat entity has an 'id' field
+
         Long wasiatId = wasiat.getId();
 
-        // Check if the Wasiat with the given id exists
         Optional<Wasiat> existingWasiat = wasiatRepository.findById(wasiatId);
 
         if (existingWasiat.isPresent()) {
-            // Update the existing Wasiat with the new data
+
             Wasiat updatedWasiat = existingWasiat.get();
-            // updatedWasiat.setContent(wasiat.getContent());
             updatedWasiat.setGender(wasiat.getGender());
             updatedWasiat.setSuami(wasiat.getSuami());
             updatedWasiat.setIsteri(wasiat.getIsteri());
@@ -131,14 +111,21 @@ private WasiatDto convertEntityToDto(Wasiat wasiat) {
             updatedWasiat.setConfirmation(wasiat.getConfirmation());
             updatedWasiat.setPerbelanjaan(wasiat.getPerbelanjaan());
             updatedWasiat.setHibah(wasiat.getHibah());
-            // Update other fields as needed
+            updatedWasiat.setAnakLelakiNames(wasiat.getAnakLelakiNames());
+            List<AnakLelaki> updatedAnakLelakiNames = wasiat.getAnakLelakiNames();
+            List<AnakLelaki> existingAnakLelakiNames = updatedWasiat.getAnakLelakiNames();
 
-            // Save the updated Wasiat
+            // Update the existing anakLelakiNames with the new values
+            for (int i = 0; i < existingAnakLelakiNames.size(); i++) {
+                AnakLelaki updatedAnakLelaki = updatedAnakLelakiNames.get(i);
+                AnakLelaki existingAnakLelaki = existingAnakLelakiNames.get(i);
+
+                existingAnakLelaki.setName(updatedAnakLelaki.getName());
+                existingAnakLelaki.setIdNumber(updatedAnakLelaki.getIdNumber());
+            }
+
             wasiatRepository.save(updatedWasiat);
-        } else {
-            // Handle the case where the Wasiat with the given id is not found
-            // You might want to throw an exception or handle it based on your requirements
-            throw new EntityNotFoundException("Wasiat not found with id: " + wasiatId);
         }
+
     }
 }
