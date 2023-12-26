@@ -11,7 +11,6 @@ import lombok.Setter;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-// @Entity
 @Embeddable
 public class SuamiDetail {
 

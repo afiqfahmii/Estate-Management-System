@@ -8,7 +8,11 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.project.estatemanagementsystem.dto.WasiatDto;
-import com.project.estatemanagementsystem.entity.AnakLelaki;
+import com.project.estatemanagementsystem.entity.AnakAngkatDetail;
+import com.project.estatemanagementsystem.entity.AnakLelakiDetail;
+import com.project.estatemanagementsystem.entity.AnakPerempuanDetail;
+import com.project.estatemanagementsystem.entity.IsteriDetail;
+import com.project.estatemanagementsystem.entity.SuamiDetail;
 import com.project.estatemanagementsystem.entity.User;
 import com.project.estatemanagementsystem.entity.Wasiat;
 import com.project.estatemanagementsystem.repository.WasiatRepository;
@@ -85,6 +89,7 @@ public class WasiatServiceImpl implements WasiatService {
         wasiatRepository.deleteByUserId(userId);
     }
 
+    
     // ?edit
     @Override
     public Wasiat getWasiatByUserId(Long userId) {
@@ -92,40 +97,93 @@ public class WasiatServiceImpl implements WasiatService {
     }
 
     @Override
-    public void updateWasiat(Wasiat wasiat) {
+public void updateWasiat(Wasiat wasiat) {
+    Long wasiatId = wasiat.getId();
 
-        Long wasiatId = wasiat.getId();
+    Optional<Wasiat> existingWasiatOptional = wasiatRepository.findById(wasiatId);
 
-        Optional<Wasiat> existingWasiat = wasiatRepository.findById(wasiatId);
+    if (existingWasiatOptional.isPresent()) {
+        Wasiat existingWasiat = existingWasiatOptional.get();
 
-        if (existingWasiat.isPresent()) {
+        existingWasiat.setGender(wasiat.getGender());
+        existingWasiat.setSuami(wasiat.getSuami());
+        existingWasiat.setIsteri(wasiat.getIsteri());
+        existingWasiat.setAnakAngkat(wasiat.getAnakAngkat());
+        existingWasiat.setAnakLelaki(wasiat.getAnakLelaki());
+        existingWasiat.setAnakPerempuan(wasiat.getAnakPerempuan());
+        existingWasiat.setAnggaran(wasiat.getAnggaran());
+        existingWasiat.setPerbelanjaan(wasiat.getPerbelanjaan());
+        existingWasiat.setHibah(wasiat.getHibah());
 
-            Wasiat updatedWasiat = existingWasiat.get();
-            updatedWasiat.setGender(wasiat.getGender());
-            updatedWasiat.setSuami(wasiat.getSuami());
-            updatedWasiat.setIsteri(wasiat.getIsteri());
-            updatedWasiat.setAnakAngkat(wasiat.getAnakAngkat());
-            updatedWasiat.setAnakLelaki(wasiat.getAnakLelaki());
-            updatedWasiat.setAnakPerempuan(wasiat.getAnakPerempuan());
-            updatedWasiat.setAnggaran(wasiat.getAnggaran());
-            // updatedWasiat.setConfirmation(wasiat.getConfirmation());
-            updatedWasiat.setPerbelanjaan(wasiat.getPerbelanjaan());
-            updatedWasiat.setHibah(wasiat.getHibah());
-            updatedWasiat.setAnakLelakiNames(wasiat.getAnakLelakiNames());
-            List<AnakLelaki> updatedAnakLelakiNames = wasiat.getAnakLelakiNames();
-            List<AnakLelaki> existingAnakLelakiNames = updatedWasiat.getAnakLelakiNames();
+        existingWasiat.setAnakLelakiDetails(wasiat.getAnakLelakiDetails());
+        existingWasiat.setAnakPerempuanDetails(wasiat.getAnakPerempuanDetails());
+        existingWasiat.setAnakAngkatDetails(wasiat.getAnakAngkatDetails());
+        existingWasiat.setIsteriDetails(wasiat.getIsteriDetails());
+        existingWasiat.setSuamiDetails(wasiat.getSuamiDetails());
 
-            // Update the existing anakLelakiNames with the new values
-            for (int i = 0; i < existingAnakLelakiNames.size(); i++) {
-                AnakLelaki updatedAnakLelaki = updatedAnakLelakiNames.get(i);
-                AnakLelaki existingAnakLelaki = existingAnakLelakiNames.get(i);
+        List<AnakLelakiDetail> updatedAnakLelakiDetail = wasiat.getAnakLelakiDetails();
+        List<AnakLelakiDetail> existingAnakLelakiDetail = existingWasiat.getAnakLelakiDetails();
 
-                existingAnakLelaki.setName(updatedAnakLelaki.getName());
-                existingAnakLelaki.setIdNumber(updatedAnakLelaki.getIdNumber());
-            }
+        List<AnakPerempuanDetail> updatedAnakPerempuanDetail = wasiat.getAnakPerempuanDetails();
+        List<AnakPerempuanDetail> existingAnakPerempuanDetail = existingWasiat.getAnakPerempuanDetails();
 
-            wasiatRepository.save(updatedWasiat);
+        List<AnakAngkatDetail> updatedAnakAngkatDetail = wasiat.getAnakAngkatDetails();
+        List<AnakAngkatDetail> existingAnakAngkatDetail = existingWasiat.getAnakAngkatDetails();
+
+        List <IsteriDetail> existingIsteriDetail = wasiat.getIsteriDetails();
+        List <IsteriDetail> updatedIsteriDetail = existingWasiat.getIsteriDetails();
+        
+        List <SuamiDetail> existingSuamiDetail = wasiat.getSuamiDetails();
+        List <SuamiDetail> updatedSuamiDetail = existingWasiat.getSuamiDetails();
+
+        for (int i = 0; i < existingAnakLelakiDetail.size(); i++) {
+            AnakLelakiDetail updatedAnakLelaki = updatedAnakLelakiDetail.get(i);
+            AnakLelakiDetail existingAnakLelaki = existingAnakLelakiDetail.get(i);
+
+            existingAnakLelaki.setName(updatedAnakLelaki.getName());
+            existingAnakLelaki.setIc(updatedAnakLelaki.getIc());
+            existingAnakLelaki.setOku(updatedAnakLelaki.getOku());
         }
 
+        for (int i = 0; i < existingAnakPerempuanDetail.size(); i++) {
+            AnakPerempuanDetail updatedAnakPerempuan = updatedAnakPerempuanDetail.get(i);
+            AnakPerempuanDetail existingAnakPerempuan = existingAnakPerempuanDetail.get(i);
+
+            existingAnakPerempuan.setName(updatedAnakPerempuan.getName());
+            existingAnakPerempuan.setIc(updatedAnakPerempuan.getIc());
+            existingAnakPerempuan.setOku(updatedAnakPerempuan.getOku());
+        }
+
+        for (int i = 0; i < existingAnakAngkatDetail.size(); i++) {
+            AnakAngkatDetail updatedAnakAngkat = updatedAnakAngkatDetail.get(i);
+            AnakAngkatDetail existingAnakAngkat = existingAnakAngkatDetail.get(i);
+
+            existingAnakAngkat.setName(updatedAnakAngkat.getName());
+            existingAnakAngkat.setIc(updatedAnakAngkat.getIc());
+            existingAnakAngkat.setOku(updatedAnakAngkat.getOku());
+        }
+
+        for (int i = 0; i < existingIsteriDetail.size(); i++) {
+            IsteriDetail updatedIsteri = updatedIsteriDetail.get(i);
+            IsteriDetail existingIsteri = existingIsteriDetail.get(i);
+
+            existingIsteri.setName(updatedIsteri.getName());
+            existingIsteri.setIc(updatedIsteri.getIc());
+
+        }
+
+        for (int i = 0; i < existingSuamiDetail.size(); i++) {
+            SuamiDetail updatedSuami = updatedSuamiDetail.get(i);
+            SuamiDetail existingSuami = existingSuamiDetail.get(i);
+
+            existingSuami.setName(updatedSuami.getName());
+            existingSuami.setIc(updatedSuami.getIc());
+
+        }
+
+        wasiatRepository.save(existingWasiat);
     }
+}
+
+
 }

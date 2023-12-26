@@ -23,6 +23,4 @@ public class AnakLelakiDetail {
     @Column(name = "oku")
     private String oku;
 
-    // Constructors, getters, setters...
-
 }

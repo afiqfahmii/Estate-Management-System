@@ -35,7 +35,7 @@
     <br />
     <br />
 
-    <div class="container" >
+    <div class="container">
       <div class="row">
         <div class="col-md-6 offset-md-3">
           <div class="card">
@@ -115,21 +115,48 @@
                     </select>
                   </label>
                 </div>
-              
-                
-                <div id="sonNamesContainer" class="mb-3">
-                  <label for="anakLelakiNames" class="control-label">Senarai Nama Anak Lelaki:</label>
-                  <br>
-                    <div th:each="anakLelaki, iterStat : *{anakLelakiNames}" class="sonEntry">
-                        <input class="form-control" type="text" th:field="*{anakLelakiNames[__${iterStat.index}__].name}" placeholder="Name">
-                        <br>
-                        <input  class="form-control" type="text" th:field="*{anakLelakiNames[__${iterStat.index}__].idNumber}" placeholder="ID Number">
-                        <button type="button" onclick="removeSonNameField(this)">Remove</button>
-                        <br><br>
-                    </div>
-                    <button type="button" onclick="addSonNameField()">Add</button>
+
+               
+                <div id="sonNamesContainer">
+                  <div
+                    th:each="anakLelaki, iterStat : *{anakLelakiNames}"
+                    class="sonEntry"
+                  >
+                  <label for="anakLelakiNames">Son Names:</label>
+                    <input
+                      type="text"
+                      th:field="*{anakLelakiNames[__${iterStat.index}__].name}"
+                      placeholder="Name"
+                      class="form-control"
+                    />
+                    <label for="anakLelakiNames">No IC:</label>
+                    <input
+                      type="text"
+                      th:field="*{anakLelakiNames[__${iterStat.index}__].ic}"
+                      placeholder="ID Number"
+                      class="form-control"
+                    />
+                    <label class="control-label"
+                      >Adakah Anak OKU:
+                      <select
+                        class="form-control"
+                        th:field="*{anakLelakiNames[__${iterStat.index}__].oku}"
+                        placeholder="Status Anak Lelaki"
+                      >
+                        <option value="">pilih</option>
+                        <option value="Ya">Ya</option>
+                        <option value="Tidak">Tidak</option>
+                      </select>
+                    </label>
+                    <button type="button" onclick="removeSonNameField(this)">
+                      Remove
+                    </button>
+                  </div>
                 </div>
-                
+
+                <button type="button" onclick="addSonNameField()">
+                  Add Son Name
+                </button>
 
                 <div class="mb-3">
                   <label class="control-label"
@@ -217,48 +244,69 @@
                   <button type="submit" class="btn btn-primary">Save</button>
                 </div>
               </form>
+
               <script th:inline="javascript">
                 var sonCount = /*[[${wasiat.anakLelakiNames.size()}]]*/ 0;
-            
+
                 function addSonNameField() {
-                    var sonNamesContainer = document.getElementById('sonNamesContainer');
-                    var newSonEntry = document.createElement('div');
-                    newSonEntry.className = 'sonEntry';
-            
-                    var newNameInput = document.createElement('input');
-                    newNameInput.type = 'text';
-                    newNameInput.name = 'anakLelakiNames[' + sonCount + '].name';
-                    newNameInput.placeholder = 'Name';
-            
-                    var newIdNumberInput = document.createElement('input');
-                    newIdNumberInput.type = 'text';
-                    newIdNumberInput.name = 'anakLelakiNames[' + sonCount + '].idNumber';
-                    newIdNumberInput.placeholder = 'ID Number';
-            
-                    var removeButton = document.createElement('button');
-                    removeButton.type = 'button';
-                    removeButton.textContent = 'Remove';
-                    removeButton.onclick = function() {
-                        sonNamesContainer.removeChild(newSonEntry);
-                    };
-            
-                    newSonEntry.appendChild(newNameInput);
-                    newSonEntry.appendChild(newIdNumberInput);
-                    newSonEntry.appendChild(removeButton);
-            
-                    sonNamesContainer.appendChild(newSonEntry);
-            
-                    sonCount++;
+                  var sonNamesContainer =
+                    document.getElementById("sonNamesContainer");
+                  var newSonEntry = document.createElement("div");
+                  newSonEntry.className = "sonEntry";
+
+                  var newNameInput = document.createElement("input");
+                  newNameInput.type = "text";
+                  newNameInput.name = "anakLelakiNames[" + sonCount + "].name";
+                  newNameInput.placeholder = "Name";
+
+                  var newIdNumberInput = document.createElement("input");
+                  newIdNumberInput.type = "text";
+                  newIdNumberInput.name =
+                    "anakLelakiNames[" + sonCount + "].ic";
+                  newIdNumberInput.placeholder = "ID Number";
+
+                  var newStatusSelect = document.createElement("select");
+                  newStatusSelect.name =
+                    "anakLelakiNames[" + sonCount + "].oku";
+
+                  // Add options to the select element
+                  var activeOption = document.createElement("option");
+                  activeOption.value = "YA";
+                  activeOption.text = "Ya";
+
+                  var inactiveOption = document.createElement("option");
+                  inactiveOption.value = "TIDAK";
+                  inactiveOption.text = "Tidak";
+
+                  // Add more options as needed
+
+                  newStatusSelect.appendChild(activeOption);
+                  newStatusSelect.appendChild(inactiveOption);
+
+                  var removeButton = document.createElement("button");
+                  removeButton.type = "button";
+                  removeButton.textContent = "Remove";
+                  removeButton.onclick = function () {
+                    sonNamesContainer.removeChild(newSonEntry);
+                  };
+
+                  newSonEntry.appendChild(newNameInput);
+                  newSonEntry.appendChild(newIdNumberInput);
+                  newSonEntry.appendChild(newStatusSelect);
+                  newSonEntry.appendChild(removeButton);
+
+                  sonNamesContainer.appendChild(newSonEntry);
+
+                  sonCount++;
                 }
-            
+
                 function removeSonNameField(button) {
-                    var sonNamesContainer = document.getElementById('sonNamesContainer');
-                    var sonEntryToRemove = button.parentElement;
-                    sonNamesContainer.removeChild(sonEntryToRemove);
+                  var sonNamesContainer =
+                    document.getElementById("sonNamesContainer");
+                  var sonEntryToRemove = button.parentElement;
+                  sonNamesContainer.removeChild(sonEntryToRemove);
                 }
-            </script>
-            
-            
+              </script>
             </div>
           </div>
         </div>
