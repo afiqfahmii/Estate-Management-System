@@ -40,11 +40,12 @@ public class WasiatController {
     }
 
     @PostMapping("/wasiat/create")
-    public String createWasiat(@ModelAttribute("wasiat") Wasiat wasiat) {
+    public String createWasiat(@ModelAttribute("wasiat") Wasiat wasiat, Model model) {
         
         wasiatService.saveWasiat(wasiat);
+        model.addAttribute("wasiatPost", wasiat);
 
-        return "createWasiat";
+        return "postWasiat";
     }
 
     @GetMapping("/wasiat/list")
@@ -56,6 +57,12 @@ public class WasiatController {
         return "wasiatList";
     }
 
+    @GetMapping("/wasiat/show/{userId}")
+    public String showUserWasiatList(@PathVariable Long userId, Model model) {
+        Wasiat wasiat = wasiatService.getWasiatByUserId(userId);
+        model.addAttribute("wasiatShow", wasiat);
+        return "showWasiat";
+    }
     // @GetMapping("/wasiat/update/{id}")
     // public String showUpdateForm(@PathVariable Long id, Model model) {
     // Wasiat wasiat = wasiatService.findWasiatById(id);

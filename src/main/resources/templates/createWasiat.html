@@ -57,7 +57,7 @@
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
       padding: 80px;
       width: 400px;
-      margin-bottom: 100px;
+      margin-bottom: 50px;
       margin-top: 350px;
     }
 
@@ -202,10 +202,10 @@ justify-content: space-between;
         </select>
       </div>
 
-      <br /><br />
+      <br />
       <div id="isteriNum" class="hidden">
         <label for="isteri">Isteri</label>
-        <select id="isteri" name="isteri" th:field="*{isteri}">
+        <select id="isteri" name="isteri" th:field="*{isteri}" onchange="updateIsteriInputs()">
           <option value="">pilih</option>
           <option value="tiada">tiada</option>
           <option value="1">1</option>
@@ -214,33 +214,21 @@ justify-content: space-between;
           <option value="4">4</option>
         </select>
         <br>
-        <label for="isteriNames">Isteri Names:</label>
         <div id="isteriNamesContainer">
-          <div class="isteriEntry">
-            <input type="text" name="isteriDetails[0].name" placeholder="Name" />
-            <input type="text" name="isteriDetails[0].ic" placeholder="IC" />
-          </div>
         </div>
-
-        <button type="button" onclick="addIsteriNameField()">Add Isteri Name</button>
       </div>
 
-      <br /> <br>
+      <br />
       <div id="suamiNum" class="hidden">
         <label for="suami">Suami</label>
-        <select id="suami" name="suami" th:field="*{suami}">
+        <select id="suami" name="suami" th:field="*{suami}" onchange="updateSuami()">
           <!-- onchange="anakForm(this)" -->
           <option value="">pilih</option>
           <option value="tiada">Tiada</option>
           <option value="ada">Ada</option>
         </select>
         <br>
-        <label for="suamiNames">Suami Names:</label>
         <div id="suamiNamesContainer">
-          <div class="suamiEntry">
-            <input type="text" name="suamiDetails[0].name" placeholder="Name" />
-            <input type="text" name="suamiDetails[0].ic" placeholder="IC" />
-          </div>
         </div>
       </div><br>
       <div class="button-container">
@@ -248,11 +236,10 @@ justify-content: space-between;
       </div>
     </div>
 
-    <br />
     <div id="anakPunya" class="hidden inline-selects">
       <div id="anakLelakiContainer" class="form-group">
         <label for="anakLelaki">Anak Lelaki</label>
-        <select id="anakLelaki" name="anakLelaki" th:field="*{anakLelaki}">
+        <select id="anakLelaki" name="anakLelaki" th:field="*{anakLelaki}" onchange="addSonNameField()">
           <option value="">pilih</option>
           <option value="tiada">tiada</option>
           <option value="1">1</option>
@@ -270,33 +257,18 @@ justify-content: space-between;
         </select>
         <br />
 
-        <label for="sonNames">Son Names:</label>
         <div id="sonNamesContainer">
-          <div class="sonEntry">
-            <input type="text" name="anakLelakiDetails[0].name" placeholder="Name" />
-            <input type="text" name="anakLelakiDetails[0].ic" placeholder="IC" />
-            <label for="oku">Adakah anak ini OKU?</label>
-            <select id="oku" name="anakLelakiDetails[0].oku">
-              <option value="">pilih</option>
-              <option value="ya">ya</option>
-              <option value="tidak">tidak</option>
-            </select>
-          </div>
         </div>
-
-        <!-- Button to add more input fields dynamically -->
-        <button type="button" onclick="addSonNameField()">Add Son Name</button><br>
         <div class="button-container">
+          <button type="button" class="grey-button" onclick="showPrevForm('firstForm', 'anakPunya')">Kembali</button>
           <button type="button" class="blue-button"
             onclick="showNextForm('anakLelakiContainer', 'anakPerempuanContainer')">Seterusnya</button>
-          <button type="button" class="grey-button" onclick="showPrevForm('firstForm', 'anakPunya')">Kembali</button>
         </div>
       </div>
 
-      <br /><br />
       <div id="anakPerempuanContainer" class="form-group">
         <label for="anakPerempuan">Anak Perempuan</label>
-        <select id="anakPerempuan" name="anakPerempuan" th:field="*{anakPerempuan}">
+        <select id="anakPerempuan" name="anakPerempuan" th:field="*{anakPerempuan}" onchange="addDaughterNameField()">
           <option value="">pilih</option>
           <option value="tiada">tiada</option>
           <option value="1">1</option>
@@ -314,34 +286,20 @@ justify-content: space-between;
         </select>
         <br>
 
-        <label for="daughterNames">Daughter Names:</label>
         <div id="daughterNamesContainer">
-          <div class="daughterEntry">
-            <input type="text" name="anakPerempuanDetails[0].name" placeholder="Name" />
-            <input type="text" name="anakPerempuanDetails[0].ic" placeholder="IC" />
-            <label for="oku">Adakah anak ini OKU?</label>
-            <select id="oku" name="anakPerempuanDetails[0].oku">
-              <option value="">pilih</option>
-              <option value="ya">ya</option>
-              <option value="tidak">tidak</option>
-            </select>
-          </div>
         </div>
 
-        <!-- Button to add more input fields dynamically -->
-        <button type="button" onclick="addDaughterNameField()">Add Daughter Name</button><br>
         <div class="button-container">
-          <button type="button" class="blue-button"
-            onclick="showNextForm('anakPerempuanContainer', 'anakAngkatContainer')">Seterusnya</button>
           <button type="button" class="grey-button"
             onclick="showPrevForm('anakLelakiContainer', 'anakPerempuanContainer')">Kembali</button>
+          <button type="button" class="blue-button"
+            onclick="showNextForm('anakPerempuanContainer', 'anakAngkatContainer')">Seterusnya</button>
         </div>
       </div>
 
-      <br /><br />
       <div id="anakAngkatContainer" class="form-group">
         <label for="anakAngkat">Anak Angkat</label>
-        <select id="anakAngkat" name="anakAngkat" th:field="*{anakAngkat}">
+        <select id="anakAngkat" name="anakAngkat" th:field="*{anakAngkat}" onchange="addAngkatNameField()">
           <option value="">pilih</option>
           <option value="tiada">tiada</option>
           <option value="1">1</option>
@@ -359,46 +317,32 @@ justify-content: space-between;
         </select>
         <br>
 
-        <label for="angkatNames">Angkat Names:</label>
         <div id="angkatNamesContainer">
-          <div class="angkatEntry">
-            <input type="text" name="anakAngkatDetails[0].name" placeholder="Name" />
-            <input type="text" name="anakAngkatDetails[0].ic" placeholder="IC" />
-            <label for="oku">Adakah anak ini OKU?</label>
-            <select id="oku" name="anakAngkatDetails[0].oku">
-              <option value="">pilih</option>
-              <option value="ya">ya</option>
-              <option value="tidak">tidak</option>
-            </select>
-          </div>
         </div>
 
-        <!-- Button to add more input fields dynamically -->
-        <button type="button" onclick="addAngkatNameField()">Add Angkat Name</button><br>
         <div class="button-container">
-          <button type="button" class="blue-button"
-            onclick="showNextForm('anakAngkatContainer', 'thirdForm')">Seterusnya</button>
           <button type="button" class="grey-button"
             onclick="showPrevForm('anakPerempuanContainer', 'anakAngkatContainer')">Kembali</button>
+          <button type="button" class="blue-button"
+            onclick="showNextForm('anakAngkatContainer', 'thirdForm')">Seterusnya</button>
         </div>
       </div>
     </div>
 
     <div id="thirdForm" class="hidden">
-      <br /><br />
       <label for="perbelanjaan">Berapakah jumlah perbelanjaan untuk keluarga setiap bulan</label><br />
       <input type="number" id="perbelanjaan" name="perbelanjaan" th:field="*{perbelanjaan}"
-        oninput="checkFormCompleteness()" /><br /><br />
+        oninput="checkFormCompleteness()" /><br />
 
-      <br /><br />
+      <br />
       <label for="anggaran">Berapakah anggaran nilai harta anda </label>
       <select id="anggaran" name="anggaran" th:field="*{anggaran}" oninput="checkFormCompleteness()">
         <option value="">pilih</option>
         <option value="kurang">Kurang dari RM2 juta</option>
         <option value="lebih">Lebih dari RM2 juta</option>
-      </select><br /><br />
+      </select><br />
 
-      <br /><br />
+      <br />
       <label for="hibah">Adakah anda bercadang untuk membuat Hibah?</label>
       <select id="hibah" name="hibah" th:field="*{hibah}" oninput="checkFormCompleteness()">
         <option value="">pilih</option>
@@ -409,181 +353,239 @@ justify-content: space-between;
         onclick="showPrevForm('anakAngkatContainer', 'thirdForm')">Kembali</button>
     </div>
 
-    <br /><br />
     <input type="hidden" th:field="*{user}" th:value="${wasiat.user}" />
     <br />
     <button type="submit" id="submitButton" class="hidden green-button">Submit</button>
   </form>
 
   <script>
-    var sonCount = 1;
 
     function addSonNameField() {
       var sonNamesContainer = document.getElementById("sonNamesContainer");
-      var newSonEntry = document.createElement("div");
-      newSonEntry.className = "sonEntry";
+      var selectedSon = document.getElementById("anakLelaki").value;
 
-      var newNameInput = document.createElement("input");
-      newNameInput.type = "text";
-      newNameInput.name = "anakLelakiDetails[" + sonCount + "].name";
-      newNameInput.placeholder = "Name";
+      sonNamesContainer.innerHTML = "";
 
-      var newIcInput = document.createElement("input");
-      newIcInput.type = "text";
-      newIcInput.name = "anakLelakiDetails[" + sonCount + "].ic";
-      newIcInput.placeholder = "IC";
+      for (var i = 0; i < selectedSon; i++) {
 
-      var newLabel = document.createElement("label");
-      newLabel.textContent = "\nAdakah anak ini OKU?";
+        var newSonEntry = document.createElement("div");
+        newSonEntry.className = "sonEntry";
+        var newLabelName = document.createElement("label");
+        newLabelName.textContent = "\nNama Anak Lelaki " + (i + 1) + " :";
 
-      var newOkuInput = document.createElement("select");
-      newOkuInput.name = "anakLelakiDetails[" + sonCount + "].oku";
+        var newNameInput = document.createElement("input");
+        newNameInput.type = "text";
+        newNameInput.name = "anakLelakiDetails[" + i + "].name";
+        newNameInput.placeholder = "Name";
 
-      var option1 = document.createElement("option");
-      option1.value = "";
-      option1.text = "pilih";
+        var newIcInput = document.createElement("input");
+        newIcInput.type = "text";
+        newIcInput.name = "anakLelakiDetails[" + i + "].ic";
+        newIcInput.placeholder = "IC";
 
-      var option2 = document.createElement("option");
-      option2.value = "ya";
-      option2.text = "ya";
+        var newLabel = document.createElement("label");
+        newLabel.textContent = "\nAdakah anak ini OKU?";
 
-      var option3 = document.createElement("option");
-      option3.value = "tidak";
-      option3.text = "tidak";
+        var newOkuInput = document.createElement("select");
+        newOkuInput.name = "anakLelakiDetails[" + i + "].oku";
 
-      newOkuInput.add(option1);
-      newOkuInput.add(option2);
-      newOkuInput.add(option3);
+        var option1 = document.createElement("option");
+        option1.value = "";
+        option1.text = "pilih";
 
-      newSonEntry.appendChild(newNameInput);
-      newSonEntry.appendChild(newIcInput);
-      newSonEntry.appendChild(newLabel);
-      newSonEntry.appendChild(newOkuInput);
+        var option2 = document.createElement("option");
+        option2.value = "ya";
+        option2.text = "ya";
 
-      sonNamesContainer.appendChild(newSonEntry);
+        var option3 = document.createElement("option");
+        option3.value = "tidak";
+        option3.text = "tidak";
 
-      sonCount++;
+        newOkuInput.add(option1);
+        newOkuInput.add(option2);
+        newOkuInput.add(option3);
+
+        newSonEntry.appendChild(newLabelName);
+        newSonEntry.appendChild(newNameInput);
+        newSonEntry.appendChild(newIcInput);
+        newSonEntry.appendChild(newLabel);
+        newSonEntry.appendChild(newOkuInput);
+
+        sonNamesContainer.appendChild(newSonEntry);
+      }
     }
 
-    var daughterCount = 1;
     function addDaughterNameField() {
       var daughterNamesContainer = document.getElementById("daughterNamesContainer");
-      var newDaughterEntry = document.createElement("div");
-      newDaughterEntry.className = "daughterEntry";
+      var selectedDaughter = document.getElementById("anakPerempuan").value;
 
-      var newNameInput = document.createElement("input");
-      newNameInput.type = "text";
-      newNameInput.name = "anakPerempuanDetails[" + daughterCount + "].name";
-      newNameInput.placeholder = "Name";
+      daughterNamesContainer.innerHTML = "";
 
-      var newIcInput = document.createElement("input");
-      newIcInput.type = "text";
-      newIcInput.name = "anakPerempuanDetails[" + daughterCount + "].ic";
-      newIcInput.placeholder = "IC";
+      for (var i = 0; i < selectedDaughter; i++) {
 
-      var newLabel = document.createElement("label");
-      newLabel.textContent = "\nAdakah anak ini OKU?";
+        var newDaughterEntry = document.createElement("div");
+        newDaughterEntry.className = "daughterEntry";
+        var newLabelName = document.createElement("label");
+        newLabelName.textContent = "\nNama Anak Perempuan " + (i + 1) + " :";
 
-      var newOkuInput = document.createElement("select");
-      newOkuInput.name = "anakPerempuanDetails[" + daughterCount + "].oku";
+        var newNameInput = document.createElement("input");
+        newNameInput.type = "text";
+        newNameInput.name = "anakPerempuanDetails[" + i + "].name";
+        newNameInput.placeholder = "Name";
 
-      var option1 = document.createElement("option");
-      option1.value = "";
-      option1.text = "pilih";
+        var newIcInput = document.createElement("input");
+        newIcInput.type = "text";
+        newIcInput.name = "anakPerempuanDetails[" + i + "].ic";
+        newIcInput.placeholder = "IC";
 
-      var option2 = document.createElement("option");
-      option2.value = "ya";
-      option2.text = "ya";
+        var newLabel = document.createElement("label");
+        newLabel.textContent = "\nAdakah anak ini OKU?";
 
-      var option3 = document.createElement("option");
-      option3.value = "tidak";
-      option3.text = "tidak";
+        var newOkuInput = document.createElement("select");
+        newOkuInput.name = "anakPerempuanDetails[" + i + "].oku";
 
-      newOkuInput.add(option1);
-      newOkuInput.add(option2);
-      newOkuInput.add(option3);
+        var option1 = document.createElement("option");
+        option1.value = "";
+        option1.text = "pilih";
 
-      newDaughterEntry.appendChild(newNameInput);
-      newDaughterEntry.appendChild(newIcInput);
-      newDaughterEntry.appendChild(newLabel);
-      newDaughterEntry.appendChild(newOkuInput);
+        var option2 = document.createElement("option");
+        option2.value = "ya";
+        option2.text = "ya";
 
-      daughterNamesContainer.appendChild(newDaughterEntry);
+        var option3 = document.createElement("option");
+        option3.value = "tidak";
+        option3.text = "tidak";
 
-      daughterCount++;
+        newOkuInput.add(option1);
+        newOkuInput.add(option2);
+        newOkuInput.add(option3);
+
+        newDaughterEntry.appendChild(newLabelName);
+        newDaughterEntry.appendChild(newNameInput);
+        newDaughterEntry.appendChild(newIcInput);
+        newDaughterEntry.appendChild(newLabel);
+        newDaughterEntry.appendChild(newOkuInput);
+
+        daughterNamesContainer.appendChild(newDaughterEntry);
+      }
     }
 
-    var angkatCount = 1;
     function addAngkatNameField() {
       var angkatNamesContainer = document.getElementById("angkatNamesContainer");
-      var newAngkatEntry = document.createElement("div");
-      newAngkatEntry.className = "angkatEntry";
+      var selectedAngkat = document.getElementById("anakAngkat").value;
 
-      var newNameInput = document.createElement("input");
-      newNameInput.type = "text";
-      newNameInput.name = "anakAngkatDetails[" + angkatCount + "].name";
-      newNameInput.placeholder = "Name";
+      daughterNamesContainer.innerHTML = "";
 
-      var newIcInput = document.createElement("input");
-      newIcInput.type = "text";
-      newIcInput.name = "anakAngkatDetails[" + angkatCount + "].ic";
-      newIcInput.placeholder = "IC";
+      for (var i = 0; i < selectedAngkat; i++) {
 
-      var newLabel = document.createElement("label");
-      newLabel.textContent = "\nAdakah anak ini OKU?";
+        var newAngkatEntry = document.createElement("div");
+        newAngkatEntry.className = "angkatEntry";
+        var newLabelName = document.createElement("label");
+        newLabelName.textContent = "\nNama Anak Angkat " + (i + 1) + " :";
 
-      var newOkuInput = document.createElement("select");
-      newOkuInput.name = "anakAngkatDetails[" + angkatCount + "].oku";
+        var newNameInput = document.createElement("input");
+        newNameInput.type = "text";
+        newNameInput.name = "anakAngkatDetails[" + i + "].name";
+        newNameInput.placeholder = "Name";
 
-      var option1 = document.createElement("option");
-      option1.value = "";
-      option1.text = "pilih";
+        var newIcInput = document.createElement("input");
+        newIcInput.type = "text";
+        newIcInput.name = "anakAngkatDetails[" + i + "].ic";
+        newIcInput.placeholder = "IC";
 
-      var option2 = document.createElement("option");
-      option2.value = "ya";
-      option2.text = "ya";
+        var newLabel = document.createElement("label");
+        newLabel.textContent = "\nAdakah anak ini OKU?";
 
-      var option3 = document.createElement("option");
-      option3.value = "tidak";
-      option3.text = "tidak";
+        var newOkuInput = document.createElement("select");
+        newOkuInput.name = "anakAngkatDetails[" + i + "].oku";
 
-      newOkuInput.add(option1);
-      newOkuInput.add(option2);
-      newOkuInput.add(option3);
+        var option1 = document.createElement("option");
+        option1.value = "";
+        option1.text = "pilih";
 
-      newAngkatEntry.appendChild(newNameInput);
-      newAngkatEntry.appendChild(newIcInput);
-      newAngkatEntry.appendChild(newLabel);
-      newAngkatEntry.appendChild(newOkuInput);
+        var option2 = document.createElement("option");
+        option2.value = "ya";
+        option2.text = "ya";
 
-      angkatNamesContainer.appendChild(newAngkatEntry);
+        var option3 = document.createElement("option");
+        option3.value = "tidak";
+        option3.text = "tidak";
 
-      angkatCount++;
+        newOkuInput.add(option1);
+        newOkuInput.add(option2);
+        newOkuInput.add(option3);
+
+        newAngkatEntry.appendChild(newLabelName);
+        newAngkatEntry.appendChild(newNameInput);
+        newAngkatEntry.appendChild(newIcInput);
+        newAngkatEntry.appendChild(newLabel);
+        newAngkatEntry.appendChild(newOkuInput);
+
+        angkatNamesContainer.appendChild(newAngkatEntry);
+      }
     }
 
-    var isteriCount = 1;
-
-    function addIsteriNameField() {
+    function updateIsteriInputs() {
       var isteriNamesContainer = document.getElementById("isteriNamesContainer");
-      var newIsteriEntry = document.createElement("div");
-      newIsteriEntry.className = "isteriEntry";
+      var selectedIsteri = document.getElementById("isteri").value;
 
-      var newNameInput = document.createElement("input");
-      newNameInput.type = "text";
-      newNameInput.name = "isteriDetails[" + isteriCount + "].name";
-      newNameInput.placeholder = "Name";
+      // Clear existing entries
+      isteriNamesContainer.innerHTML = "";
 
-      var newIcInput = document.createElement("input");
-      newIcInput.type = "text";
-      newIcInput.name = "isteriDetails[" + isteriCount + "].ic";
-      newIcInput.placeholder = "IC";
+      // Generate new entries based on the selected number of Isteri
+      for (var i = 0; i < selectedIsteri; i++) {
+        var newIsteriEntry = document.createElement("div");
+        newIsteriEntry.className = "isteriEntry";
+        var newLabel = document.createElement("label");
+        newLabel.textContent = "\nNama Isteri " + (i + 1) + " :";
 
-      newIsteriEntry.appendChild(newNameInput);
-      newIsteriEntry.appendChild(newIcInput);
+        var newNameInput = document.createElement("input");
+        newNameInput.type = "text";
+        newNameInput.name = "isteriDetails[" + i + "].name";
+        newNameInput.placeholder = "Name";
 
-      isteriNamesContainer.appendChild(newIsteriEntry);
+        var newIcInput = document.createElement("input");
+        newIcInput.type = "text";
+        newIcInput.name = "isteriDetails[" + i + "].ic";
+        newIcInput.placeholder = "IC";
 
-      isteriCount++;
+        newIsteriEntry.appendChild(newLabel);
+        newIsteriEntry.appendChild(newNameInput);
+        newIsteriEntry.appendChild(newIcInput);
+
+        isteriNamesContainer.appendChild(newIsteriEntry);
+      }
+    }
+
+    function updateSuami() {
+      var i = 0;
+      var suamiNamesContainer = document.getElementById("suamiNamesContainer");
+      var selectedSuami = document.getElementById("suami").value;
+
+      suamiNamesContainer.innerHTML = "";
+
+      if (selectedSuami === "ada") {
+        var newSuamiEntry = document.createElement("div");
+        newSuamiEntry.className = "suamiEntry";
+        var newLabel = document.createElement("label");
+        newLabel.textContent = "\nNama Suami:";
+
+        var newNameInput = document.createElement("input");
+        newNameInput.type = "text";
+        newNameInput.name = "suamiDetails[" + i + "].name";
+        newNameInput.placeholder = "Name";
+
+        var newIcInput = document.createElement("input");
+        newIcInput.type = "text";
+        newIcInput.name = "suamiDetails[" + i + "].ic";
+        newIcInput.placeholder = "IC";
+
+        newSuamiEntry.appendChild(newLabel);
+        newSuamiEntry.appendChild(newNameInput);
+        newSuamiEntry.appendChild(newIcInput);
+
+        suamiNamesContainer.appendChild(newSuamiEntry);
+      }
     }
 
     //---------------------------------------------------------------------------
