@@ -421,28 +421,28 @@ justify-content: space-between;
 
       daughterNamesContainer.innerHTML = "";
 
-      for (var i = 0; i < selectedDaughter; i++) {
+      for (var j = 0; j < selectedDaughter; j++) {
 
         var newDaughterEntry = document.createElement("div");
         newDaughterEntry.className = "daughterEntry";
         var newLabelName = document.createElement("label");
-        newLabelName.textContent = "\nNama Anak Perempuan " + (i + 1) + " :";
+        newLabelName.textContent = "\nNama Anak Perempuan " + (j + 1) + " :";
 
         var newNameInput = document.createElement("input");
         newNameInput.type = "text";
-        newNameInput.name = "anakPerempuanDetails[" + i + "].name";
+        newNameInput.name = "anakPerempuanDetails[" + j + "].name";
         newNameInput.placeholder = "Name";
 
         var newIcInput = document.createElement("input");
         newIcInput.type = "text";
-        newIcInput.name = "anakPerempuanDetails[" + i + "].ic";
+        newIcInput.name = "anakPerempuanDetails[" + j + "].ic";
         newIcInput.placeholder = "IC";
 
         var newLabel = document.createElement("label");
         newLabel.textContent = "\nAdakah anak ini OKU?";
 
         var newOkuInput = document.createElement("select");
-        newOkuInput.name = "anakPerempuanDetails[" + i + "].oku";
+        newOkuInput.name = "anakPerempuanDetails[" + j + "].oku";
 
         var option1 = document.createElement("option");
         option1.value = "";
@@ -474,7 +474,7 @@ justify-content: space-between;
       var angkatNamesContainer = document.getElementById("angkatNamesContainer");
       var selectedAngkat = document.getElementById("anakAngkat").value;
 
-      daughterNamesContainer.innerHTML = "";
+      angkatNamesContainer.innerHTML = "";
 
       for (var i = 0; i < selectedAngkat; i++) {
 
