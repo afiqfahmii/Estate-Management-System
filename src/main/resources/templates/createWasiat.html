@@ -360,6 +360,64 @@ justify-content: space-between;
 
   <script>
 
+    // function addSonNameField() {
+    //   var sonNamesContainer = document.getElementById("sonNamesContainer");
+    //   var selectedSon = document.getElementById("anakLelaki").value;
+
+    //   sonNamesContainer.innerHTML = "";
+
+    //   for (var i = 0; i < selectedSon; i++) {
+
+    //     var newSonEntry = document.createElement("div");
+    //     newSonEntry.className = "sonEntry";
+    //     var newLabelName = document.createElement("label");
+    //     newLabelName.textContent = "\nNama Anak Lelaki " + (i + 1) + " :";
+
+    //     var newNameInput = document.createElement("input");
+    //     newNameInput.type = "text";
+    //     newNameInput.name = "anakLelakiDetails[" + i + "].name";
+    //     newNameInput.placeholder = "Name";
+
+    //     var newIcInput = document.createElement("input");
+    //     newIcInput.type = "text";
+    //     newIcInput.name = "anakLelakiDetails[" + i + "].ic";
+    //     newIcInput.placeholder = "IC";
+
+    //     var newLabel = document.createElement("label");
+    //     newLabel.textContent = "\nAdakah anak ini OKU?";
+
+    //     var newOkuInput = document.createElement("select");
+    //     newOkuInput.name = "anakLelakiDetails[" + i + "].oku";
+
+    //     var option1 = document.createElement("option");
+    //     option1.value = "";
+    //     option1.text = "pilih";
+
+    //     var option2 = document.createElement("option");
+    //     option2.value = "ya";
+    //     option2.text = "ya";
+
+    //     var option3 = document.createElement("option");
+    //     option3.value = "tidak";
+    //     option3.text = "tidak";
+
+    //     newOkuInput.add(option1);
+    //     newOkuInput.add(option2);
+    //     newOkuInput.add(option3);
+
+    //     newSonEntry.appendChild(newLabelName);
+    //     newSonEntry.appendChild(newNameInput);
+    //     newSonEntry.appendChild(newIcInput);
+    //     newSonEntry.appendChild(newLabel);
+    //     newSonEntry.appendChild(newOkuInput);
+
+    //     sonNamesContainer.appendChild(newSonEntry);
+    //   }
+    // }
+
+    var nameDetails = []; // Array to store entered details
+    var icDetails = [];
+
     function addSonNameField() {
       var sonNamesContainer = document.getElementById("sonNamesContainer");
       var selectedSon = document.getElementById("anakLelaki").value;
@@ -367,9 +425,9 @@ justify-content: space-between;
       sonNamesContainer.innerHTML = "";
 
       for (var i = 0; i < selectedSon; i++) {
-
         var newSonEntry = document.createElement("div");
         newSonEntry.className = "sonEntry";
+
         var newLabelName = document.createElement("label");
         newLabelName.textContent = "\nNama Anak Lelaki " + (i + 1) + " :";
 
@@ -412,6 +470,15 @@ justify-content: space-between;
         newSonEntry.appendChild(newOkuInput);
 
         sonNamesContainer.appendChild(newSonEntry);
+
+        // Validate and store details
+        newNameInput.addEventListener("blur", function (event) {
+          validateName(event.target);
+        });
+
+        newIcInput.addEventListener("blur", function (event) {
+          validateIc(event.target);
+        });
       }
     }
 
@@ -467,6 +534,14 @@ justify-content: space-between;
         newDaughterEntry.appendChild(newOkuInput);
 
         daughterNamesContainer.appendChild(newDaughterEntry);
+
+        newNameInput.addEventListener("blur", function(event){
+          validateName(event.target);
+        });
+
+        newIcInput.addEventListener("blur", function (event){
+          validateIc(event.target);
+        });
       }
     }
 
@@ -522,6 +597,14 @@ justify-content: space-between;
         newAngkatEntry.appendChild(newOkuInput);
 
         angkatNamesContainer.appendChild(newAngkatEntry);
+
+        newNameInput.addEventListener("blur", function (event) {
+          validateName(event.target);
+        });
+
+        newIcInput.addEventListener("blur", function (event) {
+          validateIc(event.target);
+        });
       }
     }
 
@@ -554,6 +637,38 @@ justify-content: space-between;
         newIsteriEntry.appendChild(newIcInput);
 
         isteriNamesContainer.appendChild(newIsteriEntry);
+
+        newNameInput.addEventListener("blur", function (event) {
+          validateName(event.target);
+        });
+
+        newIcInput.addEventListener("blur", function (event) {
+          validateIc(event.target);
+        });
+      }
+    }
+
+    function validateName(inputElement) {
+      var inputValue = inputElement.value;
+
+      // Check for duplicates
+      if (nameDetails.includes(inputValue)) {
+        alert("Error: Duplicate name. Please enter a different name");
+        inputElement.value = ""; // Clear the input field
+      } else {
+        nameDetails.push(inputValue); // Store the value
+      }
+    }
+
+    function validateIc(inputElement) {
+      var inputValue = inputElement.value;
+
+      // Check for duplicates
+      if (icDetails.includes(inputValue)) {
+        alert("Error: Duplicate IC. Please enter a different IC");
+        inputElement.value = ""; // Clear the input field
+      } else {
+        icDetails.push(inputValue); // Store the value
       }
     }
 
