@@ -15,6 +15,7 @@ import com.project.estatemanagementsystem.entity.IsteriDetail;
 import com.project.estatemanagementsystem.entity.SuamiDetail;
 import com.project.estatemanagementsystem.entity.User;
 import com.project.estatemanagementsystem.entity.Wasiat;
+import com.project.estatemanagementsystem.repository.UserRepository;
 import com.project.estatemanagementsystem.repository.WasiatRepository;
 import com.project.estatemanagementsystem.service.WasiatService;
 
@@ -25,9 +26,11 @@ import jakarta.persistence.EntityNotFoundException;
 public class WasiatServiceImpl implements WasiatService {
 
     private final WasiatRepository wasiatRepository;
+    private final UserRepository userRepository;
 
-    public WasiatServiceImpl(WasiatRepository wasiatRepository) {
+    public WasiatServiceImpl(WasiatRepository wasiatRepository, UserRepository userRepository) {
         this.wasiatRepository = wasiatRepository;
+        this.userRepository = userRepository;
     }
 
     @Override
@@ -89,7 +92,6 @@ public class WasiatServiceImpl implements WasiatService {
         wasiatRepository.deleteByUserId(userId);
     }
 
-    
     // ?edit
     @Override
     public Wasiat getWasiatByUserId(Long userId) {
@@ -113,7 +115,7 @@ public class WasiatServiceImpl implements WasiatService {
             updatedWasiat.setAnakLelaki(wasiat.getAnakLelaki());
             updatedWasiat.setAnakPerempuan(wasiat.getAnakPerempuan());
             updatedWasiat.setAnggaran(wasiat.getAnggaran());
-           
+
             updatedWasiat.setPerbelanjaan(wasiat.getPerbelanjaan());
             updatedWasiat.setHibah(wasiat.getHibah());
             updatedWasiat.setAnakLelakiDetails(wasiat.getAnakLelakiDetails());
@@ -124,14 +126,13 @@ public class WasiatServiceImpl implements WasiatService {
             List<AnakLelakiDetail> updatedAnakLelakiNames = wasiat.getAnakLelakiDetails();
             List<AnakLelakiDetail> existingAnakLelakiNames = updatedWasiat.getAnakLelakiDetails();
             List<AnakPerempuanDetail> updatedAnakPerempuanDetails = wasiat.getAnakPerempuanDetails();
-            List<AnakPerempuanDetail> existingAnakPerempuanDetails= updatedWasiat.getAnakPerempuanDetails();
+            List<AnakPerempuanDetail> existingAnakPerempuanDetails = updatedWasiat.getAnakPerempuanDetails();
             List<AnakAngkatDetail> updatedAnakAngkatDetails = wasiat.getAnakAngkatDetails();
-            List<AnakAngkatDetail> existingAnakAngkatDetails= updatedWasiat.getAnakAngkatDetails();
+            List<AnakAngkatDetail> existingAnakAngkatDetails = updatedWasiat.getAnakAngkatDetails();
             List<IsteriDetail> updatedIsteriDetails = wasiat.getIsteriDetails();
-            List<IsteriDetail> existingIsteriDetails= updatedWasiat.getIsteriDetails();
+            List<IsteriDetail> existingIsteriDetails = updatedWasiat.getIsteriDetails();
             List<SuamiDetail> updatedSuamiDetails = wasiat.getSuamiDetails();
-            List<SuamiDetail> existingSuamiDetails= updatedWasiat.getSuamiDetails();
-
+            List<SuamiDetail> existingSuamiDetails = updatedWasiat.getSuamiDetails();
 
             // Update the existing anakLelakiNames with the new values
             for (int i = 0; i < existingAnakLelakiNames.size(); i++) {
@@ -164,7 +165,7 @@ public class WasiatServiceImpl implements WasiatService {
 
                 existingIsteri.setName(updatedIsteri.getName());
                 existingIsteri.setIc(updatedIsteri.getIc());
-                
+
             }
             for (int i = 0; i < existingSuamiDetails.size(); i++) {
                 SuamiDetail updatedSuami = updatedSuamiDetails.get(i);
@@ -172,7 +173,7 @@ public class WasiatServiceImpl implements WasiatService {
 
                 existingSuami.setName(updatedSuami.getName());
                 existingSuami.setIc(updatedSuami.getIc());
-                
+
             }
 
             wasiatRepository.save(updatedWasiat);
@@ -180,5 +181,84 @@ public class WasiatServiceImpl implements WasiatService {
 
     }
 
+    @Override
+    public Wasiat getWasiatDetailsByUserId(Long userId) {
+        Optional<User> userOptional = userRepository.findById(userId);
+
+        if (userOptional.isPresent()) {
+            User user = userOptional.get();
+            // Wasiat wasiat = user.getWasiat();
+            List<Wasiat> wasiatList = wasiatRepository.findAll();
+
+            for (Wasiat wasiat : wasiatList) {
+                if (isMatchingIc(user.getIDNum(), wasiat)) {
+                    return wasiat;
+                }
+            }
+        }
+
+        return null;
+    }
+
+    private boolean isMatchingIc(String userIdNum, Wasiat wasiat) {
+        // Check AnakLelaki
+        if (isMatchingIcInList(userIdNum, wasiat.getAnakLelakiDetails())) {
+            return true;
+        }
+
+        // Check AnakPerempuan
+        if (isMatchingIcInList(userIdNum, wasiat.getAnakPerempuanDetails())) {
+            return true;
+        }
+
+        // Check AnakAngkat
+        if (isMatchingIcInList(userIdNum, wasiat.getAnakAngkatDetails())) {
+            return true;
+        }
+
+        // Check Isteri
+        if (isMatchingIcInList(userIdNum, wasiat.getIsteriDetails())) {
+            return true;
+        }
+
+        // Check Suami
+        if (isMatchingIcInList(userIdNum, wasiat.getSuamiDetails())) {
+            return true;
+        }
+
+        return false;
+    }
+
+    private boolean isMatchingIcInList(String userIdNum, List<?> details) {
+        for (Object detail : details) {
+            if (detail instanceof AnakLelakiDetail) {
+                AnakLelakiDetail anakLelaki = (AnakLelakiDetail) detail;
+                if (userIdNum.equals(anakLelaki.getIc())) {
+                    return true;
+                }
+            } else if (detail instanceof AnakPerempuanDetail) {
+                AnakPerempuanDetail anakPerempuan = (AnakPerempuanDetail) detail;
+                if (userIdNum.equals(anakPerempuan.getIc())) {
+                    return true;
+                }
+            } else if (detail instanceof AnakAngkatDetail) {
+                AnakAngkatDetail anakAngkat = (AnakAngkatDetail) detail;
+                if (userIdNum.equals(anakAngkat.getIc())) {
+                    return true;
+                }
+            } else if (detail instanceof IsteriDetail) {
+                IsteriDetail isteri = (IsteriDetail) detail;
+                if (userIdNum.equals(isteri.getIc())) {
+                    return true;
+                }
+            } else if (detail instanceof SuamiDetail) {
+                SuamiDetail suami = (SuamiDetail) detail;
+                if (userIdNum.equals(suami.getIc())) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
 
 }

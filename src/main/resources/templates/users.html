@@ -47,7 +47,7 @@
           <li><a class="nav-link scrollto active" href="#hero">Laman Utama</a></li>
           <li><a class="nav-link scrollto" href="#about">Tentang Kami</a></li>
           <li><a class="nav-link scrollto" href="#services">Servis</a></li>
-          <li><a class="nav-link scrollto " href="#portfolio">Portfolio</a></li>
+          <li><a class="nav-link scrollto " th:href="@{/propertyList}">Info Harta</a></li>
           <li><a class="nav-link scrollto" href="#pricing">Pricing</a></li>
           <li><a class="nav-link scrollto" href="#team">Ahli Kumpulan</a></li>
           <li class="dropdown"><a href="#"><span>Drop Down</span> <i class="bi bi-chevron-down"></i></a>
@@ -57,8 +57,8 @@
                 <ul>
                   <li><a th:href="@{/wasiat/create}">create</a></li>
                   <li><a th:href="@{/wasiat/list}">list</a></li>
-                  <li><a th:href="@{/wasiat/update}">update</a></li>
-                  <li><a th:href="@{/wasiat/delete}">delete</a></li>
+                  <li><a th:href="@{/wasiat/details/{userId}(userId=${userId})}">Wasiat Details</a></li>
+                  <li><a th:href="@{/wasiat/inquiryResult}">result</a></li>
                   <li><a href="#">Deep Drop Down 5</a></li>
                 </ul>
               </li>

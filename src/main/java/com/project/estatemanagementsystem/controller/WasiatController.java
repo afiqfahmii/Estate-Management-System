@@ -2,6 +2,8 @@ package com.project.estatemanagementsystem.controller;
 
 import java.util.List;
 
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,32 +22,33 @@ public class WasiatController {
 
     private final UserService userService;
     private final WasiatService wasiatService;
-    
 
     public WasiatController(UserService userService, WasiatService wasiatService) {
         this.userService = userService;
         this.wasiatService = wasiatService;
+
     }
 
     @GetMapping("/wasiat/create")
     public String showCreateForm(Model model) {
-        User loggedInUser = getLoggedInUser();
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String username = authentication.getName();
+        User user = userService.getCurrentUser();
+        Wasiat wasiat = new Wasiat();
+        wasiat.setUser(user);
 
-        WasiatDto wasiat = new WasiatDto();
-        wasiat.setUser(loggedInUser);
-
+        model.addAttribute("username", username);
         model.addAttribute("wasiat", wasiat);
 
         return "createWasiat";
     }
 
     @PostMapping("/wasiat/create")
-    public String createWasiat(@ModelAttribute("wasiat") Wasiat wasiat, Model model) {
+    public String createWasiat(@ModelAttribute("wasiat") Wasiat wasiat) {
         
         wasiatService.saveWasiat(wasiat);
-        model.addAttribute("wasiatPost", wasiat);
 
-        return "postWasiat";
+        return "createWasiat";
     }
 
     @GetMapping("/wasiat/list")
@@ -53,29 +56,8 @@ public class WasiatController {
         User loggedInUser = getLoggedInUser();
         List<Wasiat> wasiatList = wasiatService.getWasiatByUser(loggedInUser);
         model.addAttribute("wasiatList", wasiatList);
-
         return "wasiatList";
     }
-
-    @GetMapping("/wasiat/show/{userId}")
-    public String showUserWasiatList(@PathVariable Long userId, Model model) {
-        Wasiat wasiat = wasiatService.getWasiatByUserId(userId);
-        model.addAttribute("wasiatShow", wasiat);
-        return "showWasiat";
-    }
-    // @GetMapping("/wasiat/update/{id}")
-    // public String showUpdateForm(@PathVariable Long id, Model model) {
-    // Wasiat wasiat = wasiatService.findWasiatById(id);
-    // model.addAttribute("wasiat", wasiat);
-    // return "updateWasiat";
-    // }
-
-    // @PostMapping("/wasiat/update/{id}")
-    // public String updateWasiat(@PathVariable("id") Long id,
-    // @ModelAttribute("wasiat") WasiatDto wasiatDto) {
-    // wasiatService.updateWasiat(id, wasiatDto.getContent());
-    // return "redirect:/wasiat/list";
-    // }
 
     @GetMapping("/wasiat/delete/{id}")
     public String deleteWasiat(@PathVariable Long id) {
@@ -88,7 +70,6 @@ public class WasiatController {
     }
 
     // ? ADMIN --------------------------------------------------------------------
-
 
     @GetMapping("/admin/list")
     public String listAllWasiat(Model model) {
@@ -103,18 +84,12 @@ public class WasiatController {
         return "redirect:/admin/list";
     }
 
-    // -------------------------------------------------------
-
     @GetMapping("/admin/edit/{userId}")
     public String EditUserWasiat(@PathVariable Long userId, Model model) {
-
         Wasiat wasiat = wasiatService.getWasiatByUserId(userId);
-
         if (wasiat == null) {
-
             return "redirect:/error";
         }
-
         model.addAttribute("wasiat", wasiat);
         return "updateWasiat";
     }
@@ -124,5 +99,19 @@ public class WasiatController {
         wasiatService.updateWasiat(wasiat);
         return "redirect:/admin/list";
     }
+
+    //--------------------------------------------------------------------------------------------------------------------
+
+    @GetMapping("/wasiat/details/{userId}")
+public String showWasiatDetails(@PathVariable Long userId, Model model) {
+    Wasiat wasiat = wasiatService.getWasiatDetailsByUserId(userId);
+
+    if (wasiat != null) {
+        model.addAttribute("wasiat", wasiat);
+        return "wasiatDetails";
+    } else {
+        return "users";
+    }
+}
 
 }

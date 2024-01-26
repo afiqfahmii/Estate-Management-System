@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en"
+xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wasiat Details</title>
+</head>
+<body>
+
+<h2>Wasiat Details</h2>
+
+<div th:if="${wasiat != null}">
+    <p>User ID: <span th:text="${wasiat.user.name}"></span></p>
+    <p>User ID: <span th:text="${wasiat.user.id}"></span></p>
+    <p>Gender: <span th:text="${wasiat.gender}"></span></p>
+    <p>suami: <span th:text="${wasiat.suami}"></span></p>
+    <p>isteri: <span th:text="${wasiat.isteri}"></span></p>
+    <p>anakLelaki: <span th:text="${wasiat.anakLelaki}"></span></p>
+    <p>anakPerempuan: <span th:text="${wasiat.anakPerempuan}"></span></p>
+    <p>anakAngkat: <span th:text="${wasiat.anakAngkat}"></span></p>
+    <p>perbelanjaan: <span th:text="${wasiat.perbelanjaan}"></span></p>
+    <p>anggaran: <span th:text="${wasiat.anggaran}"></span></p>
+    <p>hibah: <span th:text="${wasiat.hibah}"></span></p>
+    
+</div>
+<div th:if="${wasiat == null}">
+    <p>Wasiat not found for the user.</p>
+</div>
+
+</body>
+</html>

@@ -13,6 +13,8 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -27,8 +29,6 @@ import lombok.Setter;
 @Table(name="users")
 public class User
 {
-
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -42,24 +42,21 @@ public class User
     @Column(nullable=false)
     private String password;
 
+    
     private String IDNum;
 
-    
     private String IDType;
 
-    
     private String gender;
 
-    
+    private String phoneNum;
+
     private String dob;
 
-   
     private String address;
 
-    
     private String postcode;
 
-    
     private String statecode;
 
     @ManyToMany(fetch = FetchType.EAGER, cascade=CascadeType.ALL)
@@ -69,4 +66,9 @@ public class User
             inverseJoinColumns={@JoinColumn(name="ROLE_ID", referencedColumnName="ID")})
     private List<Role> roles = new ArrayList<>();
 
+    @OneToOne(mappedBy = "user")
+    private Wasiat wasiat; 
+
+    @OneToMany(fetch = FetchType.EAGER, cascade=CascadeType.ALL, mappedBy = "user")
+    private List<Property> properties = new ArrayList<>();
 }

@@ -2,6 +2,7 @@ package com.project.estatemanagementsystem.dto;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -26,6 +27,7 @@ public class UserDto
 
     private String IDType;
 
+    @Size(max = 12, message = "ID number cannot exceed 12 characters")
     private String IDNum;
 
     private String gender;
@@ -33,7 +35,8 @@ public class UserDto
     private String dob;
 
     private String address;
-
+    
+    @Size(min = 5, max = 5, message = "Postcode must be exactly 5 characters")
     private String postcode;
 
     private String statecode;

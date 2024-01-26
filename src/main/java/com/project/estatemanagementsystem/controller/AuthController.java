@@ -77,7 +77,12 @@ public class AuthController {
 
         if (authentication.isAuthenticated()) {
             String username = authentication.getName();
+            User user = userService.getCurrentUser();
+            Long userId = user.getId();
+            
+            
             model.addAttribute("username", username);
+            model.addAttribute("userId", userId);
         }
         return "users";
     }

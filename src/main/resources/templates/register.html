@@ -70,9 +70,7 @@
                                th:field="*{IDNum}"
                                type="text"
                         />
-                        <p th:errors="*{lastName}" class="text-danger"
-                           th:if="${#fields.hasErrors('lastName')}">
-                        </p>
+                        <span th:if="${#fields.hasErrors('IDNum')}" class="text-danger" th:errors="*{IDNum}"></span>
                     </div>
                     <div class="form-group mb-3">
                         <label class="form-label" for="IDType">Identification Type</label>
@@ -82,7 +80,6 @@
                             <option value="Old IC">Old IC</option>
                             <option value="Police Number">Police Number</option>
                             <option value="Army Number">Army Number</option>
-                            <option value="Passport">Passport</option>
                         </select>
                         <p th:errors="*{IDType}" class="text-danger" th:if="${#fields.hasErrors('IDType')}"></p>
                     </div>
@@ -90,8 +87,8 @@
                         <label class="form-label" for="gender">Gender</label>
                         <select class="form-control" id="gender" name="gender" th:field="*{gender}">
                             <option value="">Choose</option>
-                            <option value="Old IC">Male</option>
-                            <option value="Police Number">Female</option>
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
                         </select>
                         <p th:errors="*{gender}" class="text-danger" th:if="${#fields.hasErrors('gender')}"></p>
                     </div>

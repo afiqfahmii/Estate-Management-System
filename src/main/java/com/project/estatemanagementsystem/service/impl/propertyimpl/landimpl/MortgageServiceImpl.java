@@ -1,0 +1,52 @@
+package com.project.estatemanagementsystem.service.impl.propertyimpl.landimpl;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.project.estatemanagementsystem.entity.User;
+import com.project.estatemanagementsystem.entity.property.land.Mortgage;
+import com.project.estatemanagementsystem.repository.propertyrepository.landrepository.MortgageRepository;
+import com.project.estatemanagementsystem.service.propertyservice.landservice.MortgageService;
+
+@Service
+public class MortgageServiceImpl implements MortgageService{
+    @Autowired
+    private MortgageRepository mortgageRepository;
+
+    @Override
+    public List<Mortgage> getAllMortgages(){
+        return mortgageRepository.findAll();
+    }
+
+    @Override
+    public List<Mortgage> getMortgagesByUser(User user){
+        return mortgageRepository.findByUser(user);
+    }
+
+    @Override
+    public List<Mortgage>getMortgagesByUserId(Long userId){
+        return mortgageRepository.findByUserId(userId);
+    }
+
+    @Override
+    public Mortgage saveMortgage(Mortgage mortgage){
+        return mortgageRepository.save(mortgage);
+    }
+
+    @Override
+    public Mortgage getMortgageById(Long id) {
+        return mortgageRepository.findById(id).get();
+    }
+
+    @Override
+    public Mortgage updateMortgage(Mortgage mortgage){
+        return mortgageRepository.save(mortgage);
+    }
+
+    @Override
+    public void deleteMortgageById(Long id){
+        mortgageRepository.deleteById(id);
+    }
+}

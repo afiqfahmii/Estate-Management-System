@@ -26,5 +26,6 @@ public interface WasiatService {
 
     void updateWasiat(Wasiat wasiat);
 
+    Wasiat getWasiatDetailsByUserId(Long userId);
     
 }
