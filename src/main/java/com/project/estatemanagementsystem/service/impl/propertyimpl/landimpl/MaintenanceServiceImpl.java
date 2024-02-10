@@ -42,7 +42,22 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 
     @Override
     public Maintenance updateMaintenance(Maintenance maintenance){
-        return maintenanceRepository.save(maintenance);
+        Maintenance existingMaintenance = getMaintenanceById(maintenance.getId());
+
+        existingMaintenance.setId(maintenance.getId());
+        existingMaintenance.setTitleId(maintenance.getTitleId());
+        existingMaintenance.setTax(maintenance.getTax());
+        existingMaintenance.setState(maintenance.getState());
+        existingMaintenance.setDistrict(maintenance.getDistrict());
+        existingMaintenance.setAddress(maintenance.getAddress());
+        existingMaintenance.setLotNumber(maintenance.getLotNumber());
+        existingMaintenance.setArea(maintenance.getArea());
+        existingMaintenance.setType(maintenance.getType());
+        existingMaintenance.setRegDate(maintenance.getRegDate());
+        existingMaintenance.setCurrent(maintenance.getCurrent());
+        existingMaintenance.setOutstanding(maintenance.getOutstanding());
+        
+        return maintenanceRepository.save(existingMaintenance);
     }
 
     @Override

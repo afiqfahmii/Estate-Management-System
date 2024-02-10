@@ -19,7 +19,7 @@ public class VehicleController implements PropertyBuilder<Vehicle>{
     @Autowired
     private UserService userService;
 
-    @GetMapping("/formvehicle")
+    @GetMapping("/formProperty?type=vehicle")
     public String showForm(Model model){
         User loggedInUser = userService.getCurrentUser();
 
@@ -27,7 +27,7 @@ public class VehicleController implements PropertyBuilder<Vehicle>{
         vehicle.setUser(loggedInUser);
 
         model.addAttribute("Vehicle", vehicle);
-        return "formVehicle";
+        return "formProperty";
     }
 
     @PostMapping("/saveVehicle")

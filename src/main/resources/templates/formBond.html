@@ -94,20 +94,18 @@
       <div class="estate-form-content">
         <h2>Bond</h2>
         <form th:action="@{/saveBond}" th:object="${Bond}" method="post">
-            <label for="idNumber">ID Number:</label>
-            <input type="text" id="idNumber" name="idNumber" th:field="*{idNumber}" required>
-
+           
             <label for="agencyName">Agency Name:</label>
-            <input type="text" id="agencyName" name="agencyName" th:field="*{agencyName}" required>
+            <input type="text" id="agencyName" name="agencyName" th:field="*{agencyName}"  required>
 
             <label for="agencyAddress">Agency Address:</label>
             <input type="text" id="agencyAddress" name="agencyAddress" th:field="*{agencyAddress}" required>
 
             <label for="amount">Amount:</label>
-            <input type="text" id="amount" name="amount" th:field="*{amount}" required>
+            <input type="number" id="amount" name="amount" th:field="*{amount}" step="any" required>
 
             <label for="share">Share:</label>
-            <input type="text" id="share" name="share" th:field="*{share}" required>
+            <input type="number" id="share" name="share" th:field="*{share}" step="any" required>
 
             <input type="hidden" th:field="*{user}" th:value="${Bond.user}" />
             

@@ -44,27 +44,28 @@
 
       <nav id="navbar" class="navbar">
         <ul>
-          <li><a class="nav-link scrollto active" href="#hero">Laman Utama</a></li>
-          <li><a class="nav-link scrollto" href="#about">Tentang Kami</a></li>
-          <li><a class="nav-link scrollto" href="#services">Servis</a></li>
+          <li><a class="nav-link scrollto active" href="#hero">Home</a></li>
+          <li><a class="nav-link scrollto" href="#about">About</a></li>
+          <li><a class="nav-link scrollto" href="#services">Service</a></li>
           <li><a class="nav-link scrollto " th:href="@{/propertyList}">Info Harta</a></li>
           <li><a class="nav-link scrollto" href="#pricing">Pricing</a></li>
           <li><a class="nav-link scrollto" href="#team">Ahli Kumpulan</a></li>
-          <li class="dropdown"><a href="#"><span>Drop Down</span> <i class="bi bi-chevron-down"></i></a>
+          <li class="dropdown"><a href="#"><span>More</span> <i class="bi bi-chevron-down"></i></a>
             <ul>
-              <li><a href="#">Drop Down 1</a></li>
-              <li class="dropdown"><a href="#"><span>Deep Drop Down</span> <i class="bi bi-chevron-right"></i></a>
+              <li class="dropdown"><a href="#"><span>Heirs Management</span> <i class="bi bi-chevron-right"></i></a>
                 <ul>
-                  <li><a th:href="@{/wasiat/create}">create</a></li>
-                  <li><a th:href="@{/wasiat/list}">list</a></li>
-                  <li><a th:href="@{/wasiat/details/{userId}(userId=${userId})}">Wasiat Details</a></li>
-                  <li><a th:href="@{/wasiat/inquiryResult}">result</a></li>
-                  <li><a href="#">Deep Drop Down 5</a></li>
+                  <li><a th:href="@{/wasiat/create}">Add Heirs</a></li>
+                  <li><a th:href="@{/wasiat/edit/{userId}(userId=${userId})}">Update Heirs</a></li>
                 </ul>
               </li>
-              <li><a href="#">Drop Down 2</a></li>
-              <li><a href="#">Drop Down 3</a></li>
-              <li><a href="#">Drop Down 4</a></li>
+              <li class="dropdown"><a href="#"><span>Estate Management</span> <i class="bi bi-chevron-right"></i></a>
+                <ul>
+                  <li><a th:href="@{/propertyList}">Add Estate</a></li>
+                  <li><a th:href="@{/wasiat/edit/{userId}(userId=${userId})}">Update Estate</a></li>
+                </ul>
+              </li>
+              <li><a th:href="@{/wasiat/details/{userId}(userId=${userId})}">Wasiat Information</a></li>
+              <li><a th:href="@{/wasiat/view/{userId}(userId=${userId})}">Personal Information</a></li>
             </ul>
           </li>
           <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
@@ -89,8 +90,8 @@
       <!-- Slide 1 -->
       <div class="carousel-item active">
         <div class="carousel-container">
-          <h2 class="animate__animated animate__fadeInDown">Selamat Datang ke <span>EMS!</span></h2>
-          <p class="animate__animated fanimate__adeInUp">Ut velit est quam dolor ad a aliquid qui aliquid. Sequi ea ut et est quaerat sequi nihil ut aliquam. Occaecati alias dolorem mollitia ut. Similique ea voluptatem. Esse doloremque accusamus repellendus deleniti vel. Minus et tempore modi architecto.</p>
+          <h2 class="animate__animated animate__fadeInDown">Welcome to <span>EMS!</span></h2>
+          <p class="animate__animated fanimate__adeInUp">Welcome to the Estate Management System, a comprehensive platform designed to facilitate meticulous planning of your inheritance and the allocation of your assets in accordance with Islamic principles.</p>
           <a href="#about" class="btn-get-started animate__animated animate__fadeInUp scrollto">Read More</a>
         </div>
       </div>
@@ -98,7 +99,7 @@
       <!-- Slide 2 -->
       <div class="carousel-item">
         <div class="carousel-container">
-          <h2 class="animate__animated animate__fadeInDown">Rancang Perwarisan</h2>
+          <h2 class="animate__animated animate__fadeInDown">Plan Property</h2>
           <p class="animate__animated animate__fadeInUp">Ut velit est quam dolor ad a aliquid qui aliquid. Sequi ea ut et est quaerat sequi nihil ut aliquam. Occaecati alias dolorem mollitia ut. Similique ea voluptatem. Esse doloremque accusamus repellendus deleniti vel. Minus et tempore modi architecto.</p>
           <a href="#about" class="btn-get-started animate__animated animate__fadeInUp scrollto">Read More</a>
         </div>
@@ -154,20 +155,20 @@
         <div class="row content" data-aos="fade-up">
           <div class="col-lg-6">
             <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-              magna aliqua.
+              Our mission is to provide a comprehensive and user-friendly solution that ensures the seamless organization of your assets and the fulfillment of your wishes in line with Sharia law.
             </p>
             <ul>
-              <li><i class="ri-check-double-line"></i> Ullamco laboris nisi ut aliquip ex ea commodo consequat</li>
-              <li><i class="ri-check-double-line"></i> Duis aute irure dolor in reprehenderit in voluptate velit</li>
-              <li><i class="ri-check-double-line"></i> Ullamco laboris nisi ut aliquip ex ea commodo consequat</li>
+              <li><i class="ri-check-double-line"></i>Sharia-Compliant Planning</li>
+              <li><i class="ri-check-double-line"></i> Wasiat Property Management</li>
+              <li><i class="ri-check-double-line"></i> User-Friendly Interface</li>
             </ul>
           </div>
           <div class="col-lg-6 pt-4 pt-lg-0">
             <p>
-              Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-              velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-              culpa qui officia deserunt mollit anim id est laborum.
+              At the Islamic Estate Management System, we believe in facilitating responsible, ethical, and secure estate management practices. 
+              Whether you're planning for the future or updating your existing arrangements, trust us to be your partner in ensuring your legacy is 
+              preserved in a manner that respects your values and the principles of Islamic inheritance. Start your journey towards peace of mind and 
+              a lasting legacy today.
             </p>
             <a href="#" class="btn-learn-more">Learn More</a>
           </div>
@@ -182,27 +183,27 @@
 
         <ul class="nav nav-tabs row d-flex">
           <li class="nav-item col-3" data-aos="zoom-in">
-            <a class="nav-link active show" data-bs-toggle="tab" href="#tab-1">
+            <a class="nav-link" data-bs-toggle="tab" href="#tab-1">
               <i class="ri-gps-line"></i>
-              <h4 class="d-none d-lg-block">Modi sit est dela pireda nest</h4>
+              <h4 class="d-none d-lg-block">Sharia-Compliant Planning</h4>
             </a>
           </li>
           <li class="nav-item col-3" data-aos="zoom-in" data-aos-delay="100">
             <a class="nav-link" data-bs-toggle="tab" href="#tab-2">
               <i class="ri-body-scan-line"></i>
-              <h4 class="d-none d-lg-block">Unde praesenti mara setra le</h4>
+              <h4 class="d-none d-lg-block">Wasiat Property Management</h4>
             </a>
           </li>
           <li class="nav-item col-3" data-aos="zoom-in" data-aos-delay="200">
             <a class="nav-link" data-bs-toggle="tab" href="#tab-3">
               <i class="ri-sun-line"></i>
-              <h4 class="d-none d-lg-block">Pariatur explica nitro dela</h4>
+              <h4 class="d-none d-lg-block">Security and Confidentiality</h4>
             </a>
           </li>
           <li class="nav-item col-3" data-aos="zoom-in" data-aos-delay="300">
             <a class="nav-link" data-bs-toggle="tab" href="#tab-4">
               <i class="ri-store-line"></i>
-              <h4 class="d-none d-lg-block">Nostrum qui dile node</h4>
+              <h4 class="d-none d-lg-block">Comprehensive Documentation</h4>
             </a>
           </li>
         </ul>
@@ -211,21 +212,18 @@
           <div class="tab-pane active show" id="tab-1">
             <div class="row">
               <div class="col-lg-6 order-2 order-lg-1 mt-3 mt-lg-0">
-                <h3>Voluptatem dignissimos provident quasi corporis voluptates sit assumenda.</h3>
+                <h3>Sharia-Compliant Planning</h3>
                 <p class="fst-italic">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-                  magna aliqua.
+                  Ensure that your estate planning aligns with Islamic jurisprudence by utilizing our 
+                  system's Sharia-compliant framework. Safeguard the interests of your loved ones and 
+                  adhere to the principles of fairness and justice in wealth distribution.
                 </p>
                 <ul>
-                  <li><i class="ri-check-double-line"></i> Ullamco laboris nisi ut aliquip ex ea commodo consequat.</li>
-                  <li><i class="ri-check-double-line"></i> Duis aute irure dolor in reprehenderit in voluptate velit.</li>
-                  <li><i class="ri-check-double-line"></i> Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate trideta storacalaperda mastiro dolore eu fugiat nulla pariatur.</li>
+                  <li><i class="ri-check-double-line"></i> Align your estate planning with Islamic jurisprudence.</li>
+                  <li><i class="ri-check-double-line"></i> Ensure fairness and justice in wealth distribution.</li>
+                  <li><i class="ri-check-double-line"></i> Adhere to principles outlined in Sharia for ethical inheritance.</li>
                 </ul>
-                <p>
-                  Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-                  velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-                  culpa qui officia deserunt mollit anim id est laborum
-                </p>
+                
               </div>
               <div class="col-lg-6 order-1 order-lg-2 text-center">
                 <img src="assets/img/features-1.png" alt="" class="img-fluid">
@@ -235,21 +233,16 @@
           <div class="tab-pane" id="tab-2">
             <div class="row">
               <div class="col-lg-6 order-2 order-lg-1 mt-3 mt-lg-0">
-                <h3>Neque exercitationem debitis soluta quos debitis quo mollitia officia est</h3>
-                <p>
-                  Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-                  velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-                  culpa qui officia deserunt mollit anim id est laborum
-                </p>
+                <h3>Wasiat Property Management</h3>
                 <p class="fst-italic">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-                  magna aliqua.
+                  Seamlessly manage your Wasiat properties within the system. Specify your wishes regarding the distribution of assets, 
+                  taking into account the guidelines outlined in Islamic law. Our platform ensures the accurate execution of your will, 
+                  providing you with peace of mind.
                 </p>
                 <ul>
-                  <li><i class="ri-check-double-line"></i> Ullamco laboris nisi ut aliquip ex ea commodo consequat.</li>
-                  <li><i class="ri-check-double-line"></i> Duis aute irure dolor in reprehenderit in voluptate velit.</li>
-                  <li><i class="ri-check-double-line"></i> Provident mollitia neque rerum asperiores dolores quos qui a. Ipsum neque dolor voluptate nisi sed.</li>
-                  <li><i class="ri-check-double-line"></i> Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate trideta storacalaperda mastiro dolore eu fugiat nulla pariatur.</li>
+                  <li><i class="ri-check-double-line"></i> Efficiently manage Wasiat properties within the system.</li>
+                  <li><i class="ri-check-double-line"></i> Specify wishes for asset distribution in accordance with Islamic law.</li>
+                  <li><i class="ri-check-double-line"></i>Ensure accurate execution of your will with attention to Islamic guidelines.</li>
                 </ul>
               </div>
               <div class="col-lg-6 order-1 order-lg-2 text-center">
@@ -260,21 +253,16 @@
           <div class="tab-pane" id="tab-3">
             <div class="row">
               <div class="col-lg-6 order-2 order-lg-1 mt-3 mt-lg-0">
-                <h3>Voluptatibus commodi ut accusamus ea repudiandae ut autem dolor ut assumenda</h3>
+                <h3>Security and Confidentiality</h3>
                 <p>
-                  Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-                  velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-                  culpa qui officia deserunt mollit anim id est laborum
+                  Your privacy is paramount to us. With state-of-the-art security measures, our platform ensures that your sensitive information is 
+                  safeguarded. Trust us to handle your estate details with the utmost confidentiality and integrity.
                 </p>
                 <ul>
-                  <li><i class="ri-check-double-line"></i> Ullamco laboris nisi ut aliquip ex ea commodo consequat.</li>
-                  <li><i class="ri-check-double-line"></i> Duis aute irure dolor in reprehenderit in voluptate velit.</li>
-                  <li><i class="ri-check-double-line"></i> Provident mollitia neque rerum asperiores dolores quos qui a. Ipsum neque dolor voluptate nisi sed.</li>
+                  <li><i class="ri-check-double-line"></i> Advanced security measures for data protection.</li>
+                  <li><i class="ri-check-double-line"></i> Strict confidentiality to safeguard sensitive information.</li>
+                  <li><i class="ri-check-double-line"></i> Trust in our commitment to privacy.</li>
                 </ul>
-                <p class="fst-italic">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-                  magna aliqua.
-                </p>
               </div>
               <div class="col-lg-6 order-1 order-lg-2 text-center">
                 <img src="assets/img/features-3.png" alt="" class="img-fluid">
@@ -284,20 +272,16 @@
           <div class="tab-pane" id="tab-4">
             <div class="row">
               <div class="col-lg-6 order-2 order-lg-1 mt-3 mt-lg-0">
-                <h3>Omnis fugiat ea explicabo sunt dolorum asperiores sequi inventore rerum</h3>
+                <h3>Comprehensive Documentation</h3>
                 <p>
-                  Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-                  velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-                  culpa qui officia deserunt mollit anim id est laborum
-                </p>
-                <p class="fst-italic">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-                  magna aliqua.
+                  Generate detailed reports and documentation that encapsulate your estate plan. 
+                  These documents serve as a valuable reference for your beneficiaries, offering 
+                  transparency and clarity in the execution of your will.
                 </p>
                 <ul>
-                  <li><i class="ri-check-double-line"></i> Ullamco laboris nisi ut aliquip ex ea commodo consequat.</li>
-                  <li><i class="ri-check-double-line"></i> Duis aute irure dolor in reprehenderit in voluptate velit.</li>
-                  <li><i class="ri-check-double-line"></i> Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate trideta storacalaperda mastiro dolore eu fugiat nulla pariatur.</li>
+                  <li><i class="ri-check-double-line"></i> Generate detailed reports and documentation.</li>
+                  <li><i class="ri-check-double-line"></i> Valuable references for beneficiaries.</li>
+                  <li><i class="ri-check-double-line"></i> Transparent and clear execution of your will.</li>
                 </ul>
               </div>
               <div class="col-lg-6 order-1 order-lg-2 text-center">
@@ -316,8 +300,8 @@
 
         <div class="row" data-aos="zoom-out">
           <div class="col-lg-9 text-center text-lg-start">
-            <h3>Call To Action</h3>
-            <p> Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+            <h3>Preserving Legacies with Integrity: Your Future, Our Commitment.</h3>
+            <p>Empowering responsible planning for a secure tomorrow with our Sharia-compliant Estate Management System.</p>
           </div>
           <div class="col-lg-3 cta-btn-container text-center">
             <a class="cta-btn align-middle" href="#">Call To Action</a>
@@ -333,30 +317,30 @@
 
         <div class="section-title" data-aos="zoom-out">
           <h2>Servis</h2>
-          <p>Apa yang Kami Sediakan?</p>
+          <p>What do we provide?</p>
         </div>
 
         <div class="row">
           <div class="col-lg-4 col-md-6">
             <div class="icon-box" data-aos="zoom-in-left">
               <div class="icon"><i class="bi bi-house" style="color: #ff689b;"></i></div>
-              <h4 class="title"><a href="">Rancang Perwarisan</a></h4>
-              <p class="description">Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident</p>
+              <h4 class="title"><a th:href="@{/wasiat/create}">Add Heirs</a></h4>
+              <p class="description">Easily choose and manage heirs for a Sharia-compliant asset distribution. Simplify inheritance planning with confidence, ensuring your legacy is well-preserved and personalized</p>
             </div>
           </div>
           <div class="col-lg-4 col-md-6 mt-5 mt-md-0">
             <div class="icon-box" data-aos="zoom-in-left" data-aos-delay="100">
               <div class="icon"><i class="bi bi-calculator" style="color: #e9bf06;"></i></div>
-              <h4 class="title"><a href="">Kalkulator Faraid</a></h4>
-              <p class="description">Minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat tarad limino ata</p>
+              <h4 class="title"><a th:href="@{/propertyList}">Add Estate </a></h4>
+              <p class="description">Add your assets effortlessly with the 'Add Estate' feature. Streamline your estate planning with ease, ensuring a well-organized and Sharia-compliant approach to securing your legacy.</p>
             </div>
           </div>
 
           <div class="col-lg-4 col-md-6 mt-5 mt-lg-0 ">
             <div class="icon-box" data-aos="zoom-in-left" data-aos-delay="200">
               <div class="icon"><i class="bi bi-card-checklist" style="color: #3fcdc7;"></i></div>
-              <h4 class="title"><a href="">Sed ut perspiciatis</a></h4>
-              <p class="description">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur</p>
+              <h4 class="title"><a th:href="@{/wasiat/details/{userId}(userId=${userId})}">Wasiat Information</a></h4>
+              <p class="description">Securely manage your Wasiat details with our feature. Your children can easily handle heirs and estate information, making legacy planning simple and secure.</p>
             </div>
           </div>
           <div class="col-lg-4 col-md-6 mt-5">

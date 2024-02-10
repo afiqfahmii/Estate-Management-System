@@ -19,7 +19,7 @@ public class QuitRentController implements PropertyBuilder<QuitRent>{
     @Autowired
     private UserService userService;
 
-    @GetMapping("/formquitrent")
+    @GetMapping("/formProperty?type=quitrent")
     public String showForm(Model model){
         User loggedInUser = userService.getCurrentUser();
 
@@ -27,7 +27,7 @@ public class QuitRentController implements PropertyBuilder<QuitRent>{
         quitRent.setUser(loggedInUser);
 
         model.addAttribute("QuitRent", quitRent);
-        return "formQuitRent";
+        return "formProperty";
     }
 
     @PostMapping("/saveQuitRent")

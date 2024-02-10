@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+    <title>Update Heirs</title>
+    <meta content="" name="description">
+    <meta content="" name="keywords">
+
+    <!-- Favicons -->
+    <link th:href="@{/img/favicon.png}" rel="icon">
+    <link th:href="@{/img/apple-touch-icon.png}" rel="apple-touch-icon">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+          rel="stylesheet">
+
+    <!-- Vendor CSS Files -->
+    <link th:href="@{/vendor/animate.css/animate.min.css}" rel="stylesheet">
+    <link th:href="@{/vendor/aos/aos.css}" rel="stylesheet">
+    <link th:href="@{/vendor/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
+    <link th:href="@{/vendor/bootstrap-icons/bootstrap-icons.css}" rel="stylesheet">
+    <link th:href="@{/vendor/boxicons/css/boxicons.min.css}" rel="stylesheet">
+    <link th:href="@{/vendor/glightbox/css/glightbox.min.css}" rel="stylesheet">
+    <link th:href="@{/vendor/remixicon/remixicon.css}" rel="stylesheet">
+    <link th:href="@{/vendor/swiper/swiper-bundle.min.css}" rel="stylesheet">
+
+    <!-- Template Main CSS File -->
+    <link th:href="@{/css/style.css}" rel="stylesheet">
+
+    <!-- =======================================================
+    * Template Name: Selecao
+    * Updated: Sep 18 2023 with Bootstrap v5.3.2
+    * Template URL: https://bootstrapmade.com/selecao-bootstrap-template/
+    * Author: BootstrapMade.com
+    * License: https://bootstrapmade.com/license/
+    ======================================================== -->
+</head>
+
+<body>
+
+<!-- ======= Header ======= -->
+<header id="header" class="fixed-top d-flex align-items-center ">
+    <div class="container d-flex align-items-center justify-content-between">
+
+        <div class="logo">
+            <h1><a th:href="@{/users}">EMS</a></h1>
+        </div>
+
+        <nav id="navbar" class="navbar">
+            <ul>
+                <li><a class="nav-link scrollto " th:href="@{/users}">Home</a></li>
+                <li><a class="nav-link scrollto" th:href="@{/#about}">About</a></li>
+                <li><a class="nav-link scrollto" th:href="@{/#services}">Services</a></li>
+                <li><a class="nav-link scrollto " th:href="@{/#portfolio}">Portfolio</a></li>
+                <li><a class="nav-link scrollto" th:href="@{/#pricing}">Pricing</a></li>
+                <li><a class="nav-link scrollto" th:href="@{/#team}">Team</a></li>
+                <li class="dropdown"><a href="#"><span>Drop Down</span> <i class="bi bi-chevron-down"></i></a>
+                    <ul>
+                        <li><a th:href="@{/}">Drop Down 1</a></li>
+                        <li class="dropdown"><a href="#"><span>Deep Drop Down</span> <i
+                                class="bi bi-chevron-right"></i></a>
+                            <ul>
+                                <li><a th:href="@{/}">Deep Drop Down 1</a></li>
+                                <li><a th:href="@{/}">Deep Drop Down 2</a></li>
+                                <li><a th:href="@{/}">Deep Drop Down 3</a></li>
+                                <li><a th:href="@{/}">Deep Drop Down 4</a></li>
+                                <li><a th:href="@{/}">Deep Drop Down 5</a></li>
+                            </ul>
+                        </li>
+                        <li><a th:href="@{/}">Drop Down 2</a></li>
+                        <li><a th:href="@{/}">Drop Down 3</a></li>
+                        <li><a th:href="@{/}">Drop Down 4</a></li>
+                    </ul>
+                </li>
+                <li><a class="nav-link scrollto" th:href="@{/#contact}">Contact</a></li>
+            </ul>
+            <nav id="navbar-login" class="navbar-login">
+                <ul>
+      
+                  <li><a class="nav-link scrollto"><span th:text="${username}"></span></a></li>
+                  <li><a class="nav-link scrollto" th:href="@{/logout}">Log Out</a></li>
+                </ul>
+              </nav>
+            <i class="bi bi-list mobile-nav-toggle"></i>
+        </nav><!-- .navbar -->
+
+    </div>
+</header><!-- End Header -->
+
+<main id="main">
+
+    <!-- ======= Breadcrumbs ======= -->
+    <section class="breadcrumbs">
+        <div class="container">
+
+            <div class="d-flex justify-content-between align-items-center">
+                <h2>Update Heirs</h2>
+                <ol>
+                    <li><a th:href="@{/users}">Home</a></li>
+                    <li>Personal Wasiat</li>
+                </ol>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="inner-page">
+        <div class="container">
+            <div class="estate-details">
+                <div class="estate-info">
+                    <div th:object="${wasiatShow}" class="mb-3">
+                      <p>User Id: <span th:text="*{user.id}"></span></p>
+                      <p>User Name: <span th:text="*{user.name}"></span></p>
+                      <p>Gender: <span th:text="*{gender}"></span></p>
+                      <p>Suami: <span th:text="*{suami}"></span></p>
+                      <p>Bil. Isteri: <span th:text="*{isteri}"></span></p>
+                      <p>Bil. Anak Lelaki: <span th:text="*{anakLelaki}"></span></p>
+                      <p>Bil. Anak Perempuan: <span th:text="*{anakPerempuan}"></span></p>
+                      <p>Bil. Anak Angkat: <span th:text="*{anakAngkat}"></span></p>
+                      <p>Perbelanjaan setahun: <span th:text="*{perbelanjaan}"></span></p>
+                      <p>Anggaran Gaji Setahun: <span th:text="*{anggaran}"></span></p>
+                      <p>Hibah: <span th:text="*{hibah}"></span></p>
+
+                      <div th:each="suami, iterStat : *{suamiDetails}">
+                        <div class="person-details">
+                            <label>Nama Suami:</label>
+                            <span th:text="*{suamiDetails[__${iterStat.index}__].name}"></span>
+                            <label>Nombor Ic:</label>
+                            <span th:text="*{suamiDetails[__${iterStat.index}__].ic}"></span>
+                        </div>
+                    </div>
+                    
+                    <div th:each="isteri, iterStat : *{isteriDetails}">
+                        <div class="person-details">
+                            <label>Nama Isteri:</label>
+                            <span th:text="*{isteriDetails[__${iterStat.index}__].name}"></span>
+                            <label>Nombor Ic:</label>
+                            <span th:text="*{isteriDetails[__${iterStat.index}__].ic}"></span>
+                        </div>
+                    </div>
+                    
+                    <div th:each="anakLelaki, iterStat : *{anakLelakiDetails}">
+                        <div class="person-details">
+                            <label>Nama Anak Lelaki:</label>
+                            <span th:text="*{anakLelakiDetails[__${iterStat.index}__].name}"></span>
+                            <label>Nombor Ic:</label>
+                            <span th:text="*{anakLelakiDetails[__${iterStat.index}__].ic}"></span>
+                            <label>OKU:</label>
+                            <span th:text="*{anakLelakiDetails[__${iterStat.index}__].oku}"></span>
+                        </div>
+                    </div>
+                    
+                    <div th:each="anakPerempuan, iterStat : *{anakPerempuanDetails}">
+                        <div class="person-details">
+                            <label>Nama Anak Perempuan:</label>
+                            <span th:text="*{anakPerempuanDetails[__${iterStat.index}__].name}"></span>
+                            <label>Nombor Ic:</label>
+                            <span th:text="*{anakPerempuanDetails[__${iterStat.index}__].ic}"></span>
+                            <label>OKU:</label>
+                            <span th:text="*{anakPerempuanDetails[__${iterStat.index}__].oku}"></span>
+                        </div>
+                    </div>
+                    
+                    <div th:each="anakAngkat, iterStat : *{anakAngkatDetails}">
+                        <div class="person-details">
+                            <label>Nama Anak Angkat:</label>
+                            <span th:text="*{anakAngkatDetails[__${iterStat.index}__].name}"></span>
+                            <label>Nombor Ic:</label>
+                            <span th:text="*{anakAngkatDetails[__${iterStat.index}__].ic}"></span>
+                            <label>OKU:</label>
+                            <span th:text="*{anakAngkatDetails[__${iterStat.index}__].oku}"></span>
+                        </div>
+                    </div>
+                    
+                    </div>
+                    <div th:if="${wasiatShow == null}">
+                        <p>Wasiat not found for the user.</p>
+                    </div>
+                </div>
+              </div>
+
+              <div th:each="property : ${propertyList}" >
+                <div th:if="${propertyList.isEmpty()}">Tiada maklumat harta yang telah dicatat.</div>
+                <div th:if="${property instanceof T(com.project.estatemanagementsystem.entity.property.land.Caveat)}">
+                  <div class="estate-details">
+                    <div class="estate-info">
+                      <h2>Caveat </h2>
+                      <p>Title ID: <span th:text="${property.titleId}"></span> </p>
+                      <p>Caveator Name: <span th:text="${property.caveatorName}"></span></p>
+                      <p>Caveator ID Number: <span th:text="${property.caveatorIdNumber}"></span> </p>
+                      <p>Caveator Address: <span th:text="${property.caveatorAddress}"></span></p>
+                    </div>
+                    <!--<a href="#" class="btn-delete">Buang</a>
+                    <a href="#" class="btn-edit-info">Kemaskini</a>-->
+                  </div>
+                </div>
+            
+                <div th:if="${property instanceof T(com.project.estatemanagementsystem.entity.property.land.Charge)}">
+                  <div class="estate-details">
+                    <div class="estate-info">
+                      <h2>Charge </h2>
+                      <p>Title ID: <span th:text="${property.titleId}"></span></p>
+                      <p>Chargor Name: <span th:text="${property.chargorName}"></span></p>
+                      <p>Chargor ID Number: <span th:text="${property.chargorIdNumber}"></span></p>
+                      <p>Chargee Name: <span th:text="${property.chargeeName}"></span></p>
+                      <p>Chargee ID Number: <span th:text="${property.chargeeIdNumber}"></span></p>
+                      <p>Charge Status: <span th:text="${property.chargeStatus}"</span></p>
+                      <p>Loan Amount: <span th:text="${property.loanAmount}"></span></p>
+                      <p>Loan Bank Name: <span th:text="${property.loanBankName}"></span></p>
+                      <p>Loan Bank Status: <span th:text="${property.loanBankStatus}"></span></p>
+                    </div>
+                    <!--<a href="#" class="btn-delete">Buang</a>
+                    <a href="#" class="btn-edit-info">Kemaskini</a>-->
+                  </div>
+                </div>
+            
+                <div th:if="${property instanceof T(com.project.estatemanagementsystem.entity.property.land.Easement)}">
+                  <div class="estate-details">
+                    <div class="estate-info">
+                      <h2>Easement </h2>
+                      <p>Title ID: <span th:text="${property.titleId}"></span></p>
+                    </div>
+                    <!--<a href="#" class="btn-delete">Buang</a>
+                    <a href="#" class="btn-edit-info">Kemaskini</a>-->
+                  </div>
+                </div>
+            
+                <div th:if="${property instanceof T(com.project.estatemanagementsystem.entity.property.land.Lease)}">
+                  <div class="estate-details">
+                    <div class="estate-info">
+                      <h2>Lease </h2>
+                      <p>Title ID: <span th:text="${property.titleId}"></span></p>
+                      <p>Lesser Name: <span th:text="${property.lesserName}"></span></p>
+                      <p>Lesser ID Number: <span th:text="${property.lesserIdNumber}"></span></p>
+                      <p>Start Date: <span th:text="${property.startDate}"></span></p>
+                      <p>End Date: <span th:text="${property.endDate}"></span></p>
+                    </div>
+                    <!--<a href="#" class="btn-delete">Buang</a>
+                    <a href="#" class="btn-edit-info">Kemaskini</a>-->
+                  </div>
+                </div>
+            
+                <div th:if="${property instanceof T(com.project.estatemanagementsystem.entity.property.land.Maintenance)}">
+                  <div class="estate-details">
+                    <div class="estate-info">
+                      <h2>Maintenance </h2>
+                      <p>Title ID: <span th:text="${property.titleId}"></span></p>
+                      <p>Maintenance Current Amount: <span th:text="${property.current}"></span></p>
+                      <p>Maintenance Outstanding Amount: <span th:text="${property.outstanding}"></span></p>
+                    </div>
+                    <!--<a href="#" class="btn-delete">Buang</a>
+                    <a href="#" class="btn-edit-info">Kemaskini</a>-->
+                  </div>
+                </div>
+            
+                <div th:if="${property instanceof T(com.project.estatemanagementsystem.entity.property.land.Mortgage)}">
+                  <div class="estate-details">
+                    <div class="estate-info">
+                      <h2>Mortgage </h2>
+                      <p>Title ID: <span th:text="${property.titleId}"></span></p>
+                      <p>Mortgage Amount: <span th:text="${property.amount}"></span></p>
+                      <p>Mortgagee Name: <span th:text="${property.mortgageeName}"></span></p>
+                      <p>Mortgagee Address: <span th:text="${property.mortgageeAddress}"></span></p>
+                      <p>Mortgage Start Date: <span th:text="${property.mortgageStartDate}"></span></p>
+                      <p>Mortgage End Date: <span th:text="${property.mortgageEndDate}"></span></p>
+                    </div>
+                    <!--<a href="#" class="btn-delete">Buang</a>
+                    <a href="#" class="btn-edit-info">Kemaskini</a>-->
+                  </div>
+                </div>
+            
+                <div th:if="${property instanceof T(com.project.estatemanagementsystem.entity.property.land.QuitRent)}">
+                  <div class="estate-details">
+                    <div class="estate-info">
+                      <h2>Quit Rent </h2>
+                      <p>Title ID: <span th:text="${property.titleId}"></span> </p>
+                      <p>Account Number: <span th:text="${property.accNumber}"></span> </p>
+                      <p>Quit Rent Year: <span th:text="${property.year}"></span> </p>
+                      <p>Quit Rent Amount: <span th:text="${property.amount}"></span> </p>
+                      <p>Quit Rent Payment Date: <span th:text="${property.paymentDate}"></span> </p>
+                      <p>Lot Number: <span th:text="${property.lotNumber}"></span> </p>
+                    </div>
+                    <!--<a href="#" class="btn-delete">Buang</a>
+                    <a href="#" class="btn-edit-info">Kemaskini</a>-->
+                  </div>
+                </div>
+            
+                <div th:if="${property instanceof T(com.project.estatemanagementsystem.entity.property.land.RightOfWay)}">
+                  <div class="estate-details">
+                    <div class="estate-info">
+                      <h2>Right of Way </h2>
+                      <p>Title ID: <span th:text="${property.titleId}"></span> </p>
+                    </div>
+                    <!--<a href="#" class="btn-delete">Buang</a>
+                    <a href="#" class="btn-edit-info">Kemaskini</a>-->
+                  </div>
+                </div>
+            
+                <div th:if="${property instanceof T(com.project.estatemanagementsystem.entity.property.land.Tenancy)}">
+                  <div class="estate-details">
+                    <div class="estate-info">
+                      <h2>Tenancy </h2>
+                      <p>Title ID: <span th:text="${property.titleId}"></span> </p>
+                      <p>Tenant Name: <span th:text="${property.tenantName}"></span> </p>
+                      <p>Tenant ID Number: <span th:text="${property.tenantIdNumber}"></span> </p>
+                      <p>Tenant Start Date: <span th:text="${property.startDate}"></span> </p>
+                      <p>Tenant End Date: <span th:text="${property.endDate}"></span> </p>
+                    </div>
+                    <!--<a href="#" class="btn-delete">Buang</a>
+                    <a href="#" class="btn-edit-info">Kemaskini</a>-->
+                  </div>
+                </div>
+            
+                <div th:if="${property instanceof T(com.project.estatemanagementsystem.entity.property.land.Transfer)}">
+                  <div class="estate-details">
+                    <div class="estate-info">
+                      <h2>Transfer </h2>
+                      <p>Title ID: <span th:text="${property.titleId}"></span> </p>
+                    </div>
+                    <!--<a href="#" class="btn-delete">Buang</a>
+                    <a href="#" class="btn-edit-info">Kemaskini</a>-->
+                  </div>
+                </div>
+            
+                <div th:if="${property instanceof T(com.project.estatemanagementsystem.entity.property.land.UtilitiesBill)}">
+                  <div class="estate-details">
+                    <div class="estate-info">
+                      <h2>Mortgage </h2>
+                      <p>Title ID: <span th:text="${property.titleId}"></span> </p>
+                      <p>ID Number: <span th:text="${property.idNumber}"></span> </p>
+                      <p>Bill Number: <span th:text="${property.billNumber}"></span> </p>
+                      <p>Account Number: <span th:text="${property.accNumber}"></span> </p>
+                      <p>Bill of Month: <span th:text="${property.billOfMonth}"></span> </p>
+                      <p>Amount: <span th:text="${property.amount}"></span> </p>
+                      <p>Bill of Year: <span th:text="${property.billOfYear}"></span> </p>
+                    </div>
+                    <!--<a href="#" class="btn-delete">Buang</a>
+                    <a href="#" class="btn-edit-info">Kemaskini</a>-->
+                  </div>
+                </div>
+            
+                <div th:if="${property instanceof T(com.project.estatemanagementsystem.entity.property.land.Waqf)}">
+                  <div class="estate-details">
+                    <div class="estate-info">
+                      <h2>Waqf </h2>
+                      <p>Title ID: <span th:text="${property.titleId}"></span> </p>
+                      <p>Nazir Name: <span th:text="${property.nazirName}"></span> </p>
+                      <p>Nazir ID Number: <span th:text="${property.nazirIdNumber}"></span> </p>
+                      <p>Status: <span th:text="${property.status}"></span> </p>
+                    </div>
+                    <!--<a href="#" class="btn-delete">Buang</a>
+                    <a href="#" class="btn-edit-info">Kemaskini</a>-->
+                  </div>
+                </div>
+            
+                <div th:if="${property instanceof T(com.project.estatemanagementsystem.entity.property.Bond)}">
+                  <div class="estate-details">
+                    <div class="estate-info">
+                      <h2>Bond </h2>
+                      <p>ID Number: <span th:text="${property.idNumber}"></span> </p>
+                      <p>Agency Name: <span th:text="${property.agencyName}"></span> </p>
+                      <p>Agency Address: <span th:text="${property.agencyAddress}"></span> </p>
+                      <p>Amount: <span th:text="${property.amount}"></span> </p>
+                      <p>Share: <span th:text="${property.share}"></span> </p>
+                    </div>
+                    <!--<a href="#" class="btn-delete">Buang</a>
+                    <a href="#" class="btn-edit-info">Kemaskini</a>-->
+                  </div>
+                </div>
+            
+                <div th:if="${property instanceof T(com.project.estatemanagementsystem.entity.property.Cash)}">
+                  <div class="estate-details">
+                    <div class="estate-info">
+                      <h2>Cash </h2>
+                      <p>ID Number: <span th:text="${property.idNumber}"></span> </p>
+                      <p>Account Type: <span th:text="${property.accType}"></span> </p>
+                      <p>Bank Name: <span th:text="${property.bankName}"></span></p>
+                      <p>Account Number: <span th:text="${property.accNumber}"></span> </p>
+                      <p>Amount: <span th:text="${property.amount}"></span> </p>
+                      <p>Account Status: <span th:text="${property.accStatus}"></span> </p>
+                    </div>
+                    <!--<a href="#" class="btn-delete">Buang</a>
+                    <a href="#" class="btn-edit-info">Kemaskini</a>-->
+                  </div>
+                </div>
+            
+                <div th:if="${property instanceof T(com.project.estatemanagementsystem.entity.property.Debenture)}">
+                  <div class="estate-details">
+                    <div class="estate-info">
+                      <h2>Debenture </h2>
+                      <p>ID Number: <span th:text="${property.idNumber}"></span> </p>
+                      <p>Agency Name: <span th:text="${property.agencyName}"></span> </p>
+                      <p>Agency Address: <span th:text="${property.agencyAddress}"></span> </p>
+                      <p>Amount: <span th:text="${property.amount}"></span> </p>
+                      <p>Share: <span th:text="${property.share}"></span> </p>
+                    </div>
+                    <!--<a href="#" class="btn-delete">Buang</a>
+                    <a href="#" class="btn-edit-info">Kemaskini</a>-->
+                  </div>
+                </div>
+            
+                <div th:if="${property instanceof T(com.project.estatemanagementsystem.entity.property.Share)}">
+                  <div class="estate-details">
+                    <div class="estate-info">
+                      <h2>Share </h2>
+                      <p>ID Number: <span th:text="${property.idNumber}"></span> </p>
+                      <p>Agency Name: <span th:text="${property.agencyName}"></span> </p>
+                      <p>Agency Address: <span th:text="${property.agencyAddress}"></span> </p>
+                      <p>Amount: <span th:text="${property.amount}"></span> </p>
+                      <p>Share: <span th:text="${property.share}"></span> </p>
+                    </div>
+                    <!--<a href="#" class="btn-delete">Buang</a>
+                    <a href="#" class="btn-edit-info">Kemaskini</a>-->
+                  </div>
+                </div>
+            
+                <div th:if="${property instanceof T(com.project.estatemanagementsystem.entity.property.UnitTrust)}">
+                  <div class="estate-details">
+                    <div class="estate-info">
+                      <h2>Unit Trust </h2>
+                      <p>ID Number: <span th:text="${property.idNumber}"></span> </p>
+                      <p>Name: <span th:text="${property.name}"></span> </p>
+                      <p>Amount: <span th:text="${property.amount}"></span> </p>
+                      <p>Matured Date: <span th:text="${property.maturedDate}"></span> </p>
+                    </div>
+                    <!--<a href="#" class="btn-delete">Buang</a>
+                    <a href="#" class="btn-edit-info">Kemaskini</a>-->
+                  </div>
+                </div>
+            
+                <div th:if="${property instanceof T(com.project.estatemanagementsystem.entity.property.Vehicle)}">
+                  <div class="estate-details">
+                    <div class="estate-info">
+                      <h2>Vehicle </h2>
+                      <p>ID Number: <span th:text="${property.idNumber}"></span> </p>
+                      <p>Registration Number: <span th:text="${property.carRegNum}"></span> </p>
+                      <p>Brand: <span th:text="${property.brand}"></span> </p>
+                      <p>Model: <span th:text="${property.model}"></span> </p>
+                      <p>Year: <span th:text="${property.year}"></span> </p>
+                      <p>Transaction Date: <span th:text="${property.transactionDate}"></span> </p>
+                      <p>CC: <span th:text="${property.cc}"></span> </p>
+                      <p>Insurance Start Date: <span th:text="${property.insuranceStartDate}"></span> </p>
+                      <p>Insurance End Date: <span th:text="${property.insuranceEndDate}"></span> </p>
+                      <p>Insurance Amount: <span th:text="${property.insuranceAmount}"></span> </p>
+                      <p>Roadtax Start Date: <span th:text="${property.roadtaxStartDate}"></span> </p>
+                      <p>Roadtax End Date: <span th:text="${property.roadtaxEndDate}"></span> </p>
+                      <p>Roadtax Amount: <span th:text="${property.roadtaxAmount}"></span> </p>
+                      
+                    </div>
+                  </div>
+                </div>
+                
+              </div>
+        </div>
+    </section>
+
+</main>
+
+<!-- ======= Footer ======= -->
+<footer id="footer">
+    <div class="container">
+        <h3>Selecao</h3>
+        <p>Et aut eum quis fuga eos sunt ipsa nihil. Labore corporis magni eligendi fuga maxime saepe commodi
+            placeat.</p>
+        <div class="social-links">
+            <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
+            <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
+            <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
+            <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
+            <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+        </div>
+        <div class="copyright">
+            &copy; Copyright <strong><span>Selecao</span></strong>. All Rights Reserved
+        </div>
+        <div class="credits">
+            <!-- All the links in the footer should remain intact. -->
+            <!-- You can delete the links only if you purchased the pro version. -->
+            <!-- Licensing information: https://bootstrapmade.com/license/ -->
+            <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/selecao-bootstrap-template/ -->
+            Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+        </div>
+    </div>
+</footer><!-- End Footer -->
+
+<a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
+        class="bi bi-arrow-up-short"></i></a>
+<script th:src="@{/vendor/aos/aos.js}"></script>
+<script th:src="@{/vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>
+<script th:src="@{/vendor/glightbox/js/glightbox.min.js}"></script>
+<script th:src="@{/vendor/isotope-layout/isotope.pkgd.min.js}"></script>
+<script th:src="@{/vendor/swiper/swiper-bundle.min.js}"></script>
+<script th:src="@{/vendor/php-email-form/validate.js}"></script>
+
+<!-- Template Main JS File -->
+<script th:src="@{/js/main.js}"></script>
+
+</body>
+
+</html>

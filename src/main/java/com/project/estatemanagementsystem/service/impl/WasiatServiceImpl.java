@@ -181,8 +181,27 @@ public class WasiatServiceImpl implements WasiatService {
 
     }
 
+    // @Override
+    // public Wasiat getWasiatDetailsByUserId(Long userId) {
+    //     Optional<User> userOptional = userRepository.findById(userId);
+
+    //     if (userOptional.isPresent()) {
+    //         User user = userOptional.get();
+    //         // Wasiat wasiat = user.getWasiat();
+    //         List<Wasiat> wasiatList = wasiatRepository.findAll();
+
+    //         for (Wasiat wasiat : wasiatList) {
+    //             if (isMatchingIc(user.getIDNum(), wasiat)) {
+    //                 return wasiat;
+    //             }
+    //         }
+    //     }
+
+    //     return null;
+    // }
+
     @Override
-    public Wasiat getWasiatDetailsByUserId(Long userId) {
+    public User getWasiatDetailsByUserId(Long userId) {
         Optional<User> userOptional = userRepository.findById(userId);
 
         if (userOptional.isPresent()) {
@@ -192,7 +211,12 @@ public class WasiatServiceImpl implements WasiatService {
 
             for (Wasiat wasiat : wasiatList) {
                 if (isMatchingIc(user.getIDNum(), wasiat)) {
-                    return wasiat;
+                    User parent = new User();
+                    
+                    parent = wasiat.getUser();
+                    return parent;
+                }else if(isMatchingUser(user.getId(), wasiat)){
+                    return user;
                 }
             }
         }
@@ -258,6 +282,15 @@ public class WasiatServiceImpl implements WasiatService {
                 }
             }
         }
+        return false;
+    }
+
+    private boolean isMatchingUser(Long userId, Wasiat wasiat){
+        User user = wasiat.getUser();
+        if(userId.equals(user.getId())) {
+            return true;
+        }
+
         return false;
     }
 

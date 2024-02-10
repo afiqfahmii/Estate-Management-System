@@ -30,18 +30,17 @@
   <link th:href="@{/vendor/glightbox/css/glightbox.min.css}" rel="stylesheet">
   <link th:href="@{/vendor/remixicon/remixicon.css}" rel="stylesheet">
   <link th:href="@{/vendor/swiper/swiper-bundle.min.css}" rel="stylesheet">
-  <link href="assets/css/style.css" rel="stylesheet">
 
   <style>
     body {
-      font-family: 'Arial', sans-serif;
+      font-family: "Open Sans", sans-serif;
       background-color: #f4f4f4;
       margin: 0;
       padding: 0;
       display: flex;
       justify-content: center;
       align-items: center;
-      height: 100vh;
+      min-height: 100vh;
       flex-direction: column;
     }
 
@@ -52,7 +51,7 @@
       padding: 80px;
       width: 400px;
       margin-bottom: 50px;
-      margin-top: 350px;
+      margin-top: 30px;
     }
 
     label {
@@ -77,112 +76,65 @@
       box-sizing: border-box;
     }
 
-    .green-button:hover {
-      background-color: #45a049;
-    }
+    
 
-    .blue-button:hover {
-      background-color: #3498db;
-      color: #fff;
-      padding: 10px 20px;
-      border: none;
-      cursor: pointer;
-    }
-
-    .grey-button:hover {
-      background-color: #757575;
-      color: #fff;
-      padding: 10px 20px;
-      border: none;
-      cursor: pointer;
-    }
-
-    .hidden {
-      display: none;
-    }
-
-    .form-group {
-      margin-bottom: 15px;
-    }
-
-    .button-container button {
-      margin-bottom: 100px;
-    }
-
-    .button-container {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-end;
-      margin-top: 20px;
-    }
-
-    /* .inline-selects {
-display: flex;
-justify-content: space-between;
-/* gap: 10px; */
-    /* Adjust the gap as needed 
-} */
   </style>
 
-  <!-- =======================================================
-* Template Name: Selecao
-* Updated: Sep 18 2023 with Bootstrap v5.3.2
-* Template URL: https://bootstrapmade.com/selecao-bootstrap-template/
-* Author: BootstrapMade.com
-* License: https://bootstrapmade.com/license/
-======================================================== -->
 </head>
 
 <body>
   <!-- ======= Header ======= -->
-  <header id="header" class="fixed-top d-flex align-items-center">
+  <header id="header" class="fixed-top d-flex align-items-center ">
     <div class="container d-flex align-items-center justify-content-between">
 
-      <div class="logo">
-        <h1><a href="index.html">Selecao</a></h1>
-        <!-- Uncomment below if you prefer to use an image logo -->
-        <!-- <a href="index.html"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
-      </div>
+        <div class="logo">
+            <h1><a th:href="@{/users}">EMS</a></h1>
+        </div>
 
-      <nav id="navbar" class="navbar">
-        <ul>
-          <li><a class="nav-link scrollto active" href="#hero">Laman Utama</a></li>
-          <li><a class="nav-link scrollto" href="#about">Tentang Kami</a></li>
-          <li><a class="nav-link scrollto" href="#services">Servis</a></li>
-          <li><a class="nav-link scrollto " href="#portfolio">Portfolio</a></li>
-          <li><a class="nav-link scrollto" href="#pricing">Pricing</a></li>
-          <li><a class="nav-link scrollto" href="#team">Ahli Kumpulan</a></li>
-          <li class="dropdown"><a href="#"><span>Drop Down</span> <i class="bi bi-chevron-down"></i></a>
+        <nav id="navbar" class="navbar">
             <ul>
-              <li><a href="#">Drop Down 1</a></li>
-              <li class="dropdown"><a href="#"><span>Deep Drop Down</span> <i class="bi bi-chevron-right"></i></a>
-                <ul>
-                  <li><a href="#">Deep Drop Down 1</a></li>
-                  <li><a href="#">Deep Drop Down 2</a></li>
-                  <li><a href="#">Deep Drop Down 3</a></li>
-                  <li><a href="#">Deep Drop Down 4</a></li>
-                  <li><a href="#">Deep Drop Down 5</a></li>
-                </ul>
-              </li>
-              <li><a href="#">Drop Down 2</a></li>
-              <li><a href="#">Drop Down 3</a></li>
-              <li><a href="#">Drop Down 4</a></li>
+                <li><a class="nav-link scrollto " th:href="@{/users}">Home</a></li>
+                <li><a class="nav-link scrollto" th:href="@{/#about}">About</a></li>
+                <li><a class="nav-link scrollto" th:href="@{/#services}">Services</a></li>
+                <li><a class="nav-link scrollto " th:href="@{/#portfolio}">Portfolio</a></li>
+                <li><a class="nav-link scrollto" th:href="@{/#pricing}">Pricing</a></li>
+                <li><a class="nav-link scrollto" th:href="@{/#team}">Team</a></li>
+                <li class="dropdown"><a href="#"><span>More</span> <i class="bi bi-chevron-down"></i></a>
+                  <ul>
+                    <li><a href="#">Edit Profile</a></li>
+                    <li class="dropdown"><a href="#"><span>Heirs Management</span> <i class="bi bi-chevron-right"></i></a>
+                      <ul>
+                        <li><a th:href="@{/wasiat/create}">Add Heirs</a></li>
+                        <li><a th:href="@{/wasiat/edit/{userId}(userId=${userId})}">Update Heirs</a></li>
+                      </ul>
+                    </li>
+                    <li class="dropdown"><a href="#"><span>Estate Management</span> <i class="bi bi-chevron-right"></i></a>
+                      <ul>
+                        <li><a th:href="@{/propertyList}">Add Estate</a></li>
+                        <li><a th:href="@{/wasiat/edit/{userId}(userId=${userId})}">Update Estate</a></li>
+                      </ul>
+                    </li>
+                    <li><a th:href="@{/wasiat/details/{userId}(userId=${userId})}">Wasiat Information</a></li>
+                    <li><a th:href="@{/wasiat/view/{userId}(userId=${userId})}">Personal Information</a></li>
+                  </ul>
+                </li>
+                <li><a class="nav-link scrollto" th:href="@{/#contact}">Contact</a></li>
             </ul>
-          </li>
-          <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
-        </ul>
-        <nav id="navbar-login" class="navbar-login">
-          <ul>
-            <li><a class="nav-link scrollto"><span th:text="${username}"></span></a></li>
-            <li><a class="nav-link scrollto" th:href="@{/logout}">Log Out</a></li>
-          </ul>
-        </nav>
-        <i class="bi bi-list mobile-nav-toggle"></i>
-      </nav>
+            <nav id="navbar-login" class="navbar-login">
+                <ul>
+      
+                  <li><a class="nav-link scrollto"><span th:text="${username}"></span></a></li>
+                  <li><a class="nav-link scrollto" th:href="@{/logout}">Log Out</a></li>
+                </ul>
+              </nav>
+            <i class="bi bi-list mobile-nav-toggle"></i>
+        </nav><!-- .navbar -->
 
     </div>
-  </header>
+</header><!-- End Header -->
 
+<section class="inner-page">
+<div class="container">
   <form action="/wasiat/create" method="post" th:object="${wasiat}">
     <div id="firstForm">
       <div>
@@ -347,435 +299,383 @@ justify-content: space-between;
 
     <input type="hidden" th:field="*{user}" th:value="${wasiat.user}" />
     <br />
-    <button type="submit" id="submitButton" class="hidden green-button">Submit</button>
+    <button type="submit" id="submitButton" class="hidden green-button" >Submit</button>
+
   </form>
+</div>
+ </section> 
 
-  <script>
 
-    // function addSonNameField() {
-    //   var sonNamesContainer = document.getElementById("sonNamesContainer");
-    //   var selectedSon = document.getElementById("anakLelaki").value;
+<a class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+<script>
+ 
+  var nameDetails = [];
+  var icDetails = [];
 
-    //   sonNamesContainer.innerHTML = "";
+  function addSonNameField() {
+    var sonNamesContainer = document.getElementById("sonNamesContainer");
+    var selectedSon = document.getElementById("anakLelaki").value;
 
-    //   for (var i = 0; i < selectedSon; i++) {
+    sonNamesContainer.innerHTML = "";
 
-    //     var newSonEntry = document.createElement("div");
-    //     newSonEntry.className = "sonEntry";
-    //     var newLabelName = document.createElement("label");
-    //     newLabelName.textContent = "\nNama Anak Lelaki " + (i + 1) + " :";
+    for (var i = 0; i < selectedSon; i++) {
+      var newSonEntry = document.createElement("div");
+      newSonEntry.className = "sonEntry";
 
-    //     var newNameInput = document.createElement("input");
-    //     newNameInput.type = "text";
-    //     newNameInput.name = "anakLelakiDetails[" + i + "].name";
-    //     newNameInput.placeholder = "Name";
+      var newLabelName = document.createElement("label");
+      newLabelName.textContent = "\nNama Anak Lelaki " + (i + 1) + " :";
 
-    //     var newIcInput = document.createElement("input");
-    //     newIcInput.type = "text";
-    //     newIcInput.name = "anakLelakiDetails[" + i + "].ic";
-    //     newIcInput.placeholder = "IC";
+      var newNameInput = document.createElement("input");
+      newNameInput.type = "text";
+      newNameInput.name = "anakLelakiDetails[" + i + "].name";
+      newNameInput.placeholder = "Name";
 
-    //     var newLabel = document.createElement("label");
-    //     newLabel.textContent = "\nAdakah anak ini OKU?";
+      var newIcInput = document.createElement("input");
+      newIcInput.type = "text";
+      newIcInput.name = "anakLelakiDetails[" + i + "].ic";
+      newIcInput.placeholder = "IC";
 
-    //     var newOkuInput = document.createElement("select");
-    //     newOkuInput.name = "anakLelakiDetails[" + i + "].oku";
+      var newLabel = document.createElement("label");
+      newLabel.textContent = "\nAdakah anak ini OKU?";
 
-    //     var option1 = document.createElement("option");
-    //     option1.value = "";
-    //     option1.text = "pilih";
+      var newOkuInput = document.createElement("select");
+      newOkuInput.name = "anakLelakiDetails[" + i + "].oku";
 
-    //     var option2 = document.createElement("option");
-    //     option2.value = "ya";
-    //     option2.text = "ya";
+      var option1 = document.createElement("option");
+      option1.value = "";
+      option1.text = "pilih";
 
-    //     var option3 = document.createElement("option");
-    //     option3.value = "tidak";
-    //     option3.text = "tidak";
+      var option2 = document.createElement("option");
+      option2.value = "ya";
+      option2.text = "ya";
 
-    //     newOkuInput.add(option1);
-    //     newOkuInput.add(option2);
-    //     newOkuInput.add(option3);
+      var option3 = document.createElement("option");
+      option3.value = "tidak";
+      option3.text = "tidak";
 
-    //     newSonEntry.appendChild(newLabelName);
-    //     newSonEntry.appendChild(newNameInput);
-    //     newSonEntry.appendChild(newIcInput);
-    //     newSonEntry.appendChild(newLabel);
-    //     newSonEntry.appendChild(newOkuInput);
+      newOkuInput.add(option1);
+      newOkuInput.add(option2);
+      newOkuInput.add(option3);
 
-    //     sonNamesContainer.appendChild(newSonEntry);
-    //   }
-    // }
+      newSonEntry.appendChild(newLabelName);
+      newSonEntry.appendChild(newNameInput);
+      newSonEntry.appendChild(newIcInput);
+      newSonEntry.appendChild(newLabel);
+      newSonEntry.appendChild(newOkuInput);
 
-    var nameDetails = []; // Array to store entered details
-    var icDetails = [];
+      sonNamesContainer.appendChild(newSonEntry);
 
-    function addSonNameField() {
-      var sonNamesContainer = document.getElementById("sonNamesContainer");
-      var selectedSon = document.getElementById("anakLelaki").value;
+      // Validate and store details
+      newNameInput.addEventListener("blur", function (event) {
+        validateName(event.target);
+      });
 
-      sonNamesContainer.innerHTML = "";
-
-      for (var i = 0; i < selectedSon; i++) {
-        var newSonEntry = document.createElement("div");
-        newSonEntry.className = "sonEntry";
-
-        var newLabelName = document.createElement("label");
-        newLabelName.textContent = "\nNama Anak Lelaki " + (i + 1) + " :";
-
-        var newNameInput = document.createElement("input");
-        newNameInput.type = "text";
-        newNameInput.name = "anakLelakiDetails[" + i + "].name";
-        newNameInput.placeholder = "Name";
-
-        var newIcInput = document.createElement("input");
-        newIcInput.type = "text";
-        newIcInput.name = "anakLelakiDetails[" + i + "].ic";
-        newIcInput.placeholder = "IC";
-
-        var newLabel = document.createElement("label");
-        newLabel.textContent = "\nAdakah anak ini OKU?";
-
-        var newOkuInput = document.createElement("select");
-        newOkuInput.name = "anakLelakiDetails[" + i + "].oku";
-
-        var option1 = document.createElement("option");
-        option1.value = "";
-        option1.text = "pilih";
-
-        var option2 = document.createElement("option");
-        option2.value = "ya";
-        option2.text = "ya";
-
-        var option3 = document.createElement("option");
-        option3.value = "tidak";
-        option3.text = "tidak";
-
-        newOkuInput.add(option1);
-        newOkuInput.add(option2);
-        newOkuInput.add(option3);
-
-        newSonEntry.appendChild(newLabelName);
-        newSonEntry.appendChild(newNameInput);
-        newSonEntry.appendChild(newIcInput);
-        newSonEntry.appendChild(newLabel);
-        newSonEntry.appendChild(newOkuInput);
-
-        sonNamesContainer.appendChild(newSonEntry);
-
-        // Validate and store details
-        newNameInput.addEventListener("blur", function (event) {
-          validateName(event.target);
-        });
-
-        newIcInput.addEventListener("blur", function (event) {
-          validateIc(event.target);
-        });
-      }
+      newIcInput.addEventListener("blur", function (event) {
+        validateIc(event.target);
+      });
     }
+  }
 
-    function addDaughterNameField() {
-      var daughterNamesContainer = document.getElementById("daughterNamesContainer");
-      var selectedDaughter = document.getElementById("anakPerempuan").value;
+  function addDaughterNameField() {
+    var daughterNamesContainer = document.getElementById("daughterNamesContainer");
+    var selectedDaughter = document.getElementById("anakPerempuan").value;
 
-      daughterNamesContainer.innerHTML = "";
+    daughterNamesContainer.innerHTML = "";
 
-      for (var j = 0; j < selectedDaughter; j++) {
+    for (var j = 0; j < selectedDaughter; j++) {
 
-        var newDaughterEntry = document.createElement("div");
-        newDaughterEntry.className = "daughterEntry";
-        var newLabelName = document.createElement("label");
-        newLabelName.textContent = "\nNama Anak Perempuan " + (j + 1) + " :";
+      var newDaughterEntry = document.createElement("div");
+      newDaughterEntry.className = "daughterEntry";
+      var newLabelName = document.createElement("label");
+      newLabelName.textContent = "\nNama Anak Perempuan " + (j + 1) + " :";
 
-        var newNameInput = document.createElement("input");
-        newNameInput.type = "text";
-        newNameInput.name = "anakPerempuanDetails[" + j + "].name";
-        newNameInput.placeholder = "Name";
+      var newNameInput = document.createElement("input");
+      newNameInput.type = "text";
+      newNameInput.name = "anakPerempuanDetails[" + j + "].name";
+      newNameInput.placeholder = "Name";
 
-        var newIcInput = document.createElement("input");
-        newIcInput.type = "text";
-        newIcInput.name = "anakPerempuanDetails[" + j + "].ic";
-        newIcInput.placeholder = "IC";
+      var newIcInput = document.createElement("input");
+      newIcInput.type = "text";
+      newIcInput.name = "anakPerempuanDetails[" + j + "].ic";
+      newIcInput.placeholder = "IC";
 
-        var newLabel = document.createElement("label");
-        newLabel.textContent = "\nAdakah anak ini OKU?";
+      var newLabel = document.createElement("label");
+      newLabel.textContent = "\nAdakah anak ini OKU?";
 
-        var newOkuInput = document.createElement("select");
-        newOkuInput.name = "anakPerempuanDetails[" + j + "].oku";
+      var newOkuInput = document.createElement("select");
+      newOkuInput.name = "anakPerempuanDetails[" + j + "].oku";
 
-        var option1 = document.createElement("option");
-        option1.value = "";
-        option1.text = "pilih";
+      var option1 = document.createElement("option");
+      option1.value = "";
+      option1.text = "pilih";
 
-        var option2 = document.createElement("option");
-        option2.value = "ya";
-        option2.text = "ya";
+      var option2 = document.createElement("option");
+      option2.value = "ya";
+      option2.text = "ya";
 
-        var option3 = document.createElement("option");
-        option3.value = "tidak";
-        option3.text = "tidak";
+      var option3 = document.createElement("option");
+      option3.value = "tidak";
+      option3.text = "tidak";
 
-        newOkuInput.add(option1);
-        newOkuInput.add(option2);
-        newOkuInput.add(option3);
+      newOkuInput.add(option1);
+      newOkuInput.add(option2);
+      newOkuInput.add(option3);
 
-        newDaughterEntry.appendChild(newLabelName);
-        newDaughterEntry.appendChild(newNameInput);
-        newDaughterEntry.appendChild(newIcInput);
-        newDaughterEntry.appendChild(newLabel);
-        newDaughterEntry.appendChild(newOkuInput);
+      newDaughterEntry.appendChild(newLabelName);
+      newDaughterEntry.appendChild(newNameInput);
+      newDaughterEntry.appendChild(newIcInput);
+      newDaughterEntry.appendChild(newLabel);
+      newDaughterEntry.appendChild(newOkuInput);
 
-        daughterNamesContainer.appendChild(newDaughterEntry);
+      daughterNamesContainer.appendChild(newDaughterEntry);
 
-        newNameInput.addEventListener("blur", function(event){
-          validateName(event.target);
-        });
+      newNameInput.addEventListener("blur", function(event){
+        validateName(event.target);
+      });
 
-        newIcInput.addEventListener("blur", function (event){
-          validateIc(event.target);
-        });
-      }
+      newIcInput.addEventListener("blur", function (event){
+        validateIc(event.target);
+      });
     }
+  }
 
-    function addAngkatNameField() {
-      var angkatNamesContainer = document.getElementById("angkatNamesContainer");
-      var selectedAngkat = document.getElementById("anakAngkat").value;
+  function addAngkatNameField() {
+    var angkatNamesContainer = document.getElementById("angkatNamesContainer");
+    var selectedAngkat = document.getElementById("anakAngkat").value;
 
-      angkatNamesContainer.innerHTML = "";
+    angkatNamesContainer.innerHTML = "";
 
-      for (var i = 0; i < selectedAngkat; i++) {
+    for (var i = 0; i < selectedAngkat; i++) {
 
-        var newAngkatEntry = document.createElement("div");
-        newAngkatEntry.className = "angkatEntry";
-        var newLabelName = document.createElement("label");
-        newLabelName.textContent = "\nNama Anak Angkat " + (i + 1) + " :";
+      var newAngkatEntry = document.createElement("div");
+      newAngkatEntry.className = "angkatEntry";
+      var newLabelName = document.createElement("label");
+      newLabelName.textContent = "\nNama Anak Angkat " + (i + 1) + " :";
 
-        var newNameInput = document.createElement("input");
-        newNameInput.type = "text";
-        newNameInput.name = "anakAngkatDetails[" + i + "].name";
-        newNameInput.placeholder = "Name";
+      var newNameInput = document.createElement("input");
+      newNameInput.type = "text";
+      newNameInput.name = "anakAngkatDetails[" + i + "].name";
+      newNameInput.placeholder = "Name";
 
-        var newIcInput = document.createElement("input");
-        newIcInput.type = "text";
-        newIcInput.name = "anakAngkatDetails[" + i + "].ic";
-        newIcInput.placeholder = "IC";
+      var newIcInput = document.createElement("input");
+      newIcInput.type = "text";
+      newIcInput.name = "anakAngkatDetails[" + i + "].ic";
+      newIcInput.placeholder = "IC";
 
-        var newLabel = document.createElement("label");
-        newLabel.textContent = "\nAdakah anak ini OKU?";
+      var newLabel = document.createElement("label");
+      newLabel.textContent = "\nAdakah anak ini OKU?";
 
-        var newOkuInput = document.createElement("select");
-        newOkuInput.name = "anakAngkatDetails[" + i + "].oku";
+      var newOkuInput = document.createElement("select");
+      newOkuInput.name = "anakAngkatDetails[" + i + "].oku";
 
-        var option1 = document.createElement("option");
-        option1.value = "";
-        option1.text = "pilih";
+      var option1 = document.createElement("option");
+      option1.value = "";
+      option1.text = "pilih";
 
-        var option2 = document.createElement("option");
-        option2.value = "ya";
-        option2.text = "ya";
+      var option2 = document.createElement("option");
+      option2.value = "ya";
+      option2.text = "ya";
 
-        var option3 = document.createElement("option");
-        option3.value = "tidak";
-        option3.text = "tidak";
+      var option3 = document.createElement("option");
+      option3.value = "tidak";
+      option3.text = "tidak";
 
-        newOkuInput.add(option1);
-        newOkuInput.add(option2);
-        newOkuInput.add(option3);
+      newOkuInput.add(option1);
+      newOkuInput.add(option2);
+      newOkuInput.add(option3);
 
-        newAngkatEntry.appendChild(newLabelName);
-        newAngkatEntry.appendChild(newNameInput);
-        newAngkatEntry.appendChild(newIcInput);
-        newAngkatEntry.appendChild(newLabel);
-        newAngkatEntry.appendChild(newOkuInput);
+      newAngkatEntry.appendChild(newLabelName);
+      newAngkatEntry.appendChild(newNameInput);
+      newAngkatEntry.appendChild(newIcInput);
+      newAngkatEntry.appendChild(newLabel);
+      newAngkatEntry.appendChild(newOkuInput);
 
-        angkatNamesContainer.appendChild(newAngkatEntry);
+      angkatNamesContainer.appendChild(newAngkatEntry);
 
-        newNameInput.addEventListener("blur", function (event) {
-          validateName(event.target);
-        });
+      newNameInput.addEventListener("blur", function (event) {
+        validateName(event.target);
+      });
 
-        newIcInput.addEventListener("blur", function (event) {
-          validateIc(event.target);
-        });
-      }
+      newIcInput.addEventListener("blur", function (event) {
+        validateIc(event.target);
+      });
     }
+  }
 
-    function updateIsteriInputs() {
-      var isteriNamesContainer = document.getElementById("isteriNamesContainer");
-      var selectedIsteri = document.getElementById("isteri").value;
+  function updateIsteriInputs() {
+    var isteriNamesContainer = document.getElementById("isteriNamesContainer");
+    var selectedIsteri = document.getElementById("isteri").value;
 
-      // Clear existing entries
-      isteriNamesContainer.innerHTML = "";
+    // Clear existing entries
+    isteriNamesContainer.innerHTML = "";
 
-      // Generate new entries based on the selected number of Isteri
-      for (var i = 0; i < selectedIsteri; i++) {
-        var newIsteriEntry = document.createElement("div");
-        newIsteriEntry.className = "isteriEntry";
-        var newLabel = document.createElement("label");
-        newLabel.textContent = "\nNama Isteri " + (i + 1) + " :";
+    // Generate new entries based on the selected number of Isteri
+    for (var i = 0; i < selectedIsteri; i++) {
+      var newIsteriEntry = document.createElement("div");
+      newIsteriEntry.className = "isteriEntry";
+      var newLabel = document.createElement("label");
+      newLabel.textContent = "\nNama Isteri " + (i + 1) + " :";
 
-        var newNameInput = document.createElement("input");
-        newNameInput.type = "text";
-        newNameInput.name = "isteriDetails[" + i + "].name";
-        newNameInput.placeholder = "Name";
+      var newNameInput = document.createElement("input");
+      newNameInput.type = "text";
+      newNameInput.name = "isteriDetails[" + i + "].name";
+      newNameInput.placeholder = "Name";
 
-        var newIcInput = document.createElement("input");
-        newIcInput.type = "text";
-        newIcInput.name = "isteriDetails[" + i + "].ic";
-        newIcInput.placeholder = "IC";
+      var newIcInput = document.createElement("input");
+      newIcInput.type = "text";
+      newIcInput.name = "isteriDetails[" + i + "].ic";
+      newIcInput.placeholder = "IC";
 
-        newIsteriEntry.appendChild(newLabel);
-        newIsteriEntry.appendChild(newNameInput);
-        newIsteriEntry.appendChild(newIcInput);
+      newIsteriEntry.appendChild(newLabel);
+      newIsteriEntry.appendChild(newNameInput);
+      newIsteriEntry.appendChild(newIcInput);
 
-        isteriNamesContainer.appendChild(newIsteriEntry);
+      isteriNamesContainer.appendChild(newIsteriEntry);
 
-        newNameInput.addEventListener("blur", function (event) {
-          validateName(event.target);
-        });
+      newNameInput.addEventListener("blur", function (event) {
+        validateName(event.target);
+      });
 
-        newIcInput.addEventListener("blur", function (event) {
-          validateIc(event.target);
-        });
-      }
+      newIcInput.addEventListener("blur", function (event) {
+        validateIc(event.target);
+      });
     }
+  }
 
-    function validateName(inputElement) {
-      var inputValue = inputElement.value;
+  function validateName(inputElement) {
+    var inputValue = inputElement.value;
 
-      // Check for duplicates
-      if (nameDetails.includes(inputValue)) {
-        alert("Error: Duplicate name. Please enter a different name");
-        inputElement.value = ""; // Clear the input field
-      } else {
-        nameDetails.push(inputValue); // Store the value
-      }
+    // Check for duplicates
+    if (nameDetails.includes(inputValue)) {
+      alert("Error: Duplicate name. Please enter a different name");
+      inputElement.value = ""; // Clear the input field
+      nameDetails.length = 0;
+    } else {
+      nameDetails.push(inputValue); // Store the value
     }
+  }
 
-    function validateIc(inputElement) {
-      var inputValue = inputElement.value;
+  function validateIc(inputElement) {
+    var inputValue = inputElement.value;
 
-      // Check for duplicates
-      if (icDetails.includes(inputValue)) {
-        alert("Error: Duplicate IC. Please enter a different IC");
-        inputElement.value = ""; // Clear the input field
-      } else {
-        icDetails.push(inputValue); // Store the value
-      }
+    // Check for duplicates
+    if (icDetails.includes(inputValue)) {
+      alert("Error: Duplicate IC. Please enter a different IC");
+      inputElement.value = ""; // Clear the input field
+      icDetails.length = 0;
+    } else if (inputsValue.length !== 12){
+      alert("Error: IC must be exactly minimum and maximum 8 characters long");
+      inputElement.value = "";
+    } else {
+      icDetails.push(inputValue); // Store the value
     }
+  }
 
-    function updateSuami() {
-      var i = 0;
-      var suamiNamesContainer = document.getElementById("suamiNamesContainer");
-      var selectedSuami = document.getElementById("suami").value;
+  function updateSuami() {
+    var i = 0;
+    var suamiNamesContainer = document.getElementById("suamiNamesContainer");
+    var selectedSuami = document.getElementById("suami").value;
 
-      suamiNamesContainer.innerHTML = "";
+    suamiNamesContainer.innerHTML = "";
 
-      if (selectedSuami === "ada") {
-        var newSuamiEntry = document.createElement("div");
-        newSuamiEntry.className = "suamiEntry";
-        var newLabel = document.createElement("label");
-        newLabel.textContent = "\nNama Suami:";
+    if (selectedSuami === "ada") {
+      var newSuamiEntry = document.createElement("div");
+      newSuamiEntry.className = "suamiEntry";
+      var newLabel = document.createElement("label");
+      newLabel.textContent = "\nNama Suami:";
 
-        var newNameInput = document.createElement("input");
-        newNameInput.type = "text";
-        newNameInput.name = "suamiDetails[" + i + "].name";
-        newNameInput.placeholder = "Name";
+      var newNameInput = document.createElement("input");
+      newNameInput.type = "text";
+      newNameInput.name = "suamiDetails[" + i + "].name";
+      newNameInput.placeholder = "Name";
 
-        var newIcInput = document.createElement("input");
-        newIcInput.type = "text";
-        newIcInput.name = "suamiDetails[" + i + "].ic";
-        newIcInput.placeholder = "IC";
+      var newIcInput = document.createElement("input");
+      newIcInput.type = "text";
+      newIcInput.name = "suamiDetails[" + i + "].ic";
+      newIcInput.placeholder = "IC";
 
-        newSuamiEntry.appendChild(newLabel);
-        newSuamiEntry.appendChild(newNameInput);
-        newSuamiEntry.appendChild(newIcInput);
+      newSuamiEntry.appendChild(newLabel);
+      newSuamiEntry.appendChild(newNameInput);
+      newSuamiEntry.appendChild(newIcInput);
 
-        suamiNamesContainer.appendChild(newSuamiEntry);
-      }
+      suamiNamesContainer.appendChild(newSuamiEntry);
     }
+  }
 
-    //---------------------------------------------------------------------------
+  //---------------------------------------------------------------------------
 
-    function showForm() {
-      var genderSelect = document.getElementById("gender");
-      var isteriForm = document.getElementById("isteriNum");
-      var suamiForm = document.getElementById("suamiNum");
+  function showForm() {
+    var genderSelect = document.getElementById("gender");
+    var isteriForm = document.getElementById("isteriNum");
+    var suamiForm = document.getElementById("suamiNum");
 
-      // Reset the visibility for both forms
-      isteriForm.classList.add("hidden");
-      suamiForm.classList.add("hidden");
+    // Reset the visibility for both forms
+    isteriForm.classList.add("hidden");
+    suamiForm.classList.add("hidden");
 
-      if (genderSelect.value === "lelaki") {
-        // Show the isteriNum form
-        isteriForm.classList.remove("hidden");
-      } else if (genderSelect.value === "perempuan") {
-        // Show the suamiNum form
-        suamiForm.classList.remove("hidden");
-      }
+    if (genderSelect.value === "lelaki") {
+      // Show the isteriNum form
+      isteriForm.classList.remove("hidden");
+    } else if (genderSelect.value === "perempuan") {
+      // Show the suamiNum form
+      suamiForm.classList.remove("hidden");
     }
+  }
 
-    function showNextForm(prev, next) {
-      var prevForm = document.getElementById(prev);
-      var nextForm = document.getElementById(next);
+  function showNextForm(prev, next) {
+    var prevForm = document.getElementById(prev);
+    var nextForm = document.getElementById(next);
 
-      // Hide the prevForm
-      prevForm.classList.add("hidden");
+    // Hide the prevForm
+    prevForm.classList.add("hidden");
 
-      // Display the next form
-      nextForm.classList.remove("hidden");
+    // Display the next form
+    nextForm.classList.remove("hidden");
 
-      //fix problem for showing anakLelaki only
-      if (next === 'anakPunya') {
-        document.getElementById('anakPerempuanContainer').classList.add('hidden');
-        document.getElementById('anakAngkatContainer').classList.add('hidden');
-        document.getElementById('okuContainer').classList.add('hidden');
-      }
+    //fix problem for showing anakLelaki only
+    if (next === 'anakPunya') {
+      document.getElementById('anakPerempuanContainer').classList.add('hidden');
+      document.getElementById('anakAngkatContainer').classList.add('hidden');
+      document.getElementById('okuContainer').classList.add('hidden');
     }
+  }
 
-    function showPrevForm(prev, next) {
-      var prevForm = document.getElementById(prev);
-      var nextForm = document.getElementById(next);
+  function showPrevForm(prev, next) {
+    var prevForm = document.getElementById(prev);
+    var nextForm = document.getElementById(next);
 
-      // Hide the prevForm
-      nextForm.classList.add("hidden");
+    // Hide the prevForm
+    nextForm.classList.add("hidden");
 
-      // Display the next form
-      prevForm.classList.remove("hidden");
+    // Display the next form
+    prevForm.classList.remove("hidden");
+  }
+
+  function checkFormCompleteness() {
+    // Get values of the input elements
+    var perbelanjaan = document.getElementById('perbelanjaan').value;
+    var anggaran = document.getElementById('anggaran').value;
+    var hibah = document.getElementById('hibah').value;
+
+    // Check if all required fields are filled
+    if (perbelanjaan !== '' && anggaran !== '' && hibah !== '') {
+      // If yes, show the submit button
+      document.getElementById('submitButton').classList.remove('hidden');
+    } else {
+      // If not, hide the submit button
+      document.getElementById('submitButton').classList.add('hidden');
     }
+  }
+</script>
+<script th:src="@{/vendor/aos/aos.js}"></script>
+<script th:src="@{/vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>
+<script th:src="@{/vendor/glightbox/js/glightbox.min.js}"></script>
+<script th:src="@{/vendor/isotope-layout/isotope.pkgd.min.js}"></script>
+<script th:src="@{/vendor/swiper/swiper-bundle.min.js}"></script>
+<script th:src="@{/vendor/php-email-form/validate.js}"></script>
 
-    function checkFormCompleteness() {
-      // Get values of the input elements
-      var perbelanjaan = document.getElementById('perbelanjaan').value;
-      var anggaran = document.getElementById('anggaran').value;
-      var hibah = document.getElementById('hibah').value;
-
-      // Check if all required fields are filled
-      if (perbelanjaan !== '' && anggaran !== '' && hibah !== '') {
-        // If yes, show the submit button
-        document.getElementById('submitButton').classList.remove('hidden');
-      } else {
-        // If not, hide the submit button
-        document.getElementById('submitButton').classList.add('hidden');
-      }
-    }
-  </script>
-
-  
-
-  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
-      class="bi bi-arrow-up-short"></i></a>
-
-  <!-- Vendor JS Files -->
-  <script src="assets/vendor/aos/aos.js"></script>
-  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
-  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
-  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
-  <script src="assets/vendor/php-email-form/validate.js"></script>
-
-  <!-- Template Main JS File -->
-  <script src="assets/js/main.js"></script>
+<!-- Template Main JS File -->
+<script th:src="@{/js/main.js}"></script>
 </body>
 
 </html>

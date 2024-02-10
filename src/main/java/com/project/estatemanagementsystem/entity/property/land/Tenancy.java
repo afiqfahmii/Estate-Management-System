@@ -1,6 +1,6 @@
 package com.project.estatemanagementsystem.entity.property.land;
 
-import com.project.estatemanagementsystem.entity.Property;
+import com.project.estatemanagementsystem.entity.Land;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
@@ -15,10 +15,8 @@ import lombok.Setter;
 @AllArgsConstructor
 @Entity
 @Table(name="tenancy")
-public class Tenancy extends Property{
+public class Tenancy extends Land{
 
-    private String titleId;
-    
     private String tenantName;
 
     private String tenantIdNumber;

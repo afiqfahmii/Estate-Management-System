@@ -19,7 +19,7 @@ public class MaintenanceController implements PropertyBuilder<Maintenance>{
     @Autowired
     private UserService userService;
 
-    @GetMapping("/formmaintenance")
+    @GetMapping("/formProperty?type=maintenance")
     public String showForm(Model model){
         User loggedInUser = userService.getCurrentUser();
 
@@ -27,7 +27,7 @@ public class MaintenanceController implements PropertyBuilder<Maintenance>{
         maintenance.setUser(loggedInUser);
 
         model.addAttribute("Maintenance", maintenance);
-        return "formMaintenance";
+        return "formProperty";
     }
 
     @PostMapping("/saveMaintenance")

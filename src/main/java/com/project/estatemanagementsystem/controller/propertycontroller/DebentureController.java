@@ -19,7 +19,7 @@ public class DebentureController implements PropertyBuilder<Debenture>{
     @Autowired
     private UserService userService;
 
-    @GetMapping("/formdebenture")
+    @GetMapping("/formProperty?type=debenture")
     public String showForm(Model model){
         User loggedInUser = userService.getCurrentUser();
 
@@ -27,7 +27,7 @@ public class DebentureController implements PropertyBuilder<Debenture>{
         debenture.setUser(loggedInUser);
 
         model.addAttribute("Debenture", debenture);
-        return "formDebenture";
+        return "formProperty";
     }
 
     @PostMapping("/saveDebenture")

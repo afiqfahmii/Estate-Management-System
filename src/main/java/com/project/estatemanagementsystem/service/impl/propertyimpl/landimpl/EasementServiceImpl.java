@@ -42,11 +42,25 @@ public class EasementServiceImpl implements EasementService {
 
     @Override
     public Easement updateEasement(Easement easement){
-        return easementRepository.save(easement);
+        Easement existingEasement = getEasementById(easement.getId());
+
+        existingEasement.setId(easement.getId());
+        existingEasement.setTitleId(easement.getTitleId());
+        existingEasement.setTax(easement.getTax());
+        existingEasement.setState(easement.getState());
+        existingEasement.setDistrict(easement.getDistrict());
+        existingEasement.setAddress(easement.getAddress());
+        existingEasement.setLotNumber(easement.getLotNumber());
+        existingEasement.setArea(easement.getArea());
+        existingEasement.setType(easement.getType());
+        existingEasement.setRegDate(easement.getRegDate());
+        
+        return easementRepository.save(existingEasement);
     }
 
     @Override
     public void deleteEasementById(Long id){
         easementRepository.deleteById(id);
     }
+
 }

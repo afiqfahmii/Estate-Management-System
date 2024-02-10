@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Duplicate Name Error</title>
+</head>
+<body>
+    <div>
+        <h1>Error: Duplicate Name</h1>
+        <p>The name <span th:text="${param.name}"></span> already exists. Please choose a different name.</p>
+    </div>
+</body>
+</html>

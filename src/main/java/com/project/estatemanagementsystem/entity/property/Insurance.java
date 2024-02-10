@@ -18,10 +18,6 @@ import lombok.Setter;
 @Table(name="insurance")
 public class Insurance extends Property{
 
-    private String name;
-
-    private String idNumber;
-
     private double amount;
 
     private String maturedDate;

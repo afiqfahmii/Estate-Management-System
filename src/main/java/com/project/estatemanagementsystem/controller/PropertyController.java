@@ -7,8 +7,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import com.project.estatemanagementsystem.entity.Land;
 import com.project.estatemanagementsystem.entity.Property;
 import com.project.estatemanagementsystem.entity.User;
 import com.project.estatemanagementsystem.entity.property.Bond;
@@ -30,6 +32,7 @@ import com.project.estatemanagementsystem.entity.property.land.Tenancy;
 import com.project.estatemanagementsystem.entity.property.land.Transfer;
 import com.project.estatemanagementsystem.entity.property.land.UtilitiesBill;
 import com.project.estatemanagementsystem.entity.property.land.Waqf;
+import com.project.estatemanagementsystem.service.LandService;
 import com.project.estatemanagementsystem.service.PropertyService;
 import com.project.estatemanagementsystem.service.UserService;
 import com.project.estatemanagementsystem.service.propertyservice.BondService;
@@ -97,6 +100,8 @@ public class PropertyController {
     private UnitTrustService unitTrustService;
     @Autowired
     private VehicleService vehicleService;
+    @Autowired
+    private LandService landService;
 
     
     public PropertyController(PropertyService propertyService, UserService userService) {
@@ -114,6 +119,7 @@ public class PropertyController {
         User loggedInUser = getLoggedInUser();
         List<Property> propertyList = propertyService.getPropertiesByUser(loggedInUser);
 
+        model.addAttribute("loggedInUser", loggedInUser);
         model.addAttribute("propertyList", propertyList);
         return "propertyList";
     }
@@ -132,11 +138,36 @@ public class PropertyController {
 
     @PostMapping("/saveBond")
     public String saveBond(@ModelAttribute("Bond") Bond bond, Model model){
+
         bondService.saveBond(bond);
         model.addAttribute("successMessage", "Bond saved successfully!");
 
         return "redirect:/propertyList";
     }
+
+    @GetMapping("/formbondupdate/{id}")
+    public String formbondupdate(@PathVariable Long id, Model model){
+
+        Bond existingBond = bondService.getBondById(id);
+
+        model.addAttribute("Bond", existingBond);
+        return "formBondUpdate";
+    }
+
+    @PostMapping("/saveBondUpdate")
+    public String saveBondUpdate(@ModelAttribute("Bond") Bond bond, Model model){
+        bondService.updateBond(bond);
+        
+        model.addAttribute("successMessage", "Bond saved successfully!");
+
+        return "redirect:/propertyList";
+    }
+
+    @GetMapping("/deleteBond/{id}")
+	public String deleteBond(@PathVariable Long id) {
+		bondService.deleteBondById(id);
+		return "redirect:/propertyList";
+	}
 
     //CAVEAT
     @GetMapping("/formcaveat")
@@ -151,11 +182,43 @@ public class PropertyController {
     }
 
     @PostMapping("/saveCaveat")
-    public String saveCaveat(@ModelAttribute("Caveat") Caveat caveat){
+    public String saveCaveat(@ModelAttribute("Caveat") Caveat caveat, Model model){
+        Land existingLand = landService.getLandByTitleId(caveat.getTitleId());
+
+        if(existingLand != null){
+            model.addAttribute("msg", "Land with Title Id is already exist.");
+
+            return "formcaveat";
+        }
+
         caveatService.saveCaveat(caveat);
 
         return "redirect:/propertyList";
     }
+
+    @GetMapping("/formcaveatupdate/{id}")
+    public String formcaveatupdate(@PathVariable Long id, Model model){
+
+        Caveat existingCaveat = caveatService.getCaveatById(id);
+
+        model.addAttribute("Caveat", existingCaveat);
+        return "formCaveatUpdate";
+    }
+
+    @PostMapping("/saveCaveatUpdate")
+    public String saveCaveatUpdate(@ModelAttribute("Caveat") Caveat caveat, Model model){
+        caveatService.updateCaveat(caveat);
+        
+        model.addAttribute("successMessage", "Caveat saved successfully!");
+
+        return "redirect:/propertyList";
+    }
+
+    @GetMapping("/deleteCaveat/{id}")
+	public String deleteCaveat(@PathVariable Long id) {
+		caveatService.deleteCaveatById(id);
+		return "redirect:/propertyList";
+	}
 
     //CHARGE
     @GetMapping("/formcharge")
@@ -170,11 +233,43 @@ public class PropertyController {
     }
 
     @PostMapping("/saveCharge")
-    public String saveCharge(@ModelAttribute("Charge") Charge charge){
+    public String saveCharge(@ModelAttribute("Charge") Charge charge, Model model){
+        Land existingLand = landService.getLandByTitleId(charge.getTitleId());
+
+        if(existingLand != null){
+            model.addAttribute("msg", "Land with Title Id is already exist.");
+
+            return "formcharge";
+        }
+
         chargeService.saveCharge(charge);
 
         return "redirect:/propertyList";
     }
+
+    @GetMapping("/formchargeupdate/{id}")
+    public String formchargeupdate(@PathVariable Long id, Model model){
+
+        Charge existingCharge = chargeService.getChargeById(id);
+
+        model.addAttribute("Charge", existingCharge);
+        return "formChargeUpdate";
+    }
+
+    @PostMapping("/saveChargeUpdate")
+    public String saveChargeUpdate(@ModelAttribute("Charge") Charge charge, Model model){
+        chargeService.updateCharge(charge);
+        
+        model.addAttribute("successMessage", "Charge saved successfully!");
+
+        return "redirect:/propertyList";
+    }
+
+    @GetMapping("/deleteCharge/{id}")
+	public String deleteCharge(@PathVariable Long id) {
+		chargeService.deleteChargeById(id);
+		return "redirect:/propertyList";
+	}
 
     //EASEMENT
     @GetMapping("/formeasement")
@@ -189,11 +284,43 @@ public class PropertyController {
     }
 
     @PostMapping("/saveeasement")
-    public String saveEasement(@ModelAttribute("Easement") Easement easement){
+    public String saveEasement(@ModelAttribute("Easement") Easement easement, Model model){
+        Land existingLand = landService.getLandByTitleId(easement.getTitleId());
+
+        if(existingLand != null){
+            model.addAttribute("msg", "Land with Title Id is already exist.");
+
+            return "formeasement";
+        }
+
         easementService.saveEasement(easement);
 
         return "redirect:/propertyList";
     }
+
+    @GetMapping("/formeasementupdate/{id}")
+    public String formeasementupdate(@PathVariable Long id, Model model){
+
+        Easement existingeEasement = easementService.getEasementById(id);
+
+        model.addAttribute("Easement", existingeEasement);
+        return "formEasementUpdate";
+    }
+
+    @PostMapping("/saveEasementUpdate")
+    public String saveEasementUpdate(@ModelAttribute("Easement") Easement easement, Model model){
+        easementService.updateEasement(easement);
+        
+        model.addAttribute("successMessage", "Easement saved successfully!");
+
+        return "redirect:/propertyList";
+    }
+
+    @GetMapping("/deleteEasement/{id}")
+	public String deleteEasement(@PathVariable Long id) {
+		easementService.deleteEasementById(id);
+		return "redirect:/propertyList";
+	}
 
     //LEASE
     @GetMapping("/formlease")
@@ -208,11 +335,43 @@ public class PropertyController {
     }
 
     @PostMapping("/saveLease")
-    public String saveLease(@ModelAttribute("Lease") Lease lease){
+    public String saveLease(@ModelAttribute("Lease") Lease lease, Model model){
+        Land existingLand = landService.getLandByTitleId(lease.getTitleId());
+
+        if(existingLand != null){
+            model.addAttribute("msg", "Land with Title Id is already exist.");
+
+            return "formlease";
+        }
+
         leaseService.saveLease(lease);
 
         return "redirect:/propertyList";
     }
+
+    @GetMapping("/formleaseupdate/{id}")
+    public String formleaseupdate(@PathVariable Long id, Model model){
+
+        Lease existingLease = leaseService.getLeaseById(id);
+
+        model.addAttribute("Lease", existingLease);
+        return "formLeaseUpdate";
+    }
+
+    @PostMapping("/saveLeaseUpdate")
+    public String saveLeaseUpdate(@ModelAttribute("Lease") Lease lease, Model model){
+        leaseService.updateLease(lease);
+        
+        model.addAttribute("successMessage", "Lease saved successfully!");
+
+        return "redirect:/propertyList";
+    }
+
+    @GetMapping("/deleteLease/{id}")
+	public String deleteLease(@PathVariable Long id) {
+		leaseService.deleteLeaseById(id);
+		return "redirect:/propertyList";
+	}
 
     //MAINTENANCE
     @GetMapping("/formmaintenance")
@@ -227,11 +386,43 @@ public class PropertyController {
     }
 
     @PostMapping("/saveMaintenance")
-    public String saveMaintenance(@ModelAttribute("Maintenance") Maintenance maintenance){
+    public String saveMaintenance(@ModelAttribute("Maintenance") Maintenance maintenance, Model model){
+        Land existingLand = landService.getLandByTitleId(maintenance.getTitleId());
+
+        if(existingLand != null){
+            model.addAttribute("msg", "Land with Title Id is already exist.");
+
+            return "formmaintenance";
+        }
+
         maintenanceService.saveMaintenance(maintenance);
 
         return "redirect:/propertyList";
     }
+
+    @GetMapping("/formmaintenanceupdate/{id}")
+    public String formmaintenanceupdate(@PathVariable Long id, Model model){
+
+        Maintenance existingMaintenance = maintenanceService.getMaintenanceById(id);
+
+        model.addAttribute("Maintenance", existingMaintenance);
+        return "formMaintenanceUpdate";
+    }
+
+    @PostMapping("/saveMaintenanceUpdate")
+    public String saveMaintenanceUpdate(@ModelAttribute("Maintenance") Maintenance maintenance, Model model){
+        maintenanceService.updateMaintenance(maintenance);
+        
+        model.addAttribute("successMessage", "Maintenance saved successfully!");
+
+        return "redirect:/propertyList";
+    }
+
+    @GetMapping("/deleteMaintenance/{id}")
+	public String deleteMaintenance(@PathVariable Long id) {
+		maintenanceService.deleteMaintenanceById(id);
+		return "redirect:/propertyList";
+	}
 
     //MORTGAGE
     @GetMapping("/formmortgage")
@@ -246,11 +437,43 @@ public class PropertyController {
     }
 
     @PostMapping("/saveMortgage")
-    public String saveMortgage(@ModelAttribute("Mortgage") Mortgage mortgage){
+    public String saveMortgage(@ModelAttribute("Mortgage") Mortgage mortgage, Model model){
+        Land existingLand = landService.getLandByTitleId(mortgage.getTitleId());
+
+        if(existingLand != null){
+            model.addAttribute("msg", "Land with Title Id is already exist.");
+
+            return "formmortgage";
+        }
+
         mortgageService.saveMortgage(mortgage);
 
         return "redirect:/propertyList";
     }
+
+    @GetMapping("/formmortgageupdate/{id}")
+    public String formmortgageupdate(@PathVariable Long id, Model model){
+
+        Mortgage existingMortgage = mortgageService.getMortgageById(id);
+
+        model.addAttribute("Mortgage", existingMortgage);
+        return "formMortgageUpdate";
+    }
+
+    @PostMapping("/saveMortgageUpdate")
+    public String saveMortgageUpdate(@ModelAttribute("Mortgage") Mortgage mortgage, Model model){
+        mortgageService.updateMortgage(mortgage);
+        
+        model.addAttribute("successMessage", "Mortgage saved successfully!");
+
+        return "redirect:/propertyList";
+    }
+
+    @GetMapping("/deleteMortgage/{id}")
+	public String deleteMortgage(@PathVariable Long id) {
+		mortgageService.deleteMortgageById(id);
+		return "redirect:/propertyList";
+	}
 
     //QUITRENT
     @GetMapping("/formquitrent")
@@ -265,11 +488,42 @@ public class PropertyController {
     }
 
     @PostMapping("/saveQuitRent")
-    public String saveQuitRent(@ModelAttribute("QuitRent") QuitRent quitRent){
+    public String saveQuitRent(@ModelAttribute("QuitRent") QuitRent quitRent, Model model){
+        Land existingLand = landService.getLandByTitleId(quitRent.getTitleId());
+
+        if(existingLand != null){
+            model.addAttribute("msg", "Land with Title Id is already exist.");
+
+            return "formquitrent";
+        }
         quitRentService.saveQuitRent(quitRent);
 
         return "redirect:/propertyList";
     }
+
+    @GetMapping("/formquitrentupdate/{id}")
+    public String formquitrentupdate(@PathVariable Long id, Model model){
+
+        QuitRent existingQuitRent = quitRentService.getQuitRentById(id);
+
+        model.addAttribute("QuitRent", existingQuitRent);
+        return "formQuitRentUpdate";
+    }
+
+    @PostMapping("/saveQuitRentUpdate")
+    public String saveQuitRentUpdate(@ModelAttribute("QuitRent") QuitRent quitRent, Model model){
+        quitRentService.updateQuitRent(quitRent);
+        
+        model.addAttribute("successMessage", "Quit Rent saved successfully!");
+
+        return "redirect:/propertyList";
+    }
+
+    @GetMapping("/deleteQuitRent/{id}")
+	public String deleteQuitRent(@PathVariable Long id) {
+		quitRentService.deleteQuitRentById(id);
+		return "redirect:/propertyList";
+	}
 
     //RIGHTOFWAY
     @GetMapping("/formrightofway")
@@ -284,11 +538,42 @@ public class PropertyController {
     }
 
     @PostMapping("/saveRightOfWay")
-    public String saveRightOfWay(@ModelAttribute("RightOfWay") RightOfWay rightOfWay){
+    public String saveRightOfWay(@ModelAttribute("RightOfWay") RightOfWay rightOfWay, Model model){
+        Land existingLand = landService.getLandByTitleId(rightOfWay.getTitleId());
+
+        if(existingLand != null){
+            model.addAttribute("msg", "Land with Title Id is already exist.");
+
+            return "formrightofway";
+        }
         rightOfWayService.saveRightOfWay(rightOfWay);
 
         return "redirect:/propertyList";
     }
+
+    @GetMapping("/formrightofwayupdate/{id}")
+    public String formrightofwayupdate(@PathVariable Long id, Model model){
+
+        RightOfWay existingRightOfWay = rightOfWayService.getRightOfWayById(id);
+
+        model.addAttribute("RightOfWay", existingRightOfWay);
+        return "formRightOfWayUpdate";
+    }
+
+    @PostMapping("/saveRightOfWayUpdate")
+    public String saveRightOfWayUpdate(@ModelAttribute("RightOfWay") RightOfWay rightOfWay, Model model){
+        rightOfWayService.updateRightOfWay(rightOfWay);
+        
+        model.addAttribute("successMessage", "Right Of Way saved successfully!");
+
+        return "redirect:/propertyList";
+    }
+
+    @GetMapping("/deleteRightOfWay/{id}")
+	public String deleteRightOfWay(@PathVariable Long id) {
+		rightOfWayService.deleteRightOfWayById(id);
+		return "redirect:/propertyList";
+	}
 
     //TENANCY
     @GetMapping("/formtenancy")
@@ -303,11 +588,42 @@ public class PropertyController {
     }
 
     @PostMapping("/saveTenancy")
-    public String saveTenancy(@ModelAttribute("Tenancy") Tenancy tenancy){
+    public String saveTenancy(@ModelAttribute("Tenancy") Tenancy tenancy, Model model){
+        Land existingLand = landService.getLandByTitleId(tenancy.getTitleId());
+
+        if(existingLand != null){
+            model.addAttribute("msg", "Land with Title Id is already exist.");
+
+            return "formtenancy";
+        }
         tenancyService.saveTenancy(tenancy);
 
         return "redirect:/propertyList";
     }
+
+    @GetMapping("/formtenancyupdate/{id}")
+    public String formtenancyupdate(@PathVariable Long id, Model model){
+
+        Tenancy existingTenancy = tenancyService.getTenancyById(id);
+
+        model.addAttribute("Tenancy", existingTenancy);
+        return "formTenancyUpdate";
+    }
+
+    @PostMapping("/saveTenancyUpdate")
+    public String saveTenancyUpdate(@ModelAttribute("Tenancy") Tenancy tenancy, Model model){
+        tenancyService.updateTenancy(tenancy);
+        
+        model.addAttribute("successMessage", "Tenancy saved successfully!");
+
+        return "redirect:/propertyList";
+    }
+
+    @GetMapping("/deleteTenancy/{id}")
+	public String deleteTenancy(@PathVariable Long id) {
+		tenancyService.deleteTenancyById(id);
+		return "redirect:/propertyList";
+	}
 
     //TRANSFER
     @GetMapping("/formtransfer")
@@ -322,11 +638,43 @@ public class PropertyController {
     }
 
     @PostMapping("/savetransfer")
-    public String saveTransfer(@ModelAttribute("Transfer") Transfer transfer){
+    public String saveTransfer(@ModelAttribute("Transfer") Transfer transfer, Model model){
+        Land existingLand = landService.getLandByTitleId(transfer.getTitleId());
+
+        if(existingLand != null){
+            model.addAttribute("msg", "Land with Title Id is already exist.");
+
+            return "formtransfer";
+        }
+
         transferService.saveTransfer(transfer);
 
         return "redirect:/propertyList";
     }
+
+    @GetMapping("/formtransferupdate/{id}")
+    public String formtransferupdate(@PathVariable Long id, Model model){
+
+        Transfer existingTransfer = transferService.getTransferById(id);
+
+        model.addAttribute("Transfer", existingTransfer);
+        return "formTransferUpdate";
+    }
+
+    @PostMapping("/saveTransferUpdate")
+    public String saveTransferUpdate(@ModelAttribute("Transfer") Transfer transfer, Model model){
+        transferService.updateTransfer(transfer);
+        
+        model.addAttribute("successMessage", "Transfer saved successfully!");
+
+        return "redirect:/propertyList";
+    }
+
+    @GetMapping("/deleteTransfer/{id}")
+	public String deleteTransfer(@PathVariable Long id) {
+		transferService.deleteTransferById(id);
+		return "redirect:/propertyList";
+	}
 
     //UTILITIESBILL
     @GetMapping("/formutilitiesbill")
@@ -341,11 +689,43 @@ public class PropertyController {
     }
 
     @PostMapping("/saveUtilitiesBill")
-    public String saveUtilitiesBill(@ModelAttribute("UtilitiesBill") UtilitiesBill utilitiesBill){
+    public String saveUtilitiesBill(@ModelAttribute("UtilitiesBill") UtilitiesBill utilitiesBill, Model model){
+        Land existingLand = landService.getLandByTitleId(utilitiesBill.getTitleId());
+
+        if(existingLand != null){
+            model.addAttribute("msg", "Land with Title Id is already exist.");
+
+            return "formutilitiesbill";
+        }
+
         utilitiesBillService.saveUtilitiesBill(utilitiesBill);
 
         return "redirect:/propertyList";
     }
+
+    @GetMapping("/formutilitiesbillupdate/{id}")
+    public String formutilitiesbillupdate(@PathVariable Long id, Model model){
+
+        UtilitiesBill existingUtilitiesBill = utilitiesBillService.getUtilitiesBillById(id);
+
+        model.addAttribute("UtilitiesBill", existingUtilitiesBill);
+        return "formUtilitiesBillUpdate";
+    }
+
+    @PostMapping("/saveUtilitiesBillUpdate")
+    public String saveUtilitiesBillUpdate(@ModelAttribute("UtilitiesBill") UtilitiesBill utilitiesBill, Model model){
+        utilitiesBillService.updateUtilitiesBill(utilitiesBill);
+        
+        model.addAttribute("successMessage", "Utilities Bill saved successfully!");
+
+        return "redirect:/propertyList";
+    }
+
+    @GetMapping("/deleteUtilitiesBill/{id}")
+	public String deleteUtilitiesBill(@PathVariable Long id) {
+		utilitiesBillService.deleteUtilitiesBillById(id);
+		return "redirect:/propertyList";
+	}
 
     //WAQF
     @GetMapping("/formwaqf")
@@ -360,11 +740,42 @@ public class PropertyController {
     }
 
     @PostMapping("/saveWaqf")
-    public String saveWaqf(@ModelAttribute("Waqf") Waqf waqf){
+    public String saveWaqf(@ModelAttribute("Waqf") Waqf waqf, Model model){
+        Land existingLand = landService.getLandByTitleId(waqf.getTitleId());
+
+        if(existingLand != null){
+            model.addAttribute("msg", "Land with Title Id is already exist.");
+
+            return "formwaqf";
+        }
         waqfService.saveWaqf(waqf);
 
         return "redirect:/propertyList";
     }
+
+    @GetMapping("/formwaqfupdate/{id}")
+    public String formwaqfupdate(@PathVariable Long id, Model model){
+
+        Waqf existingWaqf = waqfService.getWaqfById(id);
+
+        model.addAttribute("Waqf", existingWaqf);
+        return "formWaqfUpdate";
+    }
+
+    @PostMapping("/saveWaqfUpdate")
+    public String saveWaqfUpdate(@ModelAttribute("Waqf") Waqf waqf, Model model){
+        waqfService.updateWaqf(waqf);
+        
+        model.addAttribute("successMessage", "Waqf saved successfully!");
+
+        return "redirect:/propertyList";
+    }
+
+    @GetMapping("/deleteWaqf/{id}")
+	public String deleteWaqf(@PathVariable Long id) {
+		waqfService.deleteWaqfById(id);
+		return "redirect:/propertyList";
+	}
 
     //CASH
     @GetMapping("/formcash")
@@ -385,6 +796,30 @@ public class PropertyController {
         return "redirect:/propertyList";
     }
 
+    @GetMapping("/formcashupdate/{id}")
+    public String formcashupdate(@PathVariable Long id, Model model){
+
+        Cash existingCash = cashService.getCashById(id);
+
+        model.addAttribute("Cash", existingCash);
+        return "formCashUpdate";
+    }
+
+    @PostMapping("/saveCashUpdate")
+    public String saveCashUpdate(@ModelAttribute("Cash") Cash cash, Model model){
+        cashService.updateCash(cash);
+        
+        model.addAttribute("successMessage", "Cash saved successfully!");
+
+        return "redirect:/propertyList";
+    }
+
+    @GetMapping("/deleteCash/{id}")
+	public String deleteCash(@PathVariable Long id) {
+		cashService.deleteCashById(id);
+		return "redirect:/propertyList";
+	}
+
     //DEBENTURE
     @GetMapping("/formdebenture")
     public String formdebenture(Model model){
@@ -403,6 +838,30 @@ public class PropertyController {
 
         return "redirect:/propertyList";
     }
+
+    @GetMapping("/formdebentureupdate/{id}")
+    public String formdebentureupdate(@PathVariable Long id, Model model){
+
+        Debenture existingDebenture = debentureService.getDebentureById(id);
+
+        model.addAttribute("Debenture", existingDebenture);
+        return "formDebentureUpdate";
+    }
+
+    @PostMapping("/saveDebentureUpdate")
+    public String saveDebentureUpdate(@ModelAttribute("Debenture") Debenture debenture, Model model){
+        debentureService.updateDebenture(debenture);
+        
+        model.addAttribute("successMessage", "Debenture saved successfully!");
+
+        return "redirect:/propertyList";
+    }
+
+    @GetMapping("/deleteDebenture/{id}")
+	public String deleteDebenture(@PathVariable Long id) {
+		debentureService.deleteDebentureById(id);
+		return "redirect:/propertyList";
+	}
 
     //INSURANCE
     @GetMapping("/forminsurance")
@@ -423,6 +882,30 @@ public class PropertyController {
         return "redirect:/propertyList";
     }
 
+    @GetMapping("/forminsuranceupdate/{id}")
+    public String forminsuranceupdate(@PathVariable Long id, Model model){
+
+        Insurance existingInsurance = insuranceService.getInsuranceById(id);
+
+        model.addAttribute("Insurance", existingInsurance);
+        return "formInsuranceUpdate";
+    }
+
+    @PostMapping("/saveInsuranceUpdate")
+    public String saveInsuranceUpdate(@ModelAttribute("Insurance") Insurance insurance, Model model){
+        insuranceService.updateInsurance(insurance);
+        
+        model.addAttribute("successMessage", "Insurance saved successfully!");
+
+        return "redirect:/propertyList";
+    }
+
+    @GetMapping("/deleteInsurance/{id}")
+	public String deleteInsurance(@PathVariable Long id) {
+		insuranceService.deleteInsuranceById(id);
+		return "redirect:/propertyList";
+	}
+
     //SHARE
     @GetMapping("/formshare")
     public String formshare(Model model){
@@ -441,6 +924,30 @@ public class PropertyController {
 
         return "redirect:/propertyList";
     }
+
+    @GetMapping("/formshareupdate/{id}")
+    public String formshareupdate(@PathVariable Long id, Model model){
+
+        Share existingShare = shareService.getShareById(id);
+
+        model.addAttribute("Share", existingShare);
+        return "formShareUpdate";
+    }
+
+    @PostMapping("/saveShareUpdate")
+    public String saveShareUpdate(@ModelAttribute("Share") Share share, Model model){
+        shareService.updateShare(share);
+        
+        model.addAttribute("successMessage", "Share saved successfully!");
+
+        return "redirect:/propertyList";
+    }
+
+    @GetMapping("/deleteShare/{id}")
+	public String deleteShare(@PathVariable Long id) {
+		shareService.deleteShareById(id);
+		return "redirect:/propertyList";
+	}
 
     //UNITTRUST
     @GetMapping("/formunittrust")
@@ -461,6 +968,30 @@ public class PropertyController {
         return "redirect:/propertyList";
     }
 
+    @GetMapping("/formunittrustupdate/{id}")
+    public String formunittrust(@PathVariable Long id, Model model){
+
+        UnitTrust existingUnitTrust = unitTrustService.getUnitTrustById(id);
+
+        model.addAttribute("UnitTrust", existingUnitTrust);
+        return "formUnitTrustUpdate";
+    }
+
+    @PostMapping("/saveUnitTrustUpdate")
+    public String saveUnitTrustUpdate(@ModelAttribute("UnitTrust") UnitTrust unitTrust, Model model){
+        unitTrustService.updateUnitTrust(unitTrust);
+        
+        model.addAttribute("successMessage", "Unit Trust saved successfully!");
+
+        return "redirect:/propertyList";
+    }
+
+    @GetMapping("/deleteUnitTrust/{id}")
+	public String deleteUnitTrust(@PathVariable Long id) {
+		unitTrustService.deleteUnitTrustById(id);
+		return "redirect:/propertyList";
+	}
+
     //VEHICLE
     @GetMapping("/formvehicle")
     public String formvehicle(Model model){
@@ -474,10 +1005,43 @@ public class PropertyController {
     }
 
     @PostMapping("/saveVehicle")
-    public String saveVehicle(@ModelAttribute("Vehicle") Vehicle vehicle){
+    public String saveVehicle(@ModelAttribute("Vehicle") Vehicle vehicle, Model model){
+        List<Vehicle> vehicles = vehicleService.getAllVehicles();
+
+        for (Vehicle vehicleitem : vehicles) {
+            if(vehicle.getCarRegNum().equals(vehicleitem.getCarRegNum())){
+                model.addAttribute("msg", "Vehicle with registration number is existed.");
+                return "formVehicle";
+            }
+        }
+        
         vehicleService.saveVehicle(vehicle);
 
         return "redirect:/propertyList";
     }
+
+    @GetMapping("/formvehicleupdate/{id}")
+    public String formvehicleupdate(@PathVariable Long id, Model model){
+
+        Vehicle exisitngVehicle = vehicleService.getVehicleById(id);
+
+        model.addAttribute("Vehicle", exisitngVehicle);
+        return "formvehicleupdate";
+    }
+
+    @PostMapping("/saveVehicleUpdate")
+    public String saveVehicleUpdate(@ModelAttribute("Vechile") Vehicle vehicle, Model model){
+        vehicleService.updateVehicle(vehicle);
+        
+        model.addAttribute("successMessage", "Vehicle saved successfully!");
+
+        return "redirect:/propertyList";
+    }
+
+    @GetMapping("/deleteVehicle/{id}")
+	public String deleteVehicle(@PathVariable Long id) {
+		vehicleService.deleteVehicleById(id);
+		return "redirect:/propertyList";
+	}
 
 }

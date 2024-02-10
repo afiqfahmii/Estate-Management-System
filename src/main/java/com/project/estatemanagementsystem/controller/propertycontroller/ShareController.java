@@ -19,7 +19,7 @@ public class ShareController implements PropertyBuilder<Share>{
     @Autowired
     private UserService userService;
 
-    @GetMapping("/formshare")
+    @GetMapping("/formProperty?type=share")
     public String showForm(Model model){
         User loggedInUser = userService.getCurrentUser();
 
@@ -27,7 +27,7 @@ public class ShareController implements PropertyBuilder<Share>{
         share.setUser(loggedInUser);
 
         model.addAttribute("Share", share);
-        return "formShare";
+        return "formProperty";
     }
 
     @PostMapping("/saveShare")

@@ -19,7 +19,7 @@ public class UnitTrustController implements PropertyBuilder<UnitTrust>{
     @Autowired
     private UserService userService;
 
-    @GetMapping("/formunittrust")
+    @GetMapping("/formProperty?type=unittrust")
     public String showForm(Model model){
         User loggedInUser = userService.getCurrentUser();
 
@@ -27,7 +27,7 @@ public class UnitTrustController implements PropertyBuilder<UnitTrust>{
         unitTrust.setUser(loggedInUser);
 
         model.addAttribute("UnitTrust", unitTrust);
-        return "formUnitTrust";
+        return "formProperty";
     }
 
     @PostMapping("/saveUnitTrust")

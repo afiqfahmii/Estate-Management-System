@@ -42,7 +42,20 @@ public class RightOfWayServiceImpl implements RightOfWayService{
 
     @Override
     public RightOfWay updateRightOfWay(RightOfWay rightOfWay){
-        return rightOfWayRepository.save(rightOfWay);
+        RightOfWay existingRightOfWay = getRightOfWayById(rightOfWay.getId());
+
+        existingRightOfWay.setId(rightOfWay.getId());
+        existingRightOfWay.setTitleId(rightOfWay.getTitleId());
+        existingRightOfWay.setTax(rightOfWay.getTax());
+        existingRightOfWay.setState(rightOfWay.getState());
+        existingRightOfWay.setDistrict(rightOfWay.getDistrict());
+        existingRightOfWay.setAddress(rightOfWay.getAddress());
+        existingRightOfWay.setLotNumber(rightOfWay.getLotNumber());
+        existingRightOfWay.setArea(rightOfWay.getArea());
+        existingRightOfWay.setType(rightOfWay.getType());
+        existingRightOfWay.setRegDate(rightOfWay.getRegDate());
+
+        return rightOfWayRepository.save(existingRightOfWay);
     }
 
     @Override

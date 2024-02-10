@@ -37,16 +37,26 @@ public class BondServiceImpl implements BondService{
 
     @Override
     public Bond getBondById(Long id) {
-        return bondRepository.findById(id).get();
+        return bondRepository.findById(id).orElse(null);
     }
 
     @Override
     public Bond updateBond(Bond bond){
-        return bondRepository.save(bond);
+        Bond existingBond = getBondById(bond.getId());
+
+        existingBond.setId(bond.getId());
+        existingBond.setAgencyName(bond.getAgencyName());
+        existingBond.setAgencyAddress(bond.getAgencyAddress());
+        existingBond.setAmount(bond.getAmount());
+        existingBond.setShare(bond.getShare());
+        
+        return bondRepository.save(existingBond);
     }
 
     @Override
     public void deleteBondById(Long id){
         bondRepository.deleteById(id);
     }
+
+
 }

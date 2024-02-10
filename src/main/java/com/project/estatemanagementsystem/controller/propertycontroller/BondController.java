@@ -19,7 +19,7 @@ public class BondController implements PropertyBuilder<Bond>{
     @Autowired
     private UserService userService;
 
-    @GetMapping("/formbond")
+    @GetMapping("/formProperty?type=bond")
     public String showForm(Model model){
         User loggedInUser = userService.getCurrentUser();
 
@@ -27,7 +27,7 @@ public class BondController implements PropertyBuilder<Bond>{
         bond.setUser(loggedInUser);
 
         model.addAttribute("Bond", bond);
-        return "formBond";
+        return "formProperty";
     }
 
     @PostMapping("/saveBond")

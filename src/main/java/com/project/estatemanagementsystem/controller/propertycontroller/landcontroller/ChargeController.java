@@ -19,7 +19,18 @@ public class ChargeController implements PropertyBuilder<Charge>{
     @Autowired
     private UserService userService;
 
-    @GetMapping("/formcharge")
+    // @GetMapping("/formcharge")
+    // public String showForm(@RequestParam("type") String propertyType, Model model){
+    //     User loggedInUser = userService.getCurrentUser();
+
+    //     Property charge = new Charge();
+    //     charge.setUser(loggedInUser);
+
+    //     model.addAttribute("Charge", charge);
+    //     return "formCharge";
+    // }
+
+    @GetMapping("/formProperty?type=charge")
     public String showForm(Model model){
         User loggedInUser = userService.getCurrentUser();
 
@@ -27,7 +38,7 @@ public class ChargeController implements PropertyBuilder<Charge>{
         charge.setUser(loggedInUser);
 
         model.addAttribute("Charge", charge);
-        return "formCharge";
+        return "formProperty";
     }
 
     @PostMapping("/saveCharge")

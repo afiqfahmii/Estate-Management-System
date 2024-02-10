@@ -42,7 +42,13 @@ public class InsuranceServiceImpl implements InsuranceService{
 
     @Override
     public Insurance updateInsurance(Insurance insurance){
-        return insuranceRepository.save(insurance);
+        Insurance existingInsurance = getInsuranceById(insurance.getId());
+
+        existingInsurance.setId(insurance.getId());
+        existingInsurance.setAmount(insurance.getAmount());
+        existingInsurance.setMaturedDate(insurance.getMaturedDate());
+        
+        return insuranceRepository.save(existingInsurance);
     }
 
     @Override

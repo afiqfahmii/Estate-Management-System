@@ -2,7 +2,7 @@ package com.project.estatemanagementsystem.entity.property.land;
 
 import java.sql.Date;
 
-import com.project.estatemanagementsystem.entity.Property;
+import com.project.estatemanagementsystem.entity.Land;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
@@ -17,9 +17,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @Entity
 @Table(name = "quitrent")
-public class QuitRent extends Property{
-    
-    private String titleid;
+public class QuitRent extends Land{
 
     
     private String accNumber;

@@ -42,7 +42,16 @@ public class CashServiceImpl implements CashService{
 
     @Override
     public Cash updateCash(Cash cash){
-        return cashRepository.save(cash);
+        Cash existingCash = getCashById(cash.getId());
+
+        existingCash.setId(cash.getId());
+        existingCash.setAccType(cash.getAccType());
+        existingCash.setAccNumber(cash.getAccNumber());
+        existingCash.setBankName(cash.getBankName());
+        existingCash.setAmount(cash.getAmount());
+        existingCash.setAccStatus(cash.getAccStatus());
+        
+        return cashRepository.save(existingCash);
     }
 
     @Override

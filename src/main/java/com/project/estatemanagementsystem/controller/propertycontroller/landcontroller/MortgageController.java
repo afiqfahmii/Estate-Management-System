@@ -19,7 +19,7 @@ public class MortgageController implements PropertyBuilder<Mortgage>{
     @Autowired
     private UserService userService;
 
-    @GetMapping("/formmortgage")
+    @GetMapping("/formProperty?type=mortgage")
     public String showForm(Model model){
         User loggedInUser = userService.getCurrentUser();
 
@@ -27,7 +27,7 @@ public class MortgageController implements PropertyBuilder<Mortgage>{
         mortgage.setUser(loggedInUser);
 
         model.addAttribute("Mortgage", mortgage);
-        return "formMortgage";
+        return "formProperty";
     }
 
     @PostMapping("/saveMortgage")

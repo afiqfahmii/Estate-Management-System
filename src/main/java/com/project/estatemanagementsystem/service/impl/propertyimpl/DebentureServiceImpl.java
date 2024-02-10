@@ -42,7 +42,15 @@ public class DebentureServiceImpl implements DebentureService{
 
     @Override
     public Debenture updateDebenture(Debenture debenture){
-        return debentureRepository.save(debenture);
+        Debenture existingDebenture = getDebentureById(debenture.getId());
+
+        existingDebenture.setId(debenture.getId());
+        existingDebenture.setAgencyName(debenture.getAgencyName());
+        existingDebenture.setAgencyAddress(debenture.getAgencyAddress());
+        existingDebenture.setAmount(debenture.getAmount());
+        existingDebenture.setShare(debenture.getShare());
+        
+        return debentureRepository.save(existingDebenture);
     }
 
     @Override

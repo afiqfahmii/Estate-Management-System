@@ -18,8 +18,6 @@ import lombok.Setter;
 //wang
 public class Cash extends Property{
 
-    private String idNumber;
-    
     private String accType;
     
     private String bankName;

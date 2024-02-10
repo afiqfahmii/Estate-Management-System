@@ -42,7 +42,15 @@ public class ShareServiceImpl implements ShareService{
 
     @Override
     public Share updateShare(Share share){
-        return shareRepository.save(share);
+        Share existingShare = getShareById(share.getId());
+
+        existingShare.setId(share.getId());
+        existingShare.setAgencyName(share.getAgencyName());
+        existingShare.setAgencyAddress(share.getAgencyAddress());
+        existingShare.setAmount(share.getAmount());
+        existingShare.setShare(share.getShare());
+        
+        return shareRepository.save(existingShare);
     }
 
     @Override

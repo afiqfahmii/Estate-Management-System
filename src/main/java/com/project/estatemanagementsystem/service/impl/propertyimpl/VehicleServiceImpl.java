@@ -42,7 +42,23 @@ public class VehicleServiceImpl implements VehicleService{
 
     @Override
     public Vehicle updateVehicle(Vehicle vehicle){
-        return vehicleRepository.save(vehicle);
+        Vehicle existingVehicle = getVehicleById(vehicle.getId());
+
+        existingVehicle.setId(vehicle.getId());
+        existingVehicle.setCarRegNum(vehicle.getCarRegNum());
+        existingVehicle.setModel(vehicle.getModel());
+        existingVehicle.setYear(vehicle.getYear());
+        existingVehicle.setTransactionDate(vehicle.getTransactionDate());
+        existingVehicle.setBrand(vehicle.getBrand());
+        existingVehicle.setCc(vehicle.getCc());
+        existingVehicle.setInsuranceStartDate(vehicle.getInsuranceEndDate());
+        existingVehicle.setInsuranceEndDate(vehicle.getInsuranceEndDate());
+        existingVehicle.setInsuranceAmount(vehicle.getInsuranceAmount());
+        existingVehicle.setRoadtaxStartDate(vehicle.getRoadtaxStartDate());
+        existingVehicle.setRoadtaxEndDate(vehicle.getRoadtaxEndDate());
+        existingVehicle.setRoadtaxAmount(vehicle.getRoadtaxAmount());
+        
+        return vehicleRepository.save(existingVehicle);
     }
 
     @Override

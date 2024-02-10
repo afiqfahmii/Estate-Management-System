@@ -20,11 +20,6 @@ import lombok.Setter;
 //saham
 public class UnitTrust extends Property{
 
-    private String idNumber;
-
-    
-    private String name;
-
     
     private int amount;
 

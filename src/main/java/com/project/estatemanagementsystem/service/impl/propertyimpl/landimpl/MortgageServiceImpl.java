@@ -42,7 +42,25 @@ public class MortgageServiceImpl implements MortgageService{
 
     @Override
     public Mortgage updateMortgage(Mortgage mortgage){
-        return mortgageRepository.save(mortgage);
+        Mortgage existingMortgage = getMortgageById(mortgage.getId());
+
+        existingMortgage.setId(mortgage.getId());
+        existingMortgage.setTitleId(mortgage.getTitleId());
+        existingMortgage.setTax(mortgage.getTax());
+        existingMortgage.setState(mortgage.getState());
+        existingMortgage.setDistrict(mortgage.getDistrict());
+        existingMortgage.setAddress(mortgage.getAddress());
+        existingMortgage.setLotNumber(mortgage.getLotNumber());
+        existingMortgage.setArea(mortgage.getArea());
+        existingMortgage.setType(mortgage.getType());
+        existingMortgage.setRegDate(mortgage.getRegDate());
+        existingMortgage.setAmount(mortgage.getAmount());
+        existingMortgage.setMortgageeName(mortgage.getMortgageeName());
+        existingMortgage.setMortgageeAddress(mortgage.getMortgageeAddress());
+        existingMortgage.setMortgageStartDate(mortgage.getMortgageStartDate());
+        existingMortgage.setMortgageEndDate(mortgage.getMortgageEndDate());
+        
+        return mortgageRepository.save(existingMortgage);
     }
 
     @Override

@@ -19,5 +19,4 @@ public interface EasementService {
 	Easement updateEasement(Easement easement);
 	
 	void deleteEasementById(Long id);
-
 }

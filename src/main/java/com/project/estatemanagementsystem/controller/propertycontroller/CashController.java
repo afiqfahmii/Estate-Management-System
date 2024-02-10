@@ -19,7 +19,7 @@ public class CashController implements PropertyBuilder<Cash>{
     @Autowired
     private UserService userService;
 
-    @GetMapping("/formcash")
+    @GetMapping("/formProperty?type=cash")
     public String showForm(Model model){
         User loggedInUser = userService.getCurrentUser();
 
@@ -27,7 +27,7 @@ public class CashController implements PropertyBuilder<Cash>{
         cash.setUser(loggedInUser);
 
         model.addAttribute("Cash", cash);
-        return "formCash";
+        return "formProperty";
     }
 
     @PostMapping("/saveCash")

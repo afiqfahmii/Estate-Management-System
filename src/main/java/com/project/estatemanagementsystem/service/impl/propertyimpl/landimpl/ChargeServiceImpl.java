@@ -42,7 +42,28 @@ public class ChargeServiceImpl implements ChargeService{
 
     @Override
     public Charge updateCharge(Charge charge){
-        return chargeRepository.save(charge);
+        Charge existingCharge = getChargeById(charge.getId());
+
+        existingCharge.setId(charge.getId());
+        existingCharge.setTitleId(charge.getTitleId());
+        existingCharge.setTax(charge.getTax());
+        existingCharge.setState(charge.getState());
+        existingCharge.setDistrict(charge.getDistrict());
+        existingCharge.setAddress(charge.getAddress());
+        existingCharge.setLotNumber(charge.getLotNumber());
+        existingCharge.setArea(charge.getArea());
+        existingCharge.setType(charge.getType());
+        existingCharge.setRegDate(charge.getRegDate());
+        existingCharge.setChargorName(charge.getChargorName());
+        existingCharge.setChargorIdNumber(charge.getChargorIdNumber());
+        existingCharge.setChargeeName(charge.getChargeeName());
+        existingCharge.setChargeeIdNumber(charge.getChargeeIdNumber());
+        existingCharge.setChargeStatus(charge.getChargeStatus());
+        existingCharge.setLoanAmount(charge.getLoanAmount());
+        existingCharge.setLoanBankName(charge.getLoanBankName());
+        existingCharge.setLoanBankStatus(charge.getLoanBankStatus());
+        
+        return chargeRepository.save(existingCharge);
     }
 
     @Override

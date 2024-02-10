@@ -42,7 +42,23 @@ public class CaveatServiceImpl implements CaveatService{
 
     @Override
     public Caveat updateCaveat(Caveat caveat){
-        return caveatRepository.save(caveat);
+        Caveat existingCaveat = getCaveatById(caveat.getId());
+
+        existingCaveat.setId(caveat.getId());
+        existingCaveat.setTitleId(caveat.getTitleId());
+        existingCaveat.setTax(caveat.getTax());
+        existingCaveat.setState(caveat.getState());
+        existingCaveat.setDistrict(caveat.getDistrict());
+        existingCaveat.setAddress(caveat.getAddress());
+        existingCaveat.setLotNumber(caveat.getLotNumber());
+        existingCaveat.setArea(caveat.getArea());
+        existingCaveat.setType(caveat.getType());
+        existingCaveat.setRegDate(caveat.getRegDate());
+        existingCaveat.setCaveatorName(caveat.getCaveatorName());
+        existingCaveat.setCaveatorIdNumber(caveat.getCaveatorIdNumber());
+        existingCaveat.setCaveatorAddress(caveat.getCaveatorAddress());
+        
+        return caveatRepository.save(existingCaveat);
     }
 
     @Override

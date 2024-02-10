@@ -17,9 +17,6 @@ import lombok.Setter;
 @Table(name="share")
 public class Share extends Property{
 
-    private String idNumber;
-
-    
     private String agencyName;
 
     

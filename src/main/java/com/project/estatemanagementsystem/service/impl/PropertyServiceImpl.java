@@ -30,7 +30,7 @@ public class PropertyServiceImpl implements PropertyService{
     }
 
     @Override
-    public List<Property>getPropertiesByUserId(Long userId){
+    public List<Property> getPropertiesByUserId(Long userId){
         return propertyRepository.findByUserId(userId);
     }
 

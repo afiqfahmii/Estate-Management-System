@@ -19,7 +19,7 @@ public class TenancyController implements PropertyBuilder<Tenancy>{
     @Autowired
     private UserService userService;
 
-    @GetMapping("/formtenancy")
+    @GetMapping("/formProperty?type=tenancy")
     public String showForm(Model model){
         User loggedInUser = userService.getCurrentUser();
 
@@ -27,7 +27,7 @@ public class TenancyController implements PropertyBuilder<Tenancy>{
         tenancy.setUser(loggedInUser);
 
         model.addAttribute("Tenancy", tenancy);
-        return "formTenancy";
+        return "formProperty";
     }
 
     @PostMapping("/saveTenancy")

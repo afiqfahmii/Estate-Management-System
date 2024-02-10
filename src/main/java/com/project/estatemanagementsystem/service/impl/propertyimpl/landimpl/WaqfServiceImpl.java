@@ -42,7 +42,23 @@ public class WaqfServiceImpl implements WaqfService{
 
     @Override
     public Waqf updateWaqf(Waqf waqf){
-        return waqfRepository.save(waqf);
+        Waqf existingWaqf = getWaqfById(waqf.getId());
+
+        existingWaqf.setId(waqf.getId());
+        existingWaqf.setTitleId(waqf.getTitleId());
+        existingWaqf.setTax(waqf.getTax());
+        existingWaqf.setState(waqf.getState());
+        existingWaqf.setDistrict(waqf.getDistrict());
+        existingWaqf.setAddress(waqf.getAddress());
+        existingWaqf.setLotNumber(waqf.getLotNumber());
+        existingWaqf.setArea(waqf.getArea());
+        existingWaqf.setType(waqf.getType());
+        existingWaqf.setRegDate(waqf.getRegDate());
+        existingWaqf.setNazirName(waqf.getNazirName());
+        existingWaqf.setNazirIdNumber(waqf.getNazirIdNumber());
+        existingWaqf.setStatus(waqf.getStatus());
+        
+        return waqfRepository.save(existingWaqf);
     }
 
     @Override

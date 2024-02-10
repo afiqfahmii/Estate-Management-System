@@ -19,5 +19,4 @@ public interface LeaseService {
 	Lease updateLease(Lease lease);
 	
 	void deleteLeaseById(Long id);
-
 }

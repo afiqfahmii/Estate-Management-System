@@ -1,0 +1,87 @@
+<!--Website: wwww.codingdung.com-->
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EMS</title>
+    <link rel="stylesheet" href="style.css">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Estate Management System</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" th:href="@{/admin}">User List</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" th:href="@{/logout}">Logout</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container light-style flex-grow-1 container-p-y">
+        <h4 class="font-weight-bold py-3 mb-4">
+            Personal Wasiat
+        </h4>
+        <div class="card overflow-hidden">
+            <div class="row no-gutters row-bordered row-border-light">
+                </div>
+                <div class="col-md-9">
+                    <div class="tab-content">
+                        <div class="tab-pane fade active show" id="account-heirs">
+                            <hr class="border-light m-0">
+                            <div class="card-body">
+                                <div class="container" style="width: 80%;
+                                margin: 20px auto;
+                                background-color: #f8f9fa;
+                                padding: 20px;
+                                border-radius: 8px;
+                                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+                                position: relative;">
+                                <div class="estate-details">
+                                <div class="estate-info">
+                                    <div th:if="${wasiat != null}" class="mb-3">
+                                        <p>User ID: <span th:text="${wasiat.user.name}"></span></p>
+                                        <p>Gender: <span th:text="${wasiat.gender}"></span></p>
+                                        <p>Suami: <span th:text="${wasiat.suami}"></span></p>
+                                        <p>Isteri: <span th:text="${wasiat.isteri}"></span></p>
+                                        <p>Anak Lelaki: <span th:text="${wasiat.anakLelaki}"></span></p>
+                                        <p>Anak Perempuan: <span th:text="${wasiat.anakPerempuan}"></span></p>
+                                        <p>Anak Angkat: <span th:text="${wasiat.anakAngkat}"></span></p>
+                                        <p>Perbelanjaan: <span th:text="${wasiat.perbelanjaan}"></span></p>
+                                        <p>Anggaran: <span th:text="${wasiat.anggaran}"></span></p>
+                                        <p>Hibah: <span th:text="${wasiat.hibah}"></span></p>
+                                    </div>
+                                    <div th:if="${wasiat == null}">
+                                        <p>Wasiat not found for this user.</p>
+                                    </div>
+                                </div>
+                                </div>
+                                </div>
+                            </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+    <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script type="text/javascript">
+
+    </script>
+</body>
+
+</html>

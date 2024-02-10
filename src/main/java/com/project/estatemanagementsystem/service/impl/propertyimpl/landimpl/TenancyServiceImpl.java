@@ -42,7 +42,24 @@ public class TenancyServiceImpl implements TenancyService {
 
     @Override
     public Tenancy updateTenancy(Tenancy tenancy){
-        return tenancyRepository.save(tenancy);
+        Tenancy existingTenancy = getTenancyById(tenancy.getId());
+
+        existingTenancy.setId(tenancy.getId());
+        existingTenancy.setTitleId(tenancy.getTitleId());
+        existingTenancy.setTax(tenancy.getTax());
+        existingTenancy.setState(tenancy.getState());
+        existingTenancy.setDistrict(tenancy.getDistrict());
+        existingTenancy.setAddress(tenancy.getAddress());
+        existingTenancy.setLotNumber(tenancy.getLotNumber());
+        existingTenancy.setArea(tenancy.getArea());
+        existingTenancy.setType(tenancy.getType());
+        existingTenancy.setRegDate(tenancy.getRegDate());
+        existingTenancy.setTenantName(tenancy.getTenantName());
+        existingTenancy.setTenantIdNumber(tenancy.getTenantIdNumber());
+        existingTenancy.setStartDate(tenancy.getStartDate());
+        existingTenancy.setEndDate(tenancy.getEndDate());
+        
+        return tenancyRepository.save(existingTenancy);
     }
 
     @Override

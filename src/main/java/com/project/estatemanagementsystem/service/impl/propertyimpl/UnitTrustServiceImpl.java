@@ -42,7 +42,13 @@ public class UnitTrustServiceImpl implements UnitTrustService{
 
     @Override
     public UnitTrust updateUnitTrust(UnitTrust unitTrust){
-        return unitTrustRepository.save(unitTrust);
+        UnitTrust existingUnitTrust = getUnitTrustById(unitTrust.getId());
+
+        existingUnitTrust.setId(unitTrust.getId());
+        existingUnitTrust.setAmount(unitTrust.getAmount());
+        existingUnitTrust.setMaturedDate(unitTrust.getMaturedDate());
+        
+        return unitTrustRepository.save(existingUnitTrust);
     }
 
     @Override

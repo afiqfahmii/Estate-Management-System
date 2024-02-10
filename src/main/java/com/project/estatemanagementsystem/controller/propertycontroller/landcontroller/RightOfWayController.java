@@ -19,7 +19,7 @@ public class RightOfWayController implements PropertyBuilder<RightOfWay>{
     @Autowired
     private UserService userService;
 
-    @GetMapping("/formrightofway")
+    @GetMapping("/formProperty?type=rightofway")
     public String showForm(Model model){
         User loggedInUser = userService.getCurrentUser();
 
@@ -27,7 +27,7 @@ public class RightOfWayController implements PropertyBuilder<RightOfWay>{
         rightOfWay.setUser(loggedInUser);
 
         model.addAttribute("RightOfWay", rightOfWay);
-        return "formLease";
+        return "formProperty";
     }
 
     @PostMapping("/saveRightOfWay")

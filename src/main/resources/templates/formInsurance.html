@@ -94,14 +94,9 @@
       <div class="estate-form-content">
         <h2>Insurance</h2>
         <form th:action="@{/saveInsurance}" th:object="${Insurance}" method="post">
-            <label for="idNumber">ID:</label>
-            <input type="text" id="idNumber" name="idNumber" th:field="*{idNumber}" required>
 
-            <label for="name">Name:</label>
-            <input type="text" id="name" name="name" th:field="*{name}" required>
-
-            <label for="name">Name:</label>
-            <input type="text" id="name" name="name" th:field="*{amount}" required>
+            <label for="amount">Amount:</label>
+            <input type="number" id="amount" name="amount" th:field="*{amount}" step="any" required>
 
             <label for="maturedDate">Matured Date:</label>
             <input type="date" id="maturedDate" name="maturedDate" th:field="*{maturedDate}" required>

@@ -19,7 +19,7 @@ public class TransferController implements PropertyBuilder<Transfer>{
     @Autowired
     private UserService userService;
 
-    @GetMapping("/formtransfer")
+    @GetMapping("/formtransfer?type=transfer")
     public String showForm(Model model){
         User loggedInUser = userService.getCurrentUser();
 
@@ -27,7 +27,7 @@ public class TransferController implements PropertyBuilder<Transfer>{
         transfer.setUser(loggedInUser);
 
         model.addAttribute("Transfer", transfer);
-        return "formTransfer";
+        return "formProperty";
     }
 
     @PostMapping("/saveTransfer")

@@ -88,14 +88,16 @@
         <p style="margin-top: 30px; max-width: 80%;">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
     </div>
   </section>
+
+  <script th:if="${msg != null}">
+    alert("Land with Title Id is already existed.");
+  </script>
   
   <div class="container">
     <div class="estate-form">
       <div class="estate-form-content">
         <h2>Debenture</h2>
         <form th:action="@{/saveDebenture}" th:object="${Debenture}" method="post">
-            <label for="idNumber">ID Number:</label>
-            <input type="text" id="idNumber" name="idNumber" th:field="*{idNumber}" required>
 
             <label for="agencyName">Agency Name:</label>
             <input type="text" id="agencyName" name="agencyName" th:field="*{agencyName}" required>
@@ -104,10 +106,10 @@
             <input type="text" id="agencyAddress" name="agencyAddress" th:field="*{agencyAddress}" required>
 
             <label for="amount">Amount:</label>
-            <input type="text" id="amount" name="amount" th:field="*{amount}" required>
+            <input type="number" id="amount" name="amount" th:field="*{amount}" step="any" required>
 
             <label for="share">Share:</label>
-            <input type="text" id="share" name="share" th:field="*{share}" required>
+            <input type="number" id="share" name="share" th:field="*{share}" step="any" required>
 
             <input type="hidden" th:field="*{user}" th:value="${Debenture.user}" />
 

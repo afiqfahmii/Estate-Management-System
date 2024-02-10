@@ -94,14 +94,9 @@
       <div class="estate-form-content">
         <h2>Unit Trust</h2>
         <form th:action="@{/saveUnitTrust}" th:object="${UnitTrust}" method="post">
-            <label for="idNumber">ID Number:</label>
-            <input type="text" id="idNumber" name="idNumber" th:field="*{idNumber}" required>
-
-            <label for="name">Name:</label>
-            <input type="text" id="name" name="name" th:field="*{name}" required>
 
             <label for="amount">Amount:</label>
-            <input type="text" id="amount" name="amount" th:field="*{amount}" required>
+            <input type="number" id="amount" name="amount" th:field="*{amount}" step="any" required>
 
             <label for="maturedDate">Matured Date:</label>
             <input type="date" id="maturedDate" name="maturedDate" th:field="*{maturedDate}" required>

@@ -16,6 +16,8 @@ import com.project.estatemanagementsystem.repository.RoleRepository;
 import com.project.estatemanagementsystem.repository.UserRepository;
 import com.project.estatemanagementsystem.service.UserService;
 
+import jakarta.transaction.Transactional;
+
 @Service
 public class UserServiceImpl implements UserService {
 
@@ -34,7 +36,8 @@ public class UserServiceImpl implements UserService {
     @Override
     public void saveUser(UserDto userDto) {
         User user = new User();
-        user.setName(userDto.getFirstName() + " " + userDto.getLastName());
+        // user.setName(userDto.getFirstName() + " " + userDto.getLastName());
+        user.setName(userDto.getName());
         user.setEmail(userDto.getEmail());
         user.setIDNum(userDto.getIDNum());
         user.setIDType(userDto.getIDType());
@@ -68,9 +71,9 @@ public class UserServiceImpl implements UserService {
 
     private UserDto convertEntityToDto(User user){
         UserDto userDto = new UserDto();
-        String[] name = user.getName().split(" ");
-        userDto.setFirstName(name[0]);
-        userDto.setLastName(name[1]);
+        // String[] name = user.getName().split(" ");
+        // userDto.setFirstName(name[0]);
+        // userDto.setLastName(name[1]);
         userDto.setEmail(user.getEmail());
         userDto.setIDNum(user.getIDNum());
         userDto.setIDType(user.getIDType());
@@ -102,6 +105,82 @@ public class UserServiceImpl implements UserService {
     @Override
     public User findUserById(Long userId) {
         return userRepository.findById(userId).orElse(null);
+    }
+
+    @Transactional
+    @Override
+    public void updateUser(User user){
+        User updatedUser = findUserById(user.getId());
+
+        updatedUser.setId(user.getId());
+        updatedUser.setName(user.getName());
+        updatedUser.setEmail(user.getEmail());
+        updatedUser.setIDType(user.getIDType());
+        updatedUser.setPhoneNum(user.getPhoneNum());
+        updatedUser.setIDNum(user.getIDNum());
+        updatedUser.setGender(user.getGender());
+        updatedUser.setDob(user.getDob());
+        updatedUser.setAddress(user.getAddress());
+        updatedUser.setPostcode(user.getPostcode());
+        updatedUser.setStatecode(user.getStatecode());
+
+        userRepository.save(updatedUser);
+    }
+
+    public void saveAdmin(User user){
+        User admin = new User();
+
+        admin.setName(user.getName());
+        admin.setEmail(user.getEmail());
+        admin.setPhoneNum(user.getPhoneNum());
+        admin.setPassword(passwordEncoder.encode(user.getPassword()));
+
+        Role role = roleRepository.findByName("ROLE_ADMIN");
+        if(role == null){
+            role = checkRoleAdminExist();
+        }
+        admin.setRoles(Arrays.asList(role));
+        userRepository.save(admin);
+    }
+
+    private Role checkRoleAdminExist() {
+        Role role = new Role();
+        role.setName("ROLE_ADMIN");
+        return roleRepository.save(role);
+    }
+
+    public void initAdmin(){
+        User admin = new User();
+
+        admin.setName("admin");
+        admin.setEmail("admin@default.com");
+        admin.setPhoneNum("0333033303");
+        admin.setPassword(passwordEncoder.encode("admin123"));
+        Role role = roleRepository.findByName("ROLE_ADMIN");
+        if(role == null){
+            role = checkRoleAdminExist();
+        }
+        admin.setRoles(Arrays.asList(role));
+        userRepository.save(admin);
+    } 
+
+    @Override
+    public List<User> findAllPewaris(){
+        List<User> pewarisList = userRepository.findByRoles(roleRepository.findByName("ROLE_PEWARIS"));
+
+        return pewarisList;
+    }
+
+    @Override
+    public List<User> findAllAdmins(){
+        List<User> adminList = userRepository.findByRoles(roleRepository.findByName("ROLE_ADMIN"));
+
+        return adminList;
+    }
+
+    @Override
+    public void deleteUserById(Long id){
+        userRepository.deleteById(id);
     }
 
     

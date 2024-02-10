@@ -42,11 +42,29 @@ public class LeaseServiceImpl implements LeaseService{
 
     @Override
     public Lease updateLease(Lease lease){
-        return leaseRepository.save(lease);
+        Lease existingLease = getLeaseById(lease.getId());
+
+        existingLease.setId(lease.getId());
+        existingLease.setTitleId(lease.getTitleId());
+        existingLease.setTax(lease.getTax());
+        existingLease.setState(lease.getState());
+        existingLease.setDistrict(lease.getDistrict());
+        existingLease.setAddress(lease.getAddress());
+        existingLease.setLotNumber(lease.getLotNumber());
+        existingLease.setArea(lease.getArea());
+        existingLease.setType(lease.getType());
+        existingLease.setRegDate(lease.getRegDate());
+        existingLease.setLesserName(lease.getLesserName());
+        existingLease.setLesserIdNumber(lease.getLesserIdNumber());
+        existingLease.setStartDate(lease.getStartDate());
+        existingLease.setEndDate(lease.getEndDate());
+        
+        return leaseRepository.save(existingLease);
     }
 
     @Override
     public void deleteLeaseById(Long id){
         leaseRepository.deleteById(id);
     }
+
 }

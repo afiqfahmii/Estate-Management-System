@@ -17,8 +17,6 @@ import lombok.Setter;
 @Table(name = "bond")
 public class Bond extends Property{
 
-    private String idNumber;
-
     private String agencyName;
 
     private String agencyAddress;

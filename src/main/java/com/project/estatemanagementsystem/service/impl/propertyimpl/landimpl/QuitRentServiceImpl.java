@@ -42,7 +42,25 @@ public class QuitRentServiceImpl implements QuitRentService{
 
     @Override
     public QuitRent updateQuitRent(QuitRent quitRent){
-        return quitRentRepository.save(quitRent);
+        QuitRent existingQuitRent = getQuitRentById(quitRent.getId());
+
+        existingQuitRent.setId(quitRent.getId());
+        existingQuitRent.setTitleId(quitRent.getTitleId());
+        existingQuitRent.setTax(quitRent.getTax());
+        existingQuitRent.setState(quitRent.getState());
+        existingQuitRent.setDistrict(quitRent.getDistrict());
+        existingQuitRent.setAddress(quitRent.getAddress());
+        existingQuitRent.setLotNumber(quitRent.getLotNumber());
+        existingQuitRent.setArea(quitRent.getArea());
+        existingQuitRent.setType(quitRent.getType());
+        existingQuitRent.setRegDate(quitRent.getRegDate());
+        existingQuitRent.setAccNumber(quitRent.getAccNumber());
+        existingQuitRent.setYear(quitRent.getYear());
+        existingQuitRent.setAmount(quitRent.getAmount());
+        existingQuitRent.setPaymentDate(quitRent.getPaymentDate());
+        existingQuitRent.setLotNumber(quitRent.getLotNumber());
+        
+        return quitRentRepository.save(existingQuitRent);
     }
 
     @Override

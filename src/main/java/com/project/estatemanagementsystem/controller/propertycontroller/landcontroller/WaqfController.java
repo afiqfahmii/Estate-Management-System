@@ -19,7 +19,7 @@ public class WaqfController implements PropertyBuilder<Waqf>{
     @Autowired
     private UserService userService;
 
-    @GetMapping("/formwaqf")
+    @GetMapping("/formProperty?type=waqf")
     public String showForm(Model model){
         User loggedInUser = userService.getCurrentUser();
 
@@ -27,7 +27,7 @@ public class WaqfController implements PropertyBuilder<Waqf>{
         waqf.setUser(loggedInUser);
 
         model.addAttribute("Waqf", waqf);
-        return "formWaqf";
+        return "formProperty";
     }
 
     @PostMapping("/saveWaqf")

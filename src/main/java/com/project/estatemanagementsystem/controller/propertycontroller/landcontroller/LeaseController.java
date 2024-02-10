@@ -19,7 +19,7 @@ public class LeaseController implements PropertyBuilder<Lease>{
     @Autowired
     private UserService userService;
 
-    @GetMapping("/formlease")
+    @GetMapping("/formProperty?type=lease")
     public String showForm(Model model){
         User loggedInUser = userService.getCurrentUser();
 
@@ -27,7 +27,7 @@ public class LeaseController implements PropertyBuilder<Lease>{
         lease.setUser(loggedInUser);
 
         model.addAttribute("Lease", lease);
-        return "formLease";
+        return "formProperty";
     }
 
     @PostMapping("/saveLease")

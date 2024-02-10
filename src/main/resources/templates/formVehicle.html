@@ -88,15 +88,17 @@
         <p style="margin-top: 30px; max-width: 80%;">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
     </div>
   </section>
+
+  <script th:if="${msg != null}">
+    alert("Vehicle with Car Registration Number is already existed.");
+  </script>
   
   <div class="container">
     <div class="estate-form">
       <div class="estate-form-content">
         <h2>Kenderaan</h2>
         <form th:action="@{/saveVehicle}" th:object="${Vehicle}" method="post">
-          <label for="idNumber">ID Number:</label>
-            <input type="text" id="idNumber" name="idNumber" th:field="*{idNumber}" required>
-
+         
             <label for="regNum">Registration Number:</label>
             <input type="text" id="regNum" name="regNum" th:field="*{carRegNum}" required>
 
@@ -126,7 +128,7 @@
             </select>
 
             <label for="year">Year:</label>
-            <input type="text" id="year" name="year" th:field="*{year}" required>
+            <input type="text" id="year" name="year" th:field="*{year}" pattern="[1-2]{1}[0-9]{3}" required>
 
             <label for="transactionDate">Transaction Date:</label>
             <input type="date" id="transactionDate" name="transactionDate" th:field="*{transactionDate}" required>
@@ -144,7 +146,7 @@
             <input type="date" id="insuranceEndDate" name="insuranceEndDate" th:field="*{insuranceEndDate}" required>
 
             <label for="insuranceAmount">Vehicle Insurance Amount:</label>
-            <input type="text" id="insuranceAmount" name="insuranceAmount" th:field="*{insuranceAmount}" required>
+            <input type="number" id="insuranceAmount" name="insuranceAmount" th:field="*{insuranceAmount}" step="any" required>
 
             <label for="roadtaxStartDate">Roadtax Start Date:</label>
             <input type="date" id="roadtaxStartDate" name="roadtaxStartDate" th:field="*{roadtaxStartDate}" required>
@@ -153,7 +155,7 @@
             <input type="date" id="roadtaxEndDate" name="roadtaxEndDate" th:field="*{roadtaxEndDate}" required>
 
             <label for="roadtaxAmount">Roadtax Amount:</label>
-            <input type="text" id="roadtaxAmount" name="roadtaxAmount" th:field="*{roadtaxAmount}" required>
+            <input type="number" id="roadtaxAmount" name="roadtaxAmount" th:field="*{roadtaxAmount}" step="any" required>
 
             <input type="hidden" th:field="*{user}" th:value="${Vehicle.user}" />
 

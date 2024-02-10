@@ -16,8 +16,6 @@ import lombok.Setter;
 @Entity
 @Table(name="debenture")
 public class Debenture extends Property{
-
-    private String idNumber;
     
     private String agencyName;
     

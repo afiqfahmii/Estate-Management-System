@@ -42,7 +42,20 @@ public class TransferServiceImpl implements TransferService{
 
     @Override
     public Transfer updateTransfer(Transfer transfer){
-        return transferRepository.save(transfer);
+        Transfer existingTransfer = getTransferById(transfer.getId());
+
+        existingTransfer.setId(transfer.getId());
+        existingTransfer.setTitleId(transfer.getTitleId());
+        existingTransfer.setTax(transfer.getTax());
+        existingTransfer.setState(transfer.getState());
+        existingTransfer.setDistrict(transfer.getDistrict());
+        existingTransfer.setAddress(transfer.getAddress());
+        existingTransfer.setLotNumber(transfer.getLotNumber());
+        existingTransfer.setArea(transfer.getArea());
+        existingTransfer.setType(transfer.getType());
+        existingTransfer.setRegDate(transfer.getRegDate());
+        
+        return transferRepository.save(existingTransfer);
     }
 
     @Override

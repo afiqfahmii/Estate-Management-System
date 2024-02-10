@@ -19,6 +19,17 @@ public class CaveatController implements PropertyBuilder<Caveat>{
     @Autowired
     private UserService userService;
 
+    // @GetMapping("/formProperty")
+    // public String showForm(@RequestParam("type") String propertyType, Model model){
+    //     User loggedInUser = userService.getCurrentUser();
+
+    //     Property caveat = new Caveat();
+    //     caveat.setUser(loggedInUser);
+
+    //     model.addAttribute("Caveat", caveat);
+    //     return "formCaveat";
+    // }
+
     @GetMapping("/formcaveat")
     public String showForm(Model model){
         User loggedInUser = userService.getCurrentUser();

@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+
+<title>EMS</title>
+<!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<link th:href="@{/css/style.css}" rel="stylesheet">
+<meta content="" name="description">
+<meta content="" name="keywords">
+
+<!-- Favicons -->
+<link th:href="@{/static/img/favicon.png}" rel="icon">
+
+
+<!-- Google Fonts -->
+<link th:href="@{https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i}" rel="stylesheet">
+
+<!-- Vendor CSS Files -->
+<link th:href="@{/vendor/animate.css/animate.min.css}" rel="stylesheet">
+<link th:href="@{/vendor/aos/aos.css}" rel="stylesheet">
+<link th:href="@{/vendor/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
+<link th:href="@{/vendor/bootstrap-icons/bootstrap-icons.css}" rel="stylesheet">
+<link th:href="@{/vendor/boxicons/css/boxicons.min.css}" rel="stylesheet">
+<link th:href="@{/vendor/glightbox/css/glightbox.min.css}" rel="stylesheet">
+<link th:href="@{/vendor/remixicon/remixicon.css}" rel="stylesheet">
+<link th:href="@{/vendor/swiper/swiper-bundle.min.css}" rel="stylesheet">
+</head>
+
+<body>
+
+  <!-- ======= Header ======= -->
+  <header id="header" class="fixed-top d-flex align-items-center  header-transparent ">
+    <div class="container d-flex align-items-center justify-content-between">
+
+      <div class="logo">
+        <h1><a th:href="@{/users}">EMS</a></h1>
+        <!-- Uncomment below if you prefer to use an image logo -->
+        <!-- <a href="index.html"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+      </div>
+
+      <nav id="navbar" class="navbar">
+        <ul>
+          <li><a class="nav-link scrollto active" href="#hero">Laman Utama</a></li>
+          <li><a class="nav-link scrollto" href="#about">Tentang Kami</a></li>
+          <li><a class="nav-link scrollto" href="#services">Servis</a></li>
+          <li><a class="nav-link scrollto " href="#portfolio">Portfolio</a></li>
+          <li><a class="nav-link scrollto" href="#pricing">Pricing</a></li>
+          <li><a class="nav-link scrollto" href="#team">Ahli Kumpulan</a></li>
+          <li class="dropdown"><a href="#"><span>Drop Down</span> <i class="bi bi-chevron-down"></i></a>
+            <ul>
+              <li><a href="#">Drop Down 1</a></li>
+              <li class="dropdown"><a href="#"><span>Deep Drop Down</span> <i class="bi bi-chevron-right"></i></a>
+                <ul>
+                  <li><a th:href="@{/wasiat/create}">create</a></li>
+                  <li><a th:href="@{/wasiat/list}">list</a></li>
+                  <li><a th:href="@{/wasiat/update}">update</a></li>
+                  <li><a th:href="@{/wasiat/delete}">delete</a></li>
+                  <li><a href="#">Deep Drop Down 5</a></li>
+                </ul>
+              </li>
+              <li><a href="#">Drop Down 2</a></li>
+              <li><a href="#">Drop Down 3</a></li>
+              <li><a href="#">Drop Down 4</a></li>
+            </ul>
+          </li>
+          <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
+        </ul>
+        <nav id="navbar-login" class="navbar-login">
+          <ul>
+
+            <li><a class="nav-link scrollto"><span th:text="${username}"></span></a></li>
+            <li><a class="nav-link scrollto" th:href="@{/logout}">Log Out</a></li>
+          </ul>
+        </nav>
+        <i class="bi bi-list mobile-nav-toggle"></i>
+      </nav><!-- .navbar -->
+
+    </div>
+  </header><!-- End Header -->
+
+  <section id="page-title">
+    <div style="display: flex; flex-direction: column; align-items: center; text-align: center;">
+        <h1 style="margin-top: 50px;">Info Harta</h1>
+        <p style="margin-top: 30px; max-width: 80%;">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+    </div>
+  </section>
+  
+  <div class="container">
+    <div class="estate-form">
+      <div class="estate-form-content">
+        <h2>Cash</h2>
+        <form th:action="@{/saveCashUpdate}" th:object="${Cash}" method="post">
+            <input type="hidden" th:field="*{id}" th:value="${id}">
+
+            <input type="hidden" th:field="*{user}" th:value="${user}">
+
+            <label for="accType">Jenis Akaun:</label>
+                <select id="accType" name="accType" th:field="*{accType}" th:value="${accType}" required>
+                    <option value="" disabled selected>Pilih Jenis Akaun</option>
+                    <option value="Simpanan">Akaun Simpanan</option>
+                    <option value="Terkini">Akaun Terkini</option>
+                    <option value="Deposit">Akaun Deposit</option>
+                    <option value="Simpanan Tetap">Akaun Simpanan Tetap</option>
+                    </option>
+                </select>
+
+            <label for="bankName">Bank:</label>
+            <select id="bankName" name="bankName" th:field="*{bankName}" th:value="${bankName}" required>
+            <option value="" disabled selected>Pilih Bank Anda:</option>
+                <option value="AffinBank">Affin Bank</option>
+                <option value="Agrobank">Agrobank</option>
+                <option value="AlRajhi">Al-Rajhi Bank</option>
+                <option value="AllianceBank">Alliance Bank Malaysia Berhad</option>
+                <option value="AmBank">AmBank</option>
+                <option value="BIMB">Bank Islam Berhad Malaysia</option>
+                <option value="BMMB">Bank Muamalat Malaysia Berhad</option>
+                <option value="BankRakyat">Bank Rakyat</option>
+                <option value="BSN">Bank Simpanan Nasional</option>
+                <option value="CIMB">CIMB Bank</option>
+                <option value="Citibank">Citibank Malaysia</option>
+                <option value="Coop">Co-op Bank Pertama</option>
+                <option value="HLB">Hong Leong Bank</option>
+                <option value="HSBC">HSBC Bank Malaysia</option>
+                <option value="MalayanBanking">Malayan Banking Berhad</option>
+                <option value="MBSB">MBSB Bank Berhad</option>
+                <option value="OCBC">OCBC Bank Malaysia</option>
+                <option value="PublicBank">Public Bank Berhad</option>
+                <option value="RHB">RHB Bank</option>
+                <option value="StandardChartered">Standard Chartered Bank Malaysia</option>
+                <option value="UOB">UOB Malaysia</option>
+                </option>
+            </select>
+
+          <label for="accNumber">Nombor Akaun:</label>
+          <input type="text" id="accNumber" name="accNumber" th:field="*{accNumber}" th:value="${accNumber}" pattern="[0-9]*" title="Please enter numbers only." required>
+
+          <label for="amount">Amaun:</label>
+          <input type="number" id="amount" name="amount" th:field="*{amount}" th:value="${amount}" step="any" required>
+
+          <label for="cashStatus">Status Bank:</label>
+          <select id="cashStatus" name="cashStatus" th:field="*{accStatus}" th:value="${cashStatus}" required>
+              <option value="" disabled selected>Pilih Status Bank Anda</option>
+              <option value="Aktif">Aktif</option>
+              <option value="Beku">Beku</option>
+              <option value="Telah Ditutup">Telah Ditutup</option>
+              </option>
+            </select>
+
+            <button type="reset" class="btn-cancel" onclick="location.href = '/propertyList';" >Cancel</button>
+            <button type="submit" class="btn-edit-info" onclick="return confirm('Confirm changes?')">Save</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- ======= Footer ======= -->
+  <footer id="footer">
+    <div class="container">
+      <h3>Selecao</h3>
+      <p>Et aut eum quis fuga eos sunt ipsa nihil. Labore corporis magni eligendi fuga maxime saepe commodi placeat.</p>
+      <div class="social-links">
+        <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
+        <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
+        <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
+        <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
+        <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+      </div>
+      <div class="copyright">
+        &copy; Copyright <strong><span>Selecao</span></strong>. All Rights Reserved
+      </div>
+      <div class="credits">
+        <!-- All the links in the footer should remain intact. -->
+        <!-- You can delete the links only if you purchased the pro version. -->
+        <!-- Licensing information: https://bootstrapmade.com/license/ -->
+        <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/selecao-bootstrap-template/ -->
+        Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+      </div>
+    </div>
+  </footer><!-- End Footer -->
+
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Vendor JS Files -->
+  <script src="assets/vendor/aos/aos.js"></script>
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="assets/vendor/php-email-form/validate.js"></script>
+
+  <!-- Template Main JS File -->
+  <script src="assets/js/main.js"></script>
+
+</body>
+
+</html>

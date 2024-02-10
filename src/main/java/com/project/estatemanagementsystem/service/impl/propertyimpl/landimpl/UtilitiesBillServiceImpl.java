@@ -42,7 +42,25 @@ public class UtilitiesBillServiceImpl implements UtilitiesBillService{
 
     @Override
     public UtilitiesBill updateUtilitiesBill(UtilitiesBill utilitiesBill){
-        return utilitiesBillRepository.save(utilitiesBill);
+        UtilitiesBill existingUtilitiesBill = getUtilitiesBillById(utilitiesBill.getId());
+
+        existingUtilitiesBill.setId(utilitiesBill.getId());
+        existingUtilitiesBill.setTitleId(utilitiesBill.getTitleId());
+        existingUtilitiesBill.setTax(utilitiesBill.getTax());
+        existingUtilitiesBill.setState(utilitiesBill.getState());
+        existingUtilitiesBill.setDistrict(utilitiesBill.getDistrict());
+        existingUtilitiesBill.setAddress(utilitiesBill.getAddress());
+        existingUtilitiesBill.setLotNumber(utilitiesBill.getLotNumber());
+        existingUtilitiesBill.setArea(utilitiesBill.getArea());
+        existingUtilitiesBill.setType(utilitiesBill.getType());
+        existingUtilitiesBill.setRegDate(utilitiesBill.getRegDate());
+        existingUtilitiesBill.setBillNumber(utilitiesBill.getBillNumber());
+        existingUtilitiesBill.setAccNumber(utilitiesBill.getAccNumber());
+        existingUtilitiesBill.setBillOfMonth(utilitiesBill.getBillOfMonth());
+        existingUtilitiesBill.setAmount(utilitiesBill.getBillOfMonth());
+        existingUtilitiesBill.setBillOfYear(utilitiesBill.getBillOfYear());
+        
+        return utilitiesBillRepository.save(existingUtilitiesBill);
     }
 
     @Override

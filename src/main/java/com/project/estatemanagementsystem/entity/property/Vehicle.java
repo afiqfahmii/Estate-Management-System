@@ -20,8 +20,6 @@ import lombok.Setter;
 //kenderaan
 public class Vehicle extends Property{
 
-    private String idNumber;
-    
     private String carRegNum;
     
     private String model;

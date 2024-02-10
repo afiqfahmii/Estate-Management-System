@@ -82,6 +82,10 @@
     </div>
   </header><!-- End Header -->
 
+  <script th:if="${msg != null}">
+    alert("Land with Title Id is already existed.");
+  </script>
+
   <section id="page-title">
     <div style="display: flex; flex-direction: column; align-items: center; text-align: center;">
         <h1 style="margin-top: 50px;">Info Harta</h1>
@@ -94,8 +98,6 @@
       <div class="estate-form-content">
         <h2>Share</h2>
         <form th:action="@{/saveShare}" th:object="${Share}" method="post">
-            <label for="idNumber">ID Number:</label>
-            <input type="text" id="idNumber" name="idNumber" th:field="*{idNumber}" required>
 
             <label for="agencyName">Agency Name:</label>
             <input type="text" id="agencyName" name="agencyName" th:field="*{agencyName}" required>
@@ -104,10 +106,10 @@
             <input type="text" id="agencyAddress" name="agencyAddress" th:field="*{agencyAddress}" required>
 
             <label for="amount">Amount:</label>
-            <input type="text" id="amount" name="amount" th:field="*{amount}" required>
+            <input type="number" id="amount" name="amount" th:field="*{amount}" step="any" required>
 
             <label for="share">Share:</label>
-            <input type="number" id="share" name="share" th:field="*{share}" required>
+            <input type="number" id="share" name="share" th:field="*{share}" step="any" required>
 
             <input type="hidden" th:field="*{user}" th:value="${Share.user}" />
 

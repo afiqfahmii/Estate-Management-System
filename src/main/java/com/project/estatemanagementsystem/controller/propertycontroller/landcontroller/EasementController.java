@@ -19,7 +19,7 @@ public class EasementController implements PropertyBuilder<Easement>{
     @Autowired
     private UserService userService;
 
-    @GetMapping("/formeasement")
+    @GetMapping("/formProperty?type=easement")
     public String showForm(Model model){
         User loggedInUser = userService.getCurrentUser();
 
@@ -27,7 +27,7 @@ public class EasementController implements PropertyBuilder<Easement>{
         easement.setUser(loggedInUser);
 
         model.addAttribute("Easement", easement);
-        return "formEasement";
+        return "formProperty";
     }
 
     @PostMapping("/saveEasement")

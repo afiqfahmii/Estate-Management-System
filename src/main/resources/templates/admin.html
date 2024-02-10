@@ -21,7 +21,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" th:href="@{/admin/list}">User Wasiat List</a>
+                    <a class="nav-link active" aria-current="page" th:href="@{/admin}">User List</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page" th:href="@{/logout}">Logout</a>
@@ -37,19 +37,21 @@
     <table class="table table-striped table-bordered table-hover">
         <thead class="table-dark">
             <tr>
-                <th>First Name</th>
-                <th>Last Name</th>
+                <th>Name</th>
                 <th>Email</th>
                 <th>Action</th>
             </tr>
         </thead>
         <tbody>
             <!-- Iterate through users -->
-            <tr th:each="user: ${users}">
-                <td th:text="${user.firstName}"></td>
-                <td th:text="${user.lastName}"></td>
-                <td th:text="${user.email}"></td>
-                <td><a th:href="@{/admin/delete/{id}(id=${user.id})}" onclick="return confirm('Are you sure you want to delete this user?')">Delete</a></td>
+            <tr th:each="pewaris: ${pewarisList}">
+                <td th:text="${pewaris.name}"></td>
+                <td th:text="${pewaris.email}"></td>
+                <td><a th:href="@{/admin/deletePewaris/{id}(id=${pewaris.id})}" class="btn btn-danger" onclick="return confirm('Delete this user?')">Delete</a>
+                    <a th:href="@{/admin/pewarisDetail/{id}(id=${pewaris.id})}" class="btn btn-light">Details</a>
+                    <a th:href="@{/admin/pewarisProperty/{id}(id=${pewaris.id})}" class="btn btn-light">Property</a>
+                    <a th:href="@{/admin/pewarisHeirs/{id}(id=${pewaris.id})}" class="btn btn-light">Heirs</a>
+                    <a th:href="@{/admin/pewarisWasiat/{id}(id=${pewaris.id})}" class="btn btn-light">Wasiat</a></td>
             </tr>
          
         </tbody>

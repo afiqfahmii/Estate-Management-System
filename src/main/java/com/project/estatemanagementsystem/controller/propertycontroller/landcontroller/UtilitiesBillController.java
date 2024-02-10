@@ -19,7 +19,7 @@ public class UtilitiesBillController implements PropertyBuilder<UtilitiesBill>{
     @Autowired
     private UserService userService;
 
-    @GetMapping("/formutilitiesbill")
+    @GetMapping("/formProperty?type=utilitiesBill")
     public String showForm(Model model){
         User loggedInUser = userService.getCurrentUser();
 
@@ -27,7 +27,7 @@ public class UtilitiesBillController implements PropertyBuilder<UtilitiesBill>{
         utilitiesBill.setUser(loggedInUser);
 
         model.addAttribute("UtilitiesBill", utilitiesBill);
-        return "formUtilitiesBill";
+        return "formProperty";
     }
 
     @PostMapping("/saveUtilitiesBill")

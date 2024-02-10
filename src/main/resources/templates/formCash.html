@@ -94,9 +94,7 @@
       <div class="estate-form-content">
         <h2>Cash</h2>
         <form th:action="@{/saveCash}" th:object="${Cash}" method="post">
-            <label for="idNumber">ID:</label>
-          <input type="text" id="idNumber" name="idNumber" th:field="*{idNumber}" required>
-
+`
           <label for="accType">Jenis Akaun:</label>
             <select id="accType" name="accType" th:field="*{accType}" required>
                 <option value="" disabled selected>Pilih Jenis Akaun</option>
@@ -135,10 +133,10 @@
             </select>
 
           <label for="accNumber">Nombor Akaun:</label>
-          <input type="text" id="accNumber" name="accNumber" th:field="*{accNumber}" required>
+          <input type="text" id="accNumber" name="accNumber" th:field="*{accNumber}" pattern="[0-9]*" title="Please enter numbers only." required>
 
           <label for="amount">Amaun:</label>
-          <input type="text" id="amount" name="amount" th:field="*{amount}" required>
+          <input type="number" id="amount" name="amount" th:field="*{amount}" step="any" required>
 
           <label for="cashStatus">Status Bank:</label>
           <select id="cashStatus" name="cashStatus" th:field="*{accStatus}" required>

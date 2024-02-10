@@ -19,7 +19,7 @@ public class InsuranceController implements PropertyBuilder<Insurance>{
     @Autowired
     private UserService userService;
 
-    @GetMapping("/forminsurance")
+    @GetMapping("/formProperty?type=insurance")
     public String showForm(Model model){
         User loggedInUser = userService.getCurrentUser();
 
@@ -27,7 +27,7 @@ public class InsuranceController implements PropertyBuilder<Insurance>{
         insurance.setUser(loggedInUser);
 
         model.addAttribute("Insurance", insurance);
-        return "formInsurance";
+        return "formProperty";
     }
 
     @PostMapping("/saveInsurance")
