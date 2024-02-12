@@ -63,10 +63,13 @@
                                         <p>Perbelanjaan: <span th:text="${wasiat.perbelanjaan}"></span></p>
                                         <p>Anggaran: <span th:text="${wasiat.anggaran}"></span></p>
                                         <p>Hibah: <span th:text="${wasiat.hibah}"></span></p>
+                                        <a th:href="@{/admin/edit/{userId}(userId=${wasiat.user.id})}" class="btn btn-secondary">Edit</a>
+                                    <a th:href="@{/admin/delete/{userId}(userId=${wasiat.user.id})}" class="btn btn-danger" onclick="return confirm('Are you sure?')">Delete</a>
                                     </div>
                                     <div th:if="${wasiat == null}">
                                         <p>Wasiat not found for this user.</p>
                                     </div>
+                                    
                                 </div>
                                 </div>
                                 </div>

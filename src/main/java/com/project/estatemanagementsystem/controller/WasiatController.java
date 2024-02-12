@@ -78,27 +78,53 @@ public class WasiatController {
     }
     
 
-    @GetMapping("/wasiat/delete/{id}")
-    public String deleteWasiat(@PathVariable Long id) {
-        wasiatService.deleteWasiat(id);
-        return "redirect:/wasiat/list";
-    }
+ 
 
 
     @GetMapping("/wasiat/view/{userId}")
-    public String viewWasiat(@PathVariable Long userId, Model model){
-        User loggedInUser = getLoggedInUser();
-        List<Property> propertyList = propertyService.getPropertiesByUser(loggedInUser);
-        Wasiat wasiat = wasiatService.getWasiatByUserId(userId);
-        model.addAttribute("loggedInUser", loggedInUser);
-        model.addAttribute("propertyList", propertyList);
-        model.addAttribute("wasiatShow", wasiat);
-        return "showWasiat";
+public String viewWasiat(@PathVariable Long userId, Model model) {
+    User loggedInUser = getLoggedInUser();
+    List<Property> propertyList = propertyService.getPropertiesByUser(loggedInUser);
+    Wasiat wasiat = wasiatService.getWasiatByUserId(userId);
+
+    model.addAttribute("loggedInUser", loggedInUser);
+    model.addAttribute("propertyList", propertyList);
+    model.addAttribute("wasiatShow", wasiat);
+
+    if (propertyList.isEmpty() && wasiat == null) {
+        // Redirect to the error page if both propertyList and wasiat are empty
+        return "redirect:/error";
     }
+
+    return "showWasiat";
+}
+
+
+    @GetMapping("/wasiat/details/{userId}")
+    public String showWasiatDetails(@PathVariable Long userId, Model model) {
+        User user = wasiatService.getWasiatDetailsByUserId(userId);
+        Wasiat wasiat = wasiatService.getWasiatByUserId(user.getId());
+        List<Property> propertyList = propertyService.getPropertiesByUserId(user.getId());
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String username = authentication.getName();
+
+        model.addAttribute("username", username);
+
+        if (wasiat != null || propertyList != null && !propertyList.isEmpty()) {
+            model.addAttribute("propertyList", propertyList);
+            model.addAttribute("wasiat", wasiat);
+            return "wasiatDetails";
+        } else {
+            // Redirect to the error page if both wasiat and propertyList are null
+            return "redirect:/error";
+        }
+    }   
+
 
     private User getLoggedInUser() {
         return userService.getCurrentUser();
     }
+    
 
     // ? ADMIN --------------------------------------------------------------------
 
@@ -112,7 +138,7 @@ public class WasiatController {
     @GetMapping("/admin/delete/{userId}")
     public String deleteUserWasiatList(@PathVariable Long userId) {
         wasiatService.deleteUserWasiat(userId);
-        return "redirect:/admin/list";
+        return "redirect:/admin";
     }
 
     @GetMapping("/admin/edit/{userId}")
@@ -214,7 +240,7 @@ public class WasiatController {
         }
 
         wasiatService.updateWasiat(wasiat);
-        return "redirect:/admin/list";
+        return "redirect:/admin";
     }
     @PostMapping("/user/update")
     public String userUpdateWasiat(@Valid @ModelAttribute Wasiat wasiat, BindingResult bindingResult, Model model) {
@@ -305,22 +331,6 @@ public class WasiatController {
 
     //--------------------------------------------------------------------------------------------------------------------
 
-    @GetMapping("/wasiat/details/{userId}")
-    public String showWasiatDetails(@PathVariable Long userId, Model model) {
-        User user = wasiatService.getWasiatDetailsByUserId(userId);
-        Wasiat wasiat= wasiatService.getWasiatByUserId(user.getId());
-        List<Property> propertyList = propertyService.getPropertiesByUserId(user.getId());
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        String username = authentication.getName();
-        
-        model.addAttribute("username", username);
-        if (wasiat != null) {
-            model.addAttribute("propertyList", propertyList);
-            model.addAttribute("wasiat", wasiat);
-            return "wasiatDetails";
-        } else {
-            return "users";
-        }
-    }
+    
 
 }

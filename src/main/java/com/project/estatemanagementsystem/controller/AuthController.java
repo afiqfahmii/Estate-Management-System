@@ -196,8 +196,7 @@ public class AuthController {
     }
 
     @GetMapping("/admin/deletePewaris/{id}")
-    public String pewarisDelete(@PathVariable("id") Long id){
-        
+    public String pewarisDelete(@PathVariable Long id){
         userService.deleteUserById(id);
         return "redirect:/admin";
     }

@@ -10,4 +10,10 @@ public class EstateManagementSystemApplication {
 		SpringApplication.run(EstateManagementSystemApplication.class, args);
 	}
 
+	//Admin initialize
+	// email : admin@default.com
+	// password : admin123
+	// open mysql
+	//change username and password at system.properties
+
 }
