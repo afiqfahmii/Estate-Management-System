@@ -56,22 +56,17 @@ public class WasiatController {
         return "createWasiat";
     }
 
-    @PostMapping("/wasiat/create/done")
+    @PostMapping("/wasiat/create")
     public String createWasiat(@ModelAttribute("wasiat") Wasiat wasiat, Model model) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String username = authentication.getName();
         User user = userService.getCurrentUser();
         Long userId = user.getId();
-        User loggedInUser = getLoggedInUser();
-        List<Property> propertyList = propertyService.getPropertiesByUser(loggedInUser);
 
         model.addAttribute("userId", userId);
         model.addAttribute("username", username);
-        model.addAttribute("wasiatShow", wasiat);
-        model.addAttribute("loggedInUser", loggedInUser);
-        model.addAttribute("propertyList", propertyList);
         wasiatService.saveWasiat(wasiat);
-        return "showWasiat";
+        return "users";
     }
 
     @GetMapping("/wasiat/list")
@@ -82,22 +77,22 @@ public class WasiatController {
         return "wasiatList";
     }
     
-    @GetMapping("/wasiat/view/{userId}")
-    public String viewWasiat(@PathVariable Long userId, Model model) {
-        User loggedInUser = getLoggedInUser();
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        String username = authentication.getName();
-        List<Property> propertyList = propertyService.getPropertiesByUser(loggedInUser);
-        Wasiat wasiat = wasiatService.getWasiatByUserId(userId);
 
-        model.addAttribute("username", username);
-        model.addAttribute("userId", userId);
-        model.addAttribute("loggedInUser", loggedInUser);
-        model.addAttribute("propertyList", propertyList);
-        model.addAttribute("wasiatShow", wasiat);
+ 
+
+
+    @GetMapping("/wasiat/view/{userId}")
+public String viewWasiat(@PathVariable Long userId, Model model) {
+    User loggedInUser = getLoggedInUser();
+    List<Property> propertyList = propertyService.getPropertiesByUser(loggedInUser);
+    Wasiat wasiat = wasiatService.getWasiatByUserId(userId);
+
+    model.addAttribute("loggedInUser", loggedInUser);
+    model.addAttribute("propertyList", propertyList);
+    model.addAttribute("wasiatShow", wasiat);
 
     if (propertyList.isEmpty() && wasiat == null) {
-        
+        // Redirect to the error page if both propertyList and wasiat are empty
         return "redirect:/error";
     }
 
