@@ -34,6 +34,8 @@ public class WasiatController {
     private final WasiatService wasiatService;
     private final PropertyService propertyService;
 
+    
+
     public WasiatController(UserService userService, WasiatService wasiatService, PropertyService propertyService) {
         this.userService = userService;
         this.wasiatService = wasiatService;
@@ -68,7 +70,6 @@ public class WasiatController {
         model.addAttribute("wasiatShow", wasiat);
         model.addAttribute("loggedInUser", loggedInUser);
         model.addAttribute("propertyList", propertyList);
-
         wasiatService.saveWasiat(wasiat);
         return "showWasiat";
     }
@@ -80,7 +81,7 @@ public class WasiatController {
         model.addAttribute("wasiatList", wasiatList);
         return "wasiatList";
     }
-
+    
     @GetMapping("/wasiat/view/{userId}")
     public String viewWasiat(@PathVariable Long userId, Model model) {
         User loggedInUser = getLoggedInUser();
@@ -95,13 +96,14 @@ public class WasiatController {
         model.addAttribute("propertyList", propertyList);
         model.addAttribute("wasiatShow", wasiat);
 
-        if (propertyList.isEmpty() && wasiat == null) {
-            // Redirect to the error page if both propertyList and wasiat are empty
-            return "redirect:/error";
-        }
-
-        return "showWasiat";
+    if (propertyList.isEmpty() && wasiat == null) {
+        
+        return "redirect:/error";
     }
+
+    return "showWasiat";
+}
+
 
     @GetMapping("/wasiat/details/{userId}")
     public String showWasiatDetails(@PathVariable Long userId, Model model) {
@@ -121,11 +123,13 @@ public class WasiatController {
             // Redirect to the error page if both wasiat and propertyList are null
             return "redirect:/error";
         }
-    }
+    }   
+
 
     private User getLoggedInUser() {
         return userService.getCurrentUser();
     }
+    
 
     // ? ADMIN --------------------------------------------------------------------
 
@@ -202,8 +206,7 @@ public class WasiatController {
 
         for (IsteriDetail isteriDetail : wasiat.getIsteriDetails()) {
             String name = isteriDetail.getName();
-            if (isteriNames.contains(name) || anakLelakiNames.contains(name) || anakPerempuanNames.contains(name)
-                    || anakAngkatNames.contains(name)) {
+            if (isteriNames.contains(name) || anakLelakiNames.contains(name) || anakPerempuanNames.contains(name) || anakAngkatNames.contains(name)) {
                 return "duplicateNameError";
             }
             isteriNames.add(name);
@@ -235,8 +238,7 @@ public class WasiatController {
 
         for (IsteriDetail isteriDetail : wasiat.getIsteriDetails()) {
             String ic = isteriDetail.getIc();
-            if (isteriIcs.contains(ic) || anakLelakiIcs.contains(ic) || anakPerempuanIcs.contains(ic)
-                    || anakAngkatIcs.contains(ic)) {
+            if (isteriIcs.contains(ic) || anakLelakiIcs.contains(ic) || anakPerempuanIcs.contains(ic) || anakAngkatIcs.contains(ic)) {
                 return "duplicateIcError";
             }
             isteriIcs.add(ic);
@@ -245,7 +247,6 @@ public class WasiatController {
         wasiatService.updateWasiat(wasiat);
         return "redirect:/admin";
     }
-
     @PostMapping("/user/update")
     public String userUpdateWasiat(@Valid @ModelAttribute Wasiat wasiat, BindingResult bindingResult, Model model) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -287,8 +288,7 @@ public class WasiatController {
 
         for (IsteriDetail isteriDetail : wasiat.getIsteriDetails()) {
             String name = isteriDetail.getName();
-            if (isteriNames.contains(name) || anakLelakiNames.contains(name) || anakPerempuanNames.contains(name)
-                    || anakAngkatNames.contains(name)) {
+            if (isteriNames.contains(name) || anakLelakiNames.contains(name) || anakPerempuanNames.contains(name) || anakAngkatNames.contains(name)) {
                 return "duplicateNameError";
             }
             isteriNames.add(name);
@@ -320,8 +320,7 @@ public class WasiatController {
 
         for (IsteriDetail isteriDetail : wasiat.getIsteriDetails()) {
             String ic = isteriDetail.getIc();
-            if (isteriIcs.contains(ic) || anakLelakiIcs.contains(ic) || anakPerempuanIcs.contains(ic)
-                    || anakAngkatIcs.contains(ic)) {
+            if (isteriIcs.contains(ic) || anakLelakiIcs.contains(ic) || anakPerempuanIcs.contains(ic) || anakAngkatIcs.contains(ic)) {
                 return "duplicateIcError";
             }
             isteriIcs.add(ic);
@@ -333,6 +332,10 @@ public class WasiatController {
         return "users";
     }
 
-    // --------------------------------------------------------------------------------------------------------------------
+
+
+    //--------------------------------------------------------------------------------------------------------------------
+
+    
 
 }
